@@ -40,21 +40,29 @@
 			.join(", ");
 	};
 
-	document.querySelectorAll("[href]").forEach(function (el) {
-		var href = el.getAttribute("href");
-		var fixed = fixUrl(href);
-		if (fixed !== href) el.setAttribute("href", fixed);
-	});
+	var applyFixes = function () {
+		document.querySelectorAll("[href]").forEach(function (el) {
+			var href = el.getAttribute("href");
+			var fixed = fixUrl(href);
+			if (fixed !== href) el.setAttribute("href", fixed);
+		});
 
-	document.querySelectorAll("[src]").forEach(function (el) {
-		var src = el.getAttribute("src");
-		var fixed = fixUrl(src);
-		if (fixed !== src) el.setAttribute("src", fixed);
-	});
+		document.querySelectorAll("[src]").forEach(function (el) {
+			var src = el.getAttribute("src");
+			var fixed = fixUrl(src);
+			if (fixed !== src) el.setAttribute("src", fixed);
+		});
 
-	document.querySelectorAll("[srcset]").forEach(function (el) {
-		var srcset = el.getAttribute("srcset");
-		var fixed = fixSrcset(srcset);
-		if (fixed !== srcset) el.setAttribute("srcset", fixed);
-	});
+		document.querySelectorAll("[srcset]").forEach(function (el) {
+			var srcset = el.getAttribute("srcset");
+			var fixed = fixSrcset(srcset);
+			if (fixed !== srcset) el.setAttribute("srcset", fixed);
+		});
+	};
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", applyFixes);
+	} else {
+		applyFixes();
+	}
 })();
