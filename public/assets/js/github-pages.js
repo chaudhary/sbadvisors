@@ -3,12 +3,29 @@
 		return;
 	}
 
-	var prefix = "/sbadvisors";
+	var parts = window.location.pathname.split("/").filter(Boolean);
+	var prefix = parts.length ? "/" + parts[0] : "";
+	var origin = window.location.origin;
+
 	var fixUrl = function (url) {
-		if (!url || url[0] !== "/" || url.startsWith("//") || url.startsWith(prefix + "/")) {
+		if (!url) return url;
+
+		if (url.startsWith(origin + "/")) {
+			var relative = url.slice(origin.length);
+			if (prefix && !relative.startsWith(prefix + "/")) {
+				return origin + prefix + relative;
+			}
 			return url;
 		}
-		return prefix + url;
+
+		if (url[0] !== "/" || url.startsWith("//")) {
+			return url;
+		}
+
+		if (prefix && !url.startsWith(prefix + "/")) {
+			return prefix + url;
+		}
+		return url;
 	};
 
 	var fixSrcset = function (value) {
