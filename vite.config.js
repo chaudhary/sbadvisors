@@ -91,8 +91,19 @@ function fixLegacyScripts(base) {
   };
 }
 
-function preserveCssLinks() {
+function preserveCssLinks(base) {
   const cssLinkRegex = /<link\b[^>]*\brel=["']stylesheet["'][^>]*>/gi;
+  const normalizedBase =
+    base === "./" || base === "."
+      ? "/"
+      : `/${base.replace(/^\/|\/$/g, "")}/`;
+  const normalizeHref = (href) => {
+    if (href.startsWith(normalizedBase)) return href;
+    if (href.startsWith("/")) return href;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return href;
+    const trimmed = href.replace(/^\.\//, "").replace(/^\//, "");
+    return `${normalizedBase}${trimmed}`;
+  };
   const collectHtmlFiles = (dir) => {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
     const files = [];
@@ -119,8 +130,13 @@ function preserveCssLinks() {
     enforce: "pre",
     transformIndexHtml(html) {
       return html.replace(cssLinkRegex, (full) => {
-        if (/\bdata-vite-ignore\b/i.test(full)) return full;
-        return full.replace(/\s*\/?>$/, (end) => ` data-vite-ignore${end}`);
+        let next = full;
+        if (!/\bdata-vite-ignore\b/i.test(next)) {
+          next = next.replace(/\s*\/?>$/, (end) => ` data-vite-ignore${end}`);
+        }
+        return next.replace(/\bhref=["']([^"']+)["']/, (match, href) => {
+          return `href="${normalizeHref(href)}"`;
+        });
       });
     },
     writeBundle(outputOptions) {
@@ -154,12 +170,13 @@ function preserveCssLinks() {
           const outPath = path.join(distDir, hashedHref);
           fs.mkdirSync(path.dirname(outPath), { recursive: true });
           fs.copyFileSync(sourceCssPath, outPath);
+          const publicHref = normalizeHref(hashedHref);
 
           const idRegex = new RegExp(
             `<link\\b([^>]*\\bid=["']${id}["'][^>]*\\bhref=["'])[^"']+(["'][^>]*>)`,
             "gi"
           );
-          distHtml = distHtml.replace(idRegex, `<link$1${hashedHref}$2`);
+          distHtml = distHtml.replace(idRegex, `<link$1${publicHref}$2`);
         }
         fs.writeFileSync(distFile, distHtml, "utf8");
       }
