@@ -3,6 +3,12 @@
 		return;
 	}
 
+	if (window.location.host === "chaudhary.github.io" && !document.querySelector("base")) {
+		var baseTag = document.createElement("base");
+		baseTag.href = window.location.protocol + "//chaudhary.github.io/sbadvisors/";
+		document.head.insertBefore(baseTag, document.head.firstChild);
+	}
+
 	var parts = window.location.pathname.split("/").filter(Boolean);
 	var prefix = parts.length ? "/" + parts[0] : "";
 	var origin = window.location.origin;
