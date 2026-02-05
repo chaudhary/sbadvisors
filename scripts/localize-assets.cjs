@@ -20,8 +20,8 @@ const jsUrlRegex =
   /src=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.js(?:\?[^'"]*)?)\1/gi;
 const assetUrlRegex =
   /(href|src|content)=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.(?:png|jpe?g|gif|webp|svg|ico)(?:\?[^'"]*)?)\2/gi;
-const internalLinkRegex =
-  /href=(['"])(https:\/\/sbadvisors\.ae(\/[^'"]*))\1/gi;
+const anchorLinkRegex =
+  /<a\b[^>]*\bhref=(['"])(https:\/\/sbadvisors\.ae[^'"]*)\1/gi;
 
 const cssMatches = [...html.matchAll(cssUrlRegex)].map((m) => ({
   url: m[2],
@@ -35,14 +35,14 @@ const assetMatches = [...html.matchAll(assetUrlRegex)].map((m) => ({
   url: m[3],
   type: "img"
 }));
-const internalLinkMatches = [...html.matchAll(internalLinkRegex)].map((m) => ({
+const anchorLinkMatches = [...html.matchAll(anchorLinkRegex)].map((m) => ({
   url: m[2],
   type: "link"
 }));
 
 const matches = [...cssMatches, ...jsMatches, ...assetMatches];
-if (matches.length === 0 && internalLinkMatches.length === 0) {
-  console.log("No CSS, JS, asset, or internal URLs found to localize.");
+if (matches.length === 0 && anchorLinkMatches.length === 0) {
+  console.log("No CSS, JS, asset, or anchor URLs found to localize.");
   process.exit(0);
 }
 
@@ -133,7 +133,7 @@ async function run() {
     updatedHtml = updatedHtml.split(url).join(info.localWebPath);
   }
 
-  for (const entry of internalLinkMatches) {
+  for (const entry of anchorLinkMatches) {
     const replacement = toRelativeInternalLink(entry.url, htmlDir);
     if (replacement) {
       updatedHtml = updatedHtml.split(entry.url).join(replacement);
