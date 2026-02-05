@@ -9,9 +9,11 @@ function fixLegacyScripts(base) {
       ? "/"
       : `/${base.replace(/^\/|\/$/g, "")}/`;
   const legacyScriptRegex =
-    /<script\b(?![^>]*\btype=["']module["'])([^>]*\bsrc=["'])(\/?assets\/js\/[^"']+)(["'][^>]*)>\s*<\/script>/gi;
+    /<script\b(?![^>]*\btype=["']module["'])([^>]*\bsrc=["'])((?:\.\/)?(?:[^"']*\/)?assets\/js\/[^"']+)(["'][^>]*)>\s*<\/script>/gi;
   const normalizeSrc = (src) => {
-    const trimmed = src.replace(/^\//, "");
+    if (src.startsWith(normalizedBase)) return src;
+    if (src.startsWith("/")) return src;
+    const trimmed = src.replace(/^\.\//, "").replace(/^\//, "");
     return `${normalizedBase}${trimmed}`;
   };
   const stripBase = (src) => {
