@@ -246,6 +246,19 @@ function extractBlocks(html) {
   return { headScripts, bodyScripts };
 }
 
+function ensureGithubPagesScriptInIndex() {
+  if (!fs.existsSync(SOURCE_HTML)) return;
+  let html = fs.readFileSync(SOURCE_HTML, "utf8");
+  if (GITHUB_PAGES_SCRIPT_REGEX.test(html)) return;
+
+  const bodyCloseIdx = html.indexOf("</body>");
+  if (bodyCloseIdx < 0) return;
+
+  html = html.slice(0, bodyCloseIdx) + `\n\t${GITHUB_PAGES_SCRIPT}\n` + html.slice(bodyCloseIdx);
+  fs.writeFileSync(SOURCE_HTML, html, "utf8");
+  console.log("  Updated:", path.relative(ROOT, SOURCE_HTML));
+}
+
 function step2SyncScriptsToPages() {
   console.log("\n--- Step 2: Sync scripts to pages ---\n");
   const sourceHtml = fs.readFileSync(SOURCE_HTML, "utf8");
@@ -375,6 +388,7 @@ async function step4DownloadElementorBundles() {
 async function main() {
   console.log("=== Sync All ===\n");
   await step1DownloadScripts();
+  ensureGithubPagesScriptInIndex();
   step2SyncScriptsToPages();
   await step3DownloadAssets();
   await step4DownloadElementorBundles();
