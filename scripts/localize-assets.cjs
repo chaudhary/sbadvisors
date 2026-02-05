@@ -39,6 +39,12 @@ const anchorLinkMatches = [...html.matchAll(anchorLinkRegex)].map((m) => ({
   url: m[2],
   type: "link"
 }));
+const canonicalTagMatch = html.match(
+  /<link\b[^>]*\brel=["']canonical["'][^>]*>/i
+);
+const shortlinkTagMatch = html.match(
+  /<link\b[^>]*\brel=["']shortlink["'][^>]*>/i
+);
 
 const matches = [...cssMatches, ...jsMatches, ...assetMatches];
 
@@ -171,6 +177,18 @@ async function run() {
     /<link\b[^>]*\brel=["']alternate["'][^>]*\btitle=["']JSON["'][^>]*>/gi,
     ""
   );
+  if (canonicalTagMatch) {
+    updatedHtml = updatedHtml.replace(
+      /<link\b[^>]*\brel=["']canonical["'][^>]*>/gi,
+      canonicalTagMatch[0]
+    );
+  }
+  if (shortlinkTagMatch) {
+    updatedHtml = updatedHtml.replace(
+      /<link\b[^>]*\brel=["']shortlink["'][^>]*>/gi,
+      shortlinkTagMatch[0]
+    );
+  }
 
   fs.writeFileSync(fullTargetPath, updatedHtml);
   console.log(`Updated references in ${targetFile}`);
