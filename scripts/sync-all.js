@@ -47,7 +47,7 @@ const SCRIPT_SRC_REGEX = /<script([^>]*)\ssrc=["'](https?:\/\/[^"']+)["']([^>]*)
 const STYLESHEET_LINK_REGEX = /<link\s+rel=['"]stylesheet['"][^>]*\sid=['"]([^'"]+)['"][^>]*\shref=['"](https?:\/\/sbadvisors\.ae[^'"]*)['"][^>]*>/gi;
 const STYLESHEET_LINK_REGEX_ALT = /<link\s+rel=['"]stylesheet['"][^>]*\shref=['"](https?:\/\/sbadvisors\.ae[^'"]*)['"][^>]*\sid=['"]([^'"]+)['"][^>]*>/gi;
 const ASSET_URL_REGEX = /https:\/\/sbadvisors\.ae\/wp-content\/uploads\/[^"'\s\)]+/g;
-const GITHUB_PAGES_SCRIPT = `<script type="module" src="assets/js/github-pages.js"></script>`;
+const GITHUB_PAGES_SCRIPT = `<script type="module" src="/assets/js/github-pages.js"></script>`;
 const GITHUB_PAGES_SCRIPT_REGEX =
   /<script\s+type=["']module["']\s+src=["']\/?assets\/js\/github-pages\.js["']><\/script>/i;
 
