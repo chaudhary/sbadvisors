@@ -209,13 +209,53 @@ function copyStaticVideoAssets() {
   };
 }
 
+function normalizeVideoLinks(base) {
+  const normalizedBase =
+    base === "./" || base === "."
+      ? "/"
+      : `/${base.replace(/^\/|\/$/g, "")}/`;
+  const normalizePath = (url) => {
+    if (url.startsWith(normalizedBase)) return url;
+    if (url.startsWith("/")) return url;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(url)) return url;
+    const trimmed = url.replace(/^\.\//, "").replace(/^\//, "");
+    return `${normalizedBase}${trimmed}`;
+  };
+
+  return {
+    name: "normalize-video-links",
+    apply: "build",
+    transformIndexHtml(html) {
+      let next = html.replace(
+        /\b(?:src|poster)=["'](assets\/video\/[^"']+)["']/gi,
+        (_, path) => `src="${normalizePath(path)}"`
+      );
+      next = next.replace(
+        /\bposter=["'](assets\/video\/[^"']+)["']/gi,
+        (_, path) => `poster="${normalizePath(path)}"`
+      );
+      next = next.replace(
+        /(&quot;[^&]*?(?:video|video_link|video_url|background_video_link)[^&]*?&quot;:&quot;)(assets\/video\/[^&"]+?)(&quot;)/gi,
+        (_, before, path, after) =>
+          `${before}${normalizePath(path)}${after}`
+      );
+      return next;
+    }
+  };
+}
+
 export default defineConfig(({ command }) => {
   const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
   const base = command === "serve" ? "./" : repo ? `/${repo}/` : "./";
 
   return {
     base,
-    plugins: [fixLegacyScripts(base), preserveCssLinks(base), copyStaticVideoAssets()],
+    plugins: [
+      fixLegacyScripts(base),
+      preserveCssLinks(base),
+      copyStaticVideoAssets(),
+      normalizeVideoLinks(base)
+    ],
     build: {
       minify: false,
       rollupOptions: {
