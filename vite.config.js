@@ -227,17 +227,17 @@ function normalizeVideoLinks(base) {
     apply: "build",
     transformIndexHtml(html) {
       let next = html.replace(
-        /\b(?:src|poster)=["'](assets\/video\/[^"']+)["']/gi,
-        (_, path) => `src="${normalizePath(path)}"`
+        /\b(src|poster)=["'](assets\/video\/[^"']+)["']/gi,
+        (_, attr, path) => `${attr}="${normalizePath(path)}"`
       );
       next = next.replace(
-        /\bposter=["'](assets\/video\/[^"']+)["']/gi,
-        (_, path) => `poster="${normalizePath(path)}"`
-      );
-      next = next.replace(
-        /(&quot;[^&]*?(?:video|video_link|video_url|background_video_link)[^&]*?&quot;:&quot;)(assets\/video\/[^&"]+?)(&quot;)/gi,
-        (_, before, path, after) =>
-          `${before}${normalizePath(path)}${after}`
+        /(&quot;[^&]*?(?:video|video_link|video_url|background_video_link)[^&]*?&quot;:&quot;)(assets(?:\\\/|\/)video(?:\\\/|\/)[^&"]+?)(&quot;)/gi,
+        (_, before, path, after) => {
+          const unescaped = path.replace(/\\\//g, "/");
+          const normalized = normalizePath(unescaped);
+          const escaped = normalized.replace(/\//g, "\\/");
+          return `${before}${escaped}${after}`;
+        }
       );
       return next;
     }
