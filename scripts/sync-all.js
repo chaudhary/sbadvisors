@@ -47,6 +47,9 @@ const SCRIPT_SRC_REGEX = /<script([^>]*)\ssrc=["'](https?:\/\/[^"']+)["']([^>]*)
 const STYLESHEET_LINK_REGEX = /<link\s+rel=['"]stylesheet['"][^>]*\sid=['"]([^'"]+)['"][^>]*\shref=['"](https?:\/\/sbadvisors\.ae[^'"]*)['"][^>]*>/gi;
 const STYLESHEET_LINK_REGEX_ALT = /<link\s+rel=['"]stylesheet['"][^>]*\shref=['"](https?:\/\/sbadvisors\.ae[^'"]*)['"][^>]*\sid=['"]([^'"]+)['"][^>]*>/gi;
 const ASSET_URL_REGEX = /https:\/\/sbadvisors\.ae\/wp-content\/uploads\/[^"'\s\)]+/g;
+const GITHUB_PAGES_SCRIPT = `<script type="module" src="assets/js/github-pages.js"></script>`;
+const GITHUB_PAGES_SCRIPT_REGEX =
+  /<script\s+type=["']module["']\s+src=["']\/?assets\/js\/github-pages\.js["']><\/script>/i;
 
 const ELEMENTOR_BUNDLES = [
   "shared-frontend-handlers.03caa53373b56d3bab67.bundle.min.js",
@@ -235,7 +238,10 @@ function extractBlocks(html) {
   const bodyStart = html.indexOf('<script type="speculationrules">');
   const bodyEnd = html.lastIndexOf("</script>", html.indexOf("</body>"));
   const bodyEndTag = bodyEnd + "</script>".length;
-  const bodyScripts = bodyStart >= 0 && bodyEndTag > bodyStart ? html.slice(bodyStart, bodyEndTag).trim() : "";
+  let bodyScripts = bodyStart >= 0 && bodyEndTag > bodyStart ? html.slice(bodyStart, bodyEndTag).trim() : "";
+  if (bodyScripts && !GITHUB_PAGES_SCRIPT_REGEX.test(bodyScripts)) {
+    bodyScripts = `${bodyScripts}\n\t${GITHUB_PAGES_SCRIPT}`;
+  }
 
   return { headScripts, bodyScripts };
 }
