@@ -16,14 +16,27 @@ const html = fs.readFileSync(fullTargetPath, "utf8");
 
 const cssUrlRegex =
   /href=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.css(?:\?[^'"]*)?)\1/gi;
+const jsUrlRegex =
+  /src=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.js(?:\?[^'"]*)?)\1/gi;
 
-const matches = [...html.matchAll(cssUrlRegex)];
+const cssMatches = [...html.matchAll(cssUrlRegex)].map((m) => ({
+  url: m[2],
+  type: "css"
+}));
+const jsMatches = [...html.matchAll(jsUrlRegex)].map((m) => ({
+  url: m[2],
+  type: "js"
+}));
+
+const matches = [...cssMatches, ...jsMatches];
 if (matches.length === 0) {
-  console.log("No CSS URLs found to localize.");
+  console.log("No CSS or JS URLs found to localize.");
   process.exit(0);
 }
 
-const uniqueUrls = [...new Set(matches.map((m) => m[2]))];
+const uniqueEntries = Array.from(
+  new Map(matches.map((entry) => [entry.url, entry])).values()
+);
 
 function ensureDir(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -60,9 +73,10 @@ function fetchUrl(url) {
 async function run() {
   const downloadMap = new Map();
   const htmlDir = path.dirname(fullTargetPath);
-  const baseAssetsDir = path.join(htmlDir, "assets", "css");
 
-  for (const url of uniqueUrls) {
+  for (const entry of uniqueEntries) {
+    const url = entry.url;
+    const baseAssetsDir = path.join(htmlDir, "assets", entry.type);
     const parsed = new URL(url);
     const relativePath = parsed.pathname.replace(/^\/+/, "");
     const localFilePath = path.join(baseAssetsDir, relativePath);
