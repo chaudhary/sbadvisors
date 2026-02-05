@@ -41,10 +41,6 @@ const anchorLinkMatches = [...html.matchAll(anchorLinkRegex)].map((m) => ({
 }));
 
 const matches = [...cssMatches, ...jsMatches, ...assetMatches];
-if (matches.length === 0 && anchorLinkMatches.length === 0) {
-  console.log("No CSS, JS, asset, or anchor URLs found to localize.");
-  process.exit(0);
-}
 
 const uniqueEntries = Array.from(
   new Map(matches.map((entry) => [entry.url, entry])).values()
@@ -140,8 +136,47 @@ async function run() {
     }
   }
 
+  updatedHtml = updatedHtml.replace(
+    /<script\b[^>]*\bid=["']google_gtagjs-js-after["'][^>]*>[\s\S]*?<\/script>/gi,
+    ""
+  );
+  updatedHtml = updatedHtml.replace(
+    /<script\b[^>]*\bid=["']google_gtagjs-js["'][^>]*>[\s\S]*?<\/script>/gi,
+    ""
+  );
+  updatedHtml = updatedHtml.replace(/<!--[\s\S]*?-->/g, "");
+  updatedHtml = updatedHtml.replace(/\n[ \t]*\n[ \t]*\n+/g, "\n\n");
+  updatedHtml = updatedHtml.replace(
+    /<link\b[^>]*\btype=["']application\/rss\+xml["'][^>]*>/gi,
+    ""
+  );
+  updatedHtml = updatedHtml.replace(/[ \t]+$/gm, "");
+  updatedHtml = updatedHtml.replace(
+    /<link\b[^>]*\btitle=["']oEmbed \(JSON\)["'][^>]*>/gi,
+    ""
+  );
+  updatedHtml = updatedHtml.replace(
+    /<link\b[^>]*\btitle=["']oEmbed \(XML\)["'][^>]*>/gi,
+    ""
+  );
+  updatedHtml = updatedHtml.replace(
+    /<link\b[^>]*\btype=["']application\/rsd\+xml["'][^>]*>/gi,
+    ""
+  );
+  updatedHtml = updatedHtml.replace(
+    /<link\b[^>]*\brel=["']https:\/\/api\.w\.org\/["'][^>]*>/gi,
+    ""
+  );
+  updatedHtml = updatedHtml.replace(
+    /<link\b[^>]*\brel=["']alternate["'][^>]*\btitle=["']JSON["'][^>]*>/gi,
+    ""
+  );
+
   fs.writeFileSync(fullTargetPath, updatedHtml);
   console.log(`Updated references in ${targetFile}`);
+  if (matches.length === 0 && anchorLinkMatches.length === 0) {
+    console.log("No CSS, JS, asset, or anchor URLs found to localize.");
+  }
 }
 
 run().catch((err) => {
