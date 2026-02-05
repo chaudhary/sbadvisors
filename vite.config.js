@@ -8,11 +8,19 @@ function fixLegacyScripts(base) {
     base === "./" || base === "."
       ? "/"
       : `/${base.replace(/^\/|\/$/g, "")}/`;
+  const normalizeToBase = (src) => {
+    if (normalizedBase === "/") return src;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(src)) return src;
+    if (src.startsWith("//")) return src;
+    if (src.startsWith(normalizedBase)) return src;
+    if (src.startsWith("/")) return `${normalizedBase}${src.replace(/^\/+/, "")}`;
+    return src;
+  };
   const legacyScriptRegex =
     /<script\b(?![^>]*\btype=["']module["'])([^>]*\bsrc=["'])((?:\.\/)?(?:[^"']*\/)?assets\/js\/[^"']+)(["'][^>]*)>\s*<\/script>/gi;
   const normalizeSrc = (src) => {
     if (src.startsWith(normalizedBase)) return src;
-    if (src.startsWith("/")) return src;
+    if (src.startsWith("/")) return normalizeToBase(src);
     const trimmed = src.replace(/^\.\//, "").replace(/^\//, "");
     return `${normalizedBase}${trimmed}`;
   };
@@ -97,6 +105,14 @@ function preserveCssLinks(base) {
     base === "./" || base === "."
       ? "/"
       : `/${base.replace(/^\/|\/$/g, "")}/`;
+  const normalizeToBase = (href) => {
+    if (normalizedBase === "/") return href;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return href;
+    if (href.startsWith("//")) return href;
+    if (href.startsWith(normalizedBase)) return href;
+    if (href.startsWith("/")) return `${normalizedBase}${href.replace(/^\/+/, "")}`;
+    return href;
+  };
   const baseName = normalizedBase.replace(/^\/|\/$/g, "");
   const stripLeadingRelative = (href) => {
     let cleaned = href.split("?")[0].split("#")[0];
@@ -111,7 +127,7 @@ function preserveCssLinks(base) {
   };
   const normalizeHref = (href) => {
     if (href.startsWith(normalizedBase)) return href;
-    if (href.startsWith("/")) return href;
+    if (href.startsWith("/")) return normalizeToBase(href);
     if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return href;
     const trimmed = stripLeadingRelative(href);
     if (!trimmed) return href;
@@ -230,7 +246,10 @@ function normalizeVideoLinks(base) {
       : `/${base.replace(/^\/|\/$/g, "")}/`;
   const normalizePath = (url) => {
     if (url.startsWith(normalizedBase)) return url;
-    if (url.startsWith("/")) return url;
+    if (url.startsWith("/")) {
+      if (normalizedBase === "/") return url;
+      return `${normalizedBase}${url.replace(/^\/+/, "")}`;
+    }
     if (/^[a-z][a-z0-9+.-]*:/i.test(url)) return url;
     const trimmed = url.replace(/^\.\//, "").replace(/^\//, "");
     return `${normalizedBase}${trimmed}`;
@@ -259,8 +278,10 @@ function normalizeVideoLinks(base) {
 }
 
 export default defineConfig(({ command }) => {
+  const CUSTOM_DOMAIN_CONFIGURED = false;
   const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
-  const base = command === "serve" ? "./" : repo ? `/${repo}/` : "./";
+  const ghPagesBase = repo ? `/${repo}/` : "/";
+  const base = command === "serve" ? "/" : CUSTOM_DOMAIN_CONFIGURED ? "/" : ghPagesBase;
 
   return {
     base,

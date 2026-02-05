@@ -4,6 +4,7 @@ const https = require("https");
 const { URL } = require("url");
 
 const workspaceRoot = process.cwd();
+const BASE_PATH_PREFIX = "/";
 const targetFile = process.argv[2] || "index.html";
 const fullTargetPath = path.resolve(workspaceRoot, targetFile);
 
@@ -96,7 +97,12 @@ function fetchUrl(url) {
   });
 }
 
-function toRelativeInternalLink(url, htmlDir) {
+function toAbsoluteWebPath(pathFromRoot) {
+  const cleanPath = pathFromRoot.replace(/^\/+/, "");
+  return `${BASE_PATH_PREFIX}${cleanPath}`;
+}
+
+function toAbsoluteInternalLink(url) {
   const parsed = new URL(url);
   const pathname = parsed.pathname || "/";
   if (pathname.startsWith("/wp-")) return null;
@@ -104,13 +110,9 @@ function toRelativeInternalLink(url, htmlDir) {
     return null;
   }
 
-  const cleanPath = pathname.replace(/^\/+/, "");
-  const targetPath = path.resolve(workspaceRoot, cleanPath);
-  let relative = path.relative(htmlDir, targetPath);
-  if (!relative) relative = ".";
   const hasTrailingSlash = pathname.endsWith("/");
-  let webPath = relative.split(path.sep).join("/");
-  if (webPath === ".") webPath = "./";
+  let webPath = toAbsoluteWebPath(pathname);
+  if (webPath === "/") webPath = BASE_PATH_PREFIX;
   if (hasTrailingSlash && !webPath.endsWith("/")) webPath += "/";
 
   return `${webPath}${parsed.search || ""}${parsed.hash || ""}`;
@@ -118,7 +120,6 @@ function toRelativeInternalLink(url, htmlDir) {
 
 async function run() {
   const downloadMap = new Map();
-  const htmlDir = path.dirname(fullTargetPath);
   const rootAssetsDir = path.join(workspaceRoot, "assets");
 
   for (const entry of uniqueEntries) {
@@ -127,11 +128,9 @@ async function run() {
     const parsed = new URL(url);
     const relativePath = parsed.pathname.replace(/^\/+/, "");
     const localFilePath = path.join(baseAssetsDir, relativePath);
-    const htmlRelativePath = path.relative(
-      htmlDir,
-      path.join(baseAssetsDir, relativePath)
+    const localWebPath = toAbsoluteWebPath(
+      path.join("assets", entry.type, relativePath).split(path.sep).join("/")
     );
-    const localWebPath = htmlRelativePath.split(path.sep).join("/");
 
     downloadMap.set(url, { localFilePath, localWebPath });
   }
@@ -149,7 +148,7 @@ async function run() {
   }
 
   for (const entry of anchorLinkMatches) {
-    const replacement = toRelativeInternalLink(entry.url, htmlDir);
+    const replacement = toAbsoluteInternalLink(entry.url);
     if (replacement) {
       updatedHtml = updatedHtml.split(entry.url).join(replacement);
     }
@@ -211,11 +210,9 @@ async function run() {
       const baseAssetsDir = path.join(rootAssetsDir, entry.type);
       const parsed = new URL(normalizedUrl);
       const relativePath = parsed.pathname.replace(/^\/+/, "");
-      const htmlRelativePath = path.relative(
-        htmlDir,
-        path.join(baseAssetsDir, relativePath)
+      const localWebPath = toAbsoluteWebPath(
+        path.join("assets", entry.type, relativePath).split(path.sep).join("/")
       );
-      const localWebPath = htmlRelativePath.split(path.sep).join("/");
       const escapedWebPath = localWebPath.replace(/\//g, "\\/");
       return `${before}${escapedWebPath}${after}`;
     }
