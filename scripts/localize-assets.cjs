@@ -18,6 +18,8 @@ const cssUrlRegex =
   /href=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.css(?:\?[^'"]*)?)\1/gi;
 const jsUrlRegex =
   /src=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.js(?:\?[^'"]*)?)\1/gi;
+const assetUrlRegex =
+  /(href|src|content)=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.(?:png|jpe?g|gif|webp|svg|ico)(?:\?[^'"]*)?)\2/gi;
 
 const cssMatches = [...html.matchAll(cssUrlRegex)].map((m) => ({
   url: m[2],
@@ -27,8 +29,12 @@ const jsMatches = [...html.matchAll(jsUrlRegex)].map((m) => ({
   url: m[2],
   type: "js"
 }));
+const assetMatches = [...html.matchAll(assetUrlRegex)].map((m) => ({
+  url: m[3],
+  type: "img"
+}));
 
-const matches = [...cssMatches, ...jsMatches];
+const matches = [...cssMatches, ...jsMatches, ...assetMatches];
 if (matches.length === 0) {
   console.log("No CSS or JS URLs found to localize.");
   process.exit(0);
