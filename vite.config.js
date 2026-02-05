@@ -250,7 +250,20 @@ function normalizeVideoLinks(base) {
       if (normalizedBase === "/") return url;
       return `${normalizedBase}${url.replace(/^\/+/, "")}`;
     }
-    if (/^[a-z][a-z0-9+.-]*:/i.test(url)) return url;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(url)) {
+      if (normalizedBase === "/") return url;
+      try {
+        const parsed = new URL(url);
+        if (parsed.hostname.endsWith("github.io")) {
+          const nextPath = parsed.pathname.replace(/^\/+/, "");
+          parsed.pathname = `${normalizedBase.replace(/^\/+/, "")}${nextPath ? `/${nextPath}` : ""}`;
+          return parsed.toString();
+        }
+      } catch (err) {
+        return url;
+      }
+      return url;
+    }
     const trimmed = url.replace(/^\.\//, "").replace(/^\//, "");
     return `${normalizedBase}${trimmed}`;
   };
