@@ -167,13 +167,38 @@ function preserveCssLinks() {
   };
 }
 
+function copyStaticVideoAssets() {
+  const copyDir = (srcDir, destDir) => {
+    if (!fs.existsSync(srcDir)) return;
+    fs.mkdirSync(destDir, { recursive: true });
+    const entries = fs.readdirSync(srcDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const srcPath = path.join(srcDir, entry.name);
+      const destPath = path.join(destDir, entry.name);
+      if (entry.isDirectory()) copyDir(srcPath, destPath);
+      else if (entry.isFile()) fs.copyFileSync(srcPath, destPath);
+    }
+  };
+
+  return {
+    name: "copy-static-video-assets",
+    apply: "build",
+    writeBundle(outputOptions) {
+      const distDir = outputOptions.dir || path.resolve(__dirname, "dist");
+      const sourceDir = path.resolve(__dirname, "assets", "video");
+      const destDir = path.join(distDir, "assets", "video");
+      copyDir(sourceDir, destDir);
+    }
+  };
+}
+
 export default defineConfig(({ command }) => {
   const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
   const base = command === "serve" ? "./" : repo ? `/${repo}/` : "./";
 
   return {
     base,
-    plugins: [fixLegacyScripts(base), preserveCssLinks(base)],
+    plugins: [fixLegacyScripts(base), preserveCssLinks(base), copyStaticVideoAssets()],
     build: {
       minify: false,
       rollupOptions: {
