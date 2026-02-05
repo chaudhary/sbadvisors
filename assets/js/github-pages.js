@@ -40,29 +40,58 @@
 			.join(", ");
 	};
 
-	var applyFixes = function () {
-		document.querySelectorAll("[href]").forEach(function (el) {
+	var fixElement = function (el) {
+		if (!el || el.nodeType !== 1) return;
+
+		if (el.hasAttribute("href")) {
 			var href = el.getAttribute("href");
-			var fixed = fixUrl(href);
-			if (fixed !== href) el.setAttribute("href", fixed);
-		});
+			var fixedHref = fixUrl(href);
+			if (fixedHref !== href) el.setAttribute("href", fixedHref);
+		}
 
-		document.querySelectorAll("[src]").forEach(function (el) {
+		if (el.hasAttribute("src")) {
 			var src = el.getAttribute("src");
-			var fixed = fixUrl(src);
-			if (fixed !== src) el.setAttribute("src", fixed);
+			var fixedSrc = fixUrl(src);
+			if (fixedSrc !== src) el.setAttribute("src", fixedSrc);
+		}
+
+		if (el.hasAttribute("srcset")) {
+			var srcset = el.getAttribute("srcset");
+			var fixedSrcset = fixSrcset(srcset);
+			if (fixedSrcset !== srcset) el.setAttribute("srcset", fixedSrcset);
+		}
+	};
+
+	var applyFixes = function (root) {
+		var scope = root || document;
+		if (scope.querySelectorAll) {
+			scope.querySelectorAll("[href], [src], [srcset]").forEach(fixElement);
+		}
+	};
+
+	var observeMutations = function () {
+		if (!window.MutationObserver) return;
+		var observer = new MutationObserver(function (mutations) {
+			mutations.forEach(function (mutation) {
+				if (mutation.type === "attributes") {
+					fixElement(mutation.target);
+					return;
+				}
+				mutation.addedNodes.forEach(function (node) {
+					fixElement(node);
+					applyFixes(node);
+				});
+			});
 		});
 
-		document.querySelectorAll("[srcset]").forEach(function (el) {
-			var srcset = el.getAttribute("srcset");
-			var fixed = fixSrcset(srcset);
-			if (fixed !== srcset) el.setAttribute("srcset", fixed);
+		observer.observe(document.documentElement, {
+			subtree: true,
+			childList: true,
+			attributes: true,
+			attributeFilter: ["href", "src", "srcset"]
 		});
 	};
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", applyFixes);
-	} else {
-		applyFixes();
-	}
+	applyFixes(document);
+	observeMutations();
 })();
