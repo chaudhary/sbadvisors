@@ -97,11 +97,24 @@ function preserveCssLinks(base) {
     base === "./" || base === "."
       ? "/"
       : `/${base.replace(/^\/|\/$/g, "")}/`;
+  const baseName = normalizedBase.replace(/^\/|\/$/g, "");
+  const stripLeadingRelative = (href) => {
+    let cleaned = href.split("?")[0].split("#")[0];
+    if (/^[a-z][a-z0-9+.-]*:/i.test(cleaned)) return null;
+    while (cleaned.startsWith("../")) cleaned = cleaned.slice(3);
+    cleaned = cleaned.replace(/^\.\//, "");
+    cleaned = cleaned.replace(/^\/+/, "");
+    if (baseName && cleaned.startsWith(`${baseName}/`)) {
+      cleaned = cleaned.slice(baseName.length + 1);
+    }
+    return cleaned;
+  };
   const normalizeHref = (href) => {
     if (href.startsWith(normalizedBase)) return href;
     if (href.startsWith("/")) return href;
     if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return href;
-    const trimmed = href.replace(/^\.\//, "").replace(/^\//, "");
+    const trimmed = stripLeadingRelative(href);
+    if (!trimmed) return href;
     return `${normalizedBase}${trimmed}`;
   };
   const collectHtmlFiles = (dir) => {
@@ -162,7 +175,8 @@ function preserveCssLinks(base) {
         if (idToHref.size === 0) continue;
         let distHtml = fs.readFileSync(distFile, "utf8");
         for (const [id, href] of idToHref.entries()) {
-          const cleanHref = href.replace(/^\.\//, "");
+          const cleanHref = stripLeadingRelative(href);
+          if (!cleanHref) continue;
           const sourceCssPath = path.resolve(__dirname, cleanHref);
           if (!fs.existsSync(sourceCssPath)) continue;
           const hash = hashFile(sourceCssPath);
