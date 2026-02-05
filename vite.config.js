@@ -239,6 +239,66 @@ function copyStaticVideoAssets() {
   };
 }
 
+function copyStaticElementorJs() {
+  const copyDir = (srcDir, destDir) => {
+    if (!fs.existsSync(srcDir)) return;
+    fs.mkdirSync(destDir, { recursive: true });
+    const entries = fs.readdirSync(srcDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const srcPath = path.join(srcDir, entry.name);
+      const destPath = path.join(destDir, entry.name);
+      if (entry.isDirectory()) copyDir(srcPath, destPath);
+      else if (entry.isFile()) fs.copyFileSync(srcPath, destPath);
+    }
+  };
+
+  return {
+    name: "copy-static-elementor-js",
+    apply: "build",
+    writeBundle(outputOptions) {
+      const distDir = outputOptions.dir || path.resolve(__dirname, "dist");
+      const sourceDir = path.resolve(
+        __dirname,
+        "assets",
+        "js",
+        "wp-content",
+        "plugins",
+        "elementor",
+        "assets",
+        "js"
+      );
+      const destDir = path.join(
+        distDir,
+        "assets",
+        "js",
+        "wp-content",
+        "plugins",
+        "elementor",
+        "assets",
+        "js"
+      );
+      copyDir(sourceDir, destDir);
+
+      const chunkSourceDir = path.resolve(__dirname, "assets", "js");
+      if (fs.existsSync(chunkSourceDir)) {
+        fs.mkdirSync(destDir, { recursive: true });
+        const flatDestDir = path.join(distDir, "assets", "js");
+        fs.mkdirSync(flatDestDir, { recursive: true });
+        const chunkEntries = fs.readdirSync(chunkSourceDir, { withFileTypes: true });
+        for (const entry of chunkEntries) {
+          if (!entry.isFile()) continue;
+          if (!entry.name.endsWith(".bundle.min.js")) continue;
+          const srcPath = path.join(chunkSourceDir, entry.name);
+          const nestedDestPath = path.join(destDir, entry.name);
+          const flatDestPath = path.join(flatDestDir, entry.name);
+          fs.copyFileSync(srcPath, nestedDestPath);
+          fs.copyFileSync(srcPath, flatDestPath);
+        }
+      }
+    }
+  };
+}
+
 function normalizeVideoLinks(base) {
   const normalizedBase =
     base === "./" || base === "."
@@ -317,6 +377,7 @@ export default defineConfig(({ command }) => {
       fixLegacyScripts(base),
       preserveCssLinks(base),
       copyStaticVideoAssets(),
+      copyStaticElementorJs(),
       normalizeVideoLinks(base),
       normalizeHrefLinks(base)
     ],
