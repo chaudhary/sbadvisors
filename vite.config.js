@@ -277,6 +277,34 @@ function normalizeVideoLinks(base) {
   };
 }
 
+function normalizeHrefLinks(base) {
+  const normalizedBase =
+    base === "./" || base === "."
+      ? "/"
+      : `/${base.replace(/^\/|\/$/g, "")}/`;
+  const normalizeHref = (href) => {
+    if (normalizedBase === "/") return href;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return href;
+    if (href.startsWith("//")) return href;
+    if (href.startsWith("#")) return href;
+    if (href.startsWith(normalizedBase)) return href;
+    if (href.startsWith("/")) return `${normalizedBase}${href.replace(/^\/+/, "")}`;
+    return href;
+  };
+
+  return {
+    name: "normalize-href-links",
+    apply: "build",
+    transformIndexHtml(html) {
+      return html.replace(/\bhref=["']([^"']+)["']/gi, (full, href) => {
+        const nextHref = normalizeHref(href);
+        if (nextHref === href) return full;
+        return `href="${nextHref}"`;
+      });
+    }
+  };
+}
+
 export default defineConfig(({ command }) => {
   const CUSTOM_DOMAIN_CONFIGURED = false;
   const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
@@ -289,7 +317,8 @@ export default defineConfig(({ command }) => {
       fixLegacyScripts(base),
       preserveCssLinks(base),
       copyStaticVideoAssets(),
-      normalizeVideoLinks(base)
+      normalizeVideoLinks(base),
+      normalizeHrefLinks(base)
     ],
     build: {
       minify: false,
