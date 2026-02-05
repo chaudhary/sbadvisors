@@ -47,28 +47,6 @@ const SCRIPT_SRC_REGEX = /<script([^>]*)\ssrc=["'](https?:\/\/[^"']+)["']([^>]*)
 const STYLESHEET_LINK_REGEX = /<link\s+rel=['"]stylesheet['"][^>]*\sid=['"]([^'"]+)['"][^>]*\shref=['"](https?:\/\/sbadvisors\.ae[^'"]*)['"][^>]*>/gi;
 const STYLESHEET_LINK_REGEX_ALT = /<link\s+rel=['"]stylesheet['"][^>]*\shref=['"](https?:\/\/sbadvisors\.ae[^'"]*)['"][^>]*\sid=['"]([^'"]+)['"][^>]*>/gi;
 const ASSET_URL_REGEX = /https:\/\/sbadvisors\.ae\/wp-content\/uploads\/[^"'\s\)]+/g;
-const GITHUB_PAGES_SCRIPT_REGEX =
-  /<script\b[^>]*\bsrc=["'][^"']*assets\/js\/github-pages\.js["'][^>]*>\s*<\/script>\s*/gi;
-
-function getRelativePrefix(filePath) {
-  const dir = path.dirname(filePath);
-  if (dir === "." || dir === "") return "";
-  const depth = dir.split(path.sep).filter(Boolean).length;
-  return "../".repeat(depth);
-}
-
-function getGithubPagesScriptTag(filePath) {
-  return `<script src="${getRelativePrefix(filePath)}assets/js/github-pages.js"></script>`;
-}
-
-function ensureGithubPagesScriptInHead(html, filePath) {
-  const headOpenIdx = html.indexOf("<head>");
-  if (headOpenIdx < 0) return html;
-  const scriptTag = getGithubPagesScriptTag(filePath);
-  let next = html.replace(GITHUB_PAGES_SCRIPT_REGEX, "");
-  const insertIdx = headOpenIdx + "<head>".length;
-  return next.slice(0, insertIdx) + `\n\t${scriptTag}` + next.slice(insertIdx);
-}
 
 const ELEMENTOR_BUNDLES = [
   "shared-frontend-handlers.03caa53373b56d3bab67.bundle.min.js",
@@ -240,7 +218,6 @@ async function step1DownloadScripts() {
       let content = fs.readFileSync(fullPath, "utf8");
       content = removeUnwantedLinks(content);
       content = replaceStylesheetUrls(content);
-      content = ensureGithubPagesScriptInHead(content, file);
       fs.writeFileSync(fullPath, content, "utf8");
       console.log("  Updated:", file);
     }
@@ -261,16 +238,6 @@ function extractBlocks(html) {
   const bodyScripts = bodyStart >= 0 && bodyEndTag > bodyStart ? html.slice(bodyStart, bodyEndTag).trim() : "";
 
   return { headScripts, bodyScripts };
-}
-
-function ensureGithubPagesScriptInIndex() {
-  if (!fs.existsSync(SOURCE_HTML)) return;
-  const filePath = path.relative(ROOT, SOURCE_HTML);
-  let html = fs.readFileSync(SOURCE_HTML, "utf8");
-  const updated = ensureGithubPagesScriptInHead(html, filePath);
-  if (updated === html) return;
-  fs.writeFileSync(SOURCE_HTML, updated, "utf8");
-  console.log("  Updated:", path.relative(ROOT, SOURCE_HTML));
 }
 
 function step2SyncScriptsToPages() {
@@ -316,7 +283,6 @@ function step2SyncScriptsToPages() {
     }
 
     html = replaceStylesheetUrls(html);
-    html = ensureGithubPagesScriptInHead(html, filePath);
     fs.writeFileSync(fullPath, html, "utf8");
     console.log("  Updated:", filePath);
   }
@@ -403,7 +369,6 @@ async function step4DownloadElementorBundles() {
 async function main() {
   console.log("=== Sync All ===\n");
   await step1DownloadScripts();
-  ensureGithubPagesScriptInIndex();
   step2SyncScriptsToPages();
   await step3DownloadAssets();
   await step4DownloadElementorBundles();

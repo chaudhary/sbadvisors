@@ -22,12 +22,7 @@ function fixLegacyScripts() {
     name: "fix-legacy-scripts",
     apply: "build",
     transformIndexHtml(html) {
-      let next = html.replace(
-        /<script\b([^>]*\bsrc=["'])assets\/js\/github-pages\.js(["'][^>]*)>/gi,
-        '<script$1/assets/js/github-pages.js$2>'
-      );
-
-      next = next.replace(legacyScriptRegex, (full, beforeSrc, src, afterSrc) => {
+      const next = html.replace(legacyScriptRegex, (full, beforeSrc, src, afterSrc) => {
         const normalizedSrc = normalizeSrc(src);
         const ignoreAttr = /\bdata-vite-ignore\b/i.test(afterSrc) ? "" : " data-vite-ignore";
         return `<script${beforeSrc}${normalizedSrc}${afterSrc}${ignoreAttr}></script>`;
