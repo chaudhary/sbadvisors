@@ -119,10 +119,11 @@ function toRelativeInternalLink(url, htmlDir) {
 async function run() {
   const downloadMap = new Map();
   const htmlDir = path.dirname(fullTargetPath);
+  const rootAssetsDir = path.join(workspaceRoot, "assets");
 
   for (const entry of uniqueEntries) {
     const url = entry.url;
-    const baseAssetsDir = path.join(htmlDir, "assets", entry.type);
+    const baseAssetsDir = path.join(rootAssetsDir, entry.type);
     const parsed = new URL(url);
     const relativePath = parsed.pathname.replace(/^\/+/, "");
     const localFilePath = path.join(baseAssetsDir, relativePath);
@@ -207,7 +208,7 @@ async function run() {
       const normalizedUrl = normalizeEscapedUrl(url);
       const entry = uniqueEntries.find((item) => item.url === normalizedUrl);
       if (!entry) return full;
-      const baseAssetsDir = path.join(htmlDir, "assets", entry.type);
+      const baseAssetsDir = path.join(rootAssetsDir, entry.type);
       const parsed = new URL(normalizedUrl);
       const relativePath = parsed.pathname.replace(/^\/+/, "");
       const htmlRelativePath = path.relative(
