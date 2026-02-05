@@ -20,6 +20,10 @@ const jsUrlRegex =
   /src=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.js(?:\?[^'"]*)?)\1/gi;
 const assetUrlRegex =
   /(href|src|content)=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.(?:png|jpe?g|gif|webp|svg|ico)(?:\?[^'"]*)?)\2/gi;
+const videoUrlRegex =
+  /(href|src|poster)=(['"])(https:\/\/sbadvisors\.ae[^'"]+?\.(?:mp4|webm|ogv|ogg)(?:\?[^'"]*)?)\2/gi;
+const dataSettingsVideoRegex =
+  /(&quot;[^&]*?(?:video|video_link|video_url|background_video_link)[^&]*?&quot;:&quot;)(https:\\\/\\\/sbadvisors\.ae[^&"]+?\.(?:mp4|webm|ogv|ogg)(?:\?[^&"]*)?)(&quot;)/gi;
 const anchorLinkRegex =
   /<a\b[^>]*\bhref=(['"])(https:\/\/sbadvisors\.ae[^'"]*)\1/gi;
 
@@ -35,6 +39,14 @@ const assetMatches = [...html.matchAll(assetUrlRegex)].map((m) => ({
   url: m[3],
   type: "img"
 }));
+const normalizeEscapedUrl = (url) => url.replace(/\\\//g, "/");
+const videoMatches = [
+  ...html.matchAll(videoUrlRegex),
+  ...html.matchAll(dataSettingsVideoRegex)
+].map((m) => ({
+  url: normalizeEscapedUrl(m[2]),
+  type: "video"
+}));
 const anchorLinkMatches = [...html.matchAll(anchorLinkRegex)].map((m) => ({
   url: m[2],
   type: "link"
@@ -46,7 +58,7 @@ const shortlinkTagMatch = html.match(
   /<link\b[^>]*\brel=["']shortlink["'][^>]*>/i
 );
 
-const matches = [...cssMatches, ...jsMatches, ...assetMatches];
+const matches = [...cssMatches, ...jsMatches, ...assetMatches, ...videoMatches];
 
 const uniqueEntries = Array.from(
   new Map(matches.map((entry) => [entry.url, entry])).values()
@@ -189,6 +201,24 @@ async function run() {
       shortlinkTagMatch[0]
     );
   }
+  updatedHtml = updatedHtml.replace(
+    dataSettingsVideoRegex,
+    (full, before, url, after) => {
+      const normalizedUrl = normalizeEscapedUrl(url);
+      const entry = uniqueEntries.find((item) => item.url === normalizedUrl);
+      if (!entry) return full;
+      const baseAssetsDir = path.join(htmlDir, "assets", entry.type);
+      const parsed = new URL(normalizedUrl);
+      const relativePath = parsed.pathname.replace(/^\/+/, "");
+      const htmlRelativePath = path.relative(
+        htmlDir,
+        path.join(baseAssetsDir, relativePath)
+      );
+      const localWebPath = htmlRelativePath.split(path.sep).join("/");
+      const escapedWebPath = localWebPath.replace(/\//g, "\\/");
+      return `${before}${escapedWebPath}${after}`;
+    }
+  );
   updatedHtml = updatedHtml.replace(
     /<script\b[^>]*\bid=["']elementor-frontend-js-before["'][^>]*>([\s\S]*?)<\/script>/i,
     (full, scriptBody) => {
