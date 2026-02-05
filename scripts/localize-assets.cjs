@@ -219,22 +219,38 @@ async function run() {
       return `${before}${escapedWebPath}${after}`;
     }
   );
+  const formatInlineJson = (scriptBody, variableName) => {
+    const configRegex = new RegExp(
+      `var\\s+${variableName}\\s*=\\s*({[\\s\\S]*?});`
+    );
+    const match = scriptBody.match(configRegex);
+    if (!match) return null;
+    try {
+      const parsed = JSON.parse(match[1]);
+      const formatted = JSON.stringify(parsed, null, 2);
+      return scriptBody.replace(
+        match[0],
+        `var ${variableName} = ${formatted};`
+      );
+    } catch (err) {
+      return null;
+    }
+  };
+
   updatedHtml = updatedHtml.replace(
     /<script\b[^>]*\bid=["']elementor-frontend-js-before["'][^>]*>([\s\S]*?)<\/script>/i,
     (full, scriptBody) => {
-      const match = scriptBody.match(/var\s+elementorFrontendConfig\s*=\s*({[\s\S]*?});/);
-      if (!match) return full;
-      try {
-        const parsed = JSON.parse(match[1]);
-        const formatted = JSON.stringify(parsed, null, 2);
-        const nextBody = scriptBody.replace(
-          match[0],
-          `var elementorFrontendConfig = ${formatted};`
-        );
-        return full.replace(scriptBody, `\n${nextBody.trim()}\n`);
-      } catch (err) {
-        return full;
-      }
+      const nextBody = formatInlineJson(scriptBody, "elementorFrontendConfig");
+      if (!nextBody) return full;
+      return full.replace(scriptBody, `\n${nextBody.trim()}\n`);
+    }
+  );
+  updatedHtml = updatedHtml.replace(
+    /<script\b[^>]*\bid=["']elementor-pro-frontend-js-before["'][^>]*>([\s\S]*?)<\/script>/i,
+    (full, scriptBody) => {
+      const nextBody = formatInlineJson(scriptBody, "ElementorProFrontendConfig");
+      if (!nextBody) return full;
+      return full.replace(scriptBody, `\n${nextBody.trim()}\n`);
     }
   );
 
