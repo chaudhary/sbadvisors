@@ -6,7 +6,6 @@ const { URL } = require("url");
 const workspaceRoot = process.cwd();
 const targetFile = process.argv[2] || "index.html";
 const fullTargetPath = path.resolve(workspaceRoot, targetFile);
-const baseAssetsDir = path.join(workspaceRoot, "assets", "css");
 
 if (!fs.existsSync(fullTargetPath)) {
   console.error(`File not found: ${fullTargetPath}`);
@@ -61,6 +60,7 @@ function fetchUrl(url) {
 async function run() {
   const downloadMap = new Map();
   const htmlDir = path.dirname(fullTargetPath);
+  const baseAssetsDir = path.join(htmlDir, "assets", "css");
 
   for (const url of uniqueUrls) {
     const parsed = new URL(url);

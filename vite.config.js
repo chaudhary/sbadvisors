@@ -91,13 +91,89 @@ function fixLegacyScripts(base) {
   };
 }
 
+function preserveCssLinks() {
+  const cssLinkRegex = /<link\b[^>]*\brel=["']stylesheet["'][^>]*>/gi;
+  const collectHtmlFiles = (dir) => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    const files = [];
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) files.push(...collectHtmlFiles(fullPath));
+      else if (entry.isFile() && entry.name.endsWith(".html")) files.push(fullPath);
+    }
+    return files;
+  };
+  const hashFile = (filePath) => {
+    const content = fs.readFileSync(filePath);
+    return crypto.createHash("sha256").update(content).digest("hex").slice(0, 8);
+  };
+  const addHashToFilename = (relativePath, hash) => {
+    const ext = path.posix.extname(relativePath);
+    const base = relativePath.slice(0, -ext.length);
+    return `${base}-${hash}${ext}`;
+  };
+
+  return {
+    name: "preserve-css-links",
+    apply: "build",
+    enforce: "pre",
+    transformIndexHtml(html) {
+      return html.replace(cssLinkRegex, (full) => {
+        if (/\bdata-vite-ignore\b/i.test(full)) return full;
+        return full.replace(/\s*\/?>$/, (end) => ` data-vite-ignore${end}`);
+      });
+    },
+    writeBundle(outputOptions) {
+      const distDir = outputOptions.dir || path.resolve(__dirname, "dist");
+      const distHtmlFiles = collectHtmlFiles(distDir);
+      for (const distFile of distHtmlFiles) {
+        const relative = path.relative(distDir, distFile);
+        const sourceFile = path.resolve(__dirname, relative);
+        if (!fs.existsSync(sourceFile)) continue;
+        const sourceHtml = fs.readFileSync(sourceFile, "utf8");
+        const idToHref = new Map();
+
+        for (const match of sourceHtml.matchAll(cssLinkRegex)) {
+          const tag = match[0];
+          const idMatch = tag.match(/\bid=["']([^"']+)["']/i);
+          const hrefMatch = tag.match(/\bhref=["']([^"']+)["']/i);
+          if (!idMatch || !hrefMatch) continue;
+          const id = idMatch[1];
+          const href = hrefMatch[1];
+          if (href.includes("assets/css/")) idToHref.set(id, href);
+        }
+
+        if (idToHref.size === 0) continue;
+        let distHtml = fs.readFileSync(distFile, "utf8");
+        for (const [id, href] of idToHref.entries()) {
+          const cleanHref = href.replace(/^\.\//, "");
+          const sourceCssPath = path.resolve(__dirname, cleanHref);
+          if (!fs.existsSync(sourceCssPath)) continue;
+          const hash = hashFile(sourceCssPath);
+          const hashedHref = addHashToFilename(cleanHref, hash);
+          const outPath = path.join(distDir, hashedHref);
+          fs.mkdirSync(path.dirname(outPath), { recursive: true });
+          fs.copyFileSync(sourceCssPath, outPath);
+
+          const idRegex = new RegExp(
+            `<link\\b([^>]*\\bid=["']${id}["'][^>]*\\bhref=["'])[^"']+(["'][^>]*>)`,
+            "gi"
+          );
+          distHtml = distHtml.replace(idRegex, `<link$1${hashedHref}$2`);
+        }
+        fs.writeFileSync(distFile, distHtml, "utf8");
+      }
+    }
+  };
+}
+
 export default defineConfig(({ command }) => {
   const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
   const base = command === "serve" ? "./" : repo ? `/${repo}/` : "./";
 
   return {
     base,
-    plugins: [fixLegacyScripts(base)],
+    plugins: [fixLegacyScripts(base), preserveCssLinks(base)],
     build: {
       minify: false,
       rollupOptions: {
