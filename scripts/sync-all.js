@@ -9,10 +9,10 @@
  */
 
 import fs from "fs";
+import http from "http";
+import https from "https";
 import path from "path";
 import { fileURLToPath } from "url";
-import https from "https";
-import http from "http";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -151,8 +151,8 @@ function replaceAssetUrls(html) {
 
 function replaceElementorConfigUrls(html) {
   return html
-    .replace(/"assets":\s*"https:(?:\/\/|\\\/\\\/)sbadvisors\.ae[^"]*"/g, '"assets":"/assets/"')
-    .replace(/"uploadUrl":\s*"https:(?:\/\/|\\\/\\\/)sbadvisors\.ae[^"]*"/g, '"uploadUrl":"/assets/images/"')
+    .replace(/"assets":\s*"https:(?:\/\/|\\\/\\\/)sbadvisors\.ae[^"]*"/g, '"assets":"./assets/"')
+    .replace(/"uploadUrl":\s*"https:(?:\/\/|\\\/\\\/)sbadvisors\.ae[^"]*"/g, '"uploadUrl":"./assets/images/"')
     .replace(/"ajaxurl":\s*"https:(?:\/\/|\\\/\\\/)sbadvisors\.ae[^"]*"/g, '"ajaxurl":""')
     .replace(/"rest":\s*"https:(?:\/\/|\\\/\\\/)sbadvisors\.ae[^"]*"/g, '"rest":""')
     .replace(/"defaultAnimationUrl":\s*"https:(?:\/\/|\\\/\\\/)sbadvisors\.ae[^"]*"/g, '"defaultAnimationUrl":""');
@@ -161,7 +161,7 @@ function replaceElementorConfigUrls(html) {
 function fixBackgroundVideos(html) {
   return html.replace(
     /<video class="elementor-background-video-hosted"(?![^>]*\ssrc=)([^>]*)>/gi,
-    (_, attrs) => `<video class="elementor-background-video-hosted"${attrs} src="/assets/videos/SBA-home-bw.mp4">`
+    (_, attrs) => `<video class="elementor-background-video-hosted"${attrs} src="./assets/videos/SBA-home-bw.mp4">`
   );
 }
 
@@ -250,8 +250,8 @@ async function step1DownloadScripts() {
 
 // ---- Step 2: Sync script blocks from index.html to pages ----
 function extractBlocks(html) {
-  const headStart = html.indexOf('<script src="/assets/js/wp-includes-js-jquery-jquery.min.js"');
-  const headEnd = html.indexOf('<script src="/assets/js/wp-includes-js-jquery-jquery-migrate.min.js"');
+  const headStart = html.indexOf('<script src="./assets/js/wp-includes-js-jquery-jquery.min.js"');
+  const headEnd = html.indexOf('<script src="./assets/js/wp-includes-js-jquery-jquery-migrate.min.js"');
   const migrateEnd = headEnd >= 0 ? html.indexOf("</script>", headEnd) + "</script>".length : 0;
   const headScripts = headStart >= 0 && migrateEnd > headStart ? html.slice(headStart, migrateEnd).trim() : "";
 
