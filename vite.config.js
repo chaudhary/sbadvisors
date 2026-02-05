@@ -80,6 +80,7 @@ export default defineConfig({
   base: "./",
   plugins: [fixLegacyScripts()],
   build: {
+    minify: false,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
