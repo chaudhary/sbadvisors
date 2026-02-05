@@ -189,6 +189,24 @@ async function run() {
       shortlinkTagMatch[0]
     );
   }
+  updatedHtml = updatedHtml.replace(
+    /<script\b[^>]*\bid=["']elementor-frontend-js-before["'][^>]*>([\s\S]*?)<\/script>/i,
+    (full, scriptBody) => {
+      const match = scriptBody.match(/var\s+elementorFrontendConfig\s*=\s*({[\s\S]*?});/);
+      if (!match) return full;
+      try {
+        const parsed = JSON.parse(match[1]);
+        const formatted = JSON.stringify(parsed, null, 2);
+        const nextBody = scriptBody.replace(
+          match[0],
+          `var elementorFrontendConfig = ${formatted};`
+        );
+        return full.replace(scriptBody, `\n${nextBody.trim()}\n`);
+      } catch (err) {
+        return full;
+      }
+    }
+  );
 
   fs.writeFileSync(fullTargetPath, updatedHtml);
   console.log(`Updated references in ${targetFile}`);
