@@ -239,6 +239,31 @@ function copyStaticVideoAssets() {
   };
 }
 
+function copyStaticImageAssets() {
+  const copyDir = (srcDir, destDir) => {
+    if (!fs.existsSync(srcDir)) return;
+    fs.mkdirSync(destDir, { recursive: true });
+    const entries = fs.readdirSync(srcDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const srcPath = path.join(srcDir, entry.name);
+      const destPath = path.join(destDir, entry.name);
+      if (entry.isDirectory()) copyDir(srcPath, destPath);
+      else if (entry.isFile()) fs.copyFileSync(srcPath, destPath);
+    }
+  };
+
+  return {
+    name: "copy-static-image-assets",
+    apply: "build",
+    writeBundle(outputOptions) {
+      const distDir = outputOptions.dir || path.resolve(__dirname, "dist");
+      const sourceDir = path.resolve(__dirname, "assets", "img");
+      const destDir = path.join(distDir, "assets", "img");
+      copyDir(sourceDir, destDir);
+    }
+  };
+}
+
 function copyStaticElementorJs() {
   const copyDir = (srcDir, destDir) => {
     if (!fs.existsSync(srcDir)) return;
@@ -294,6 +319,65 @@ function copyStaticElementorJs() {
           fs.copyFileSync(srcPath, nestedDestPath);
           fs.copyFileSync(srcPath, flatDestPath);
         }
+      }
+    }
+  };
+}
+
+function normalizeCssUrls(base) {
+  const normalizedBase =
+    base === "./" || base === "." || base === "/" || base === ""
+      ? "/"
+      : `/${base.replace(/^\/|\/$/g, "")}/`;
+  const normalizeToBase = (href) => {
+    if (normalizedBase === "/") return href;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return href;
+    if (href.startsWith("//")) return href;
+    if (href.startsWith(normalizedBase)) return href;
+    if (href.startsWith("/")) return `${normalizedBase}${href.replace(/^\/+/, "")}`;
+    return href;
+  };
+  const normalizeUrl = (url) => {
+    if (!url) return url;
+    const trimmed = url.trim();
+    if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return trimmed;
+    if (trimmed.startsWith("//")) return trimmed;
+    if (trimmed.startsWith("#")) return trimmed;
+    if (trimmed.startsWith(normalizedBase)) return trimmed;
+    if (trimmed.startsWith("/")) return normalizeToBase(trimmed);
+    if (trimmed.startsWith("assets/") || trimmed.startsWith("./assets/")) {
+      return `${normalizedBase}${trimmed.replace(/^\.\//, "")}`;
+    }
+    return trimmed;
+  };
+  const collectCssFiles = (dir) => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    const files = [];
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) files.push(...collectCssFiles(fullPath));
+      else if (entry.isFile() && entry.name.endsWith(".css")) files.push(fullPath);
+    }
+    return files;
+  };
+
+  return {
+    name: "normalize-css-urls",
+    apply: "build",
+    writeBundle(outputOptions) {
+      const distDir = outputOptions.dir || path.resolve(__dirname, "dist");
+      const cssFiles = collectCssFiles(distDir);
+      const urlRegex = /url\(\s*(['"]?)([^'")]+)\1\s*\)/gi;
+
+      for (const filePath of cssFiles) {
+        const css = fs.readFileSync(filePath, "utf8");
+        const next = css.replace(urlRegex, (full, quote, url) => {
+          const normalized = normalizeUrl(url);
+          if (normalized === url) return full;
+          const finalQuote = quote || "";
+          return `url(${finalQuote}${normalized}${finalQuote})`;
+        });
+        if (next !== css) fs.writeFileSync(filePath, next, "utf8");
       }
     }
   };
@@ -377,8 +461,10 @@ export default defineConfig(({ command }) => {
       fixLegacyScripts(base),
       preserveCssLinks(base),
       copyStaticVideoAssets(),
+      copyStaticImageAssets(),
       copyStaticElementorJs(),
       normalizeVideoLinks(base),
+      normalizeCssUrls(base),
       normalizeHrefLinks(base)
     ],
     build: {
