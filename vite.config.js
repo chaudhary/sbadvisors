@@ -369,7 +369,7 @@ export default defineConfig(({ command }) => {
   const CUSTOM_DOMAIN_CONFIGURED = true;
   const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
   const ghPagesBase = repo ? `/${repo}/` : "/";
-  const base = command === "serve" ? "/" : CUSTOM_DOMAIN_CONFIGURED ? "" : ghPagesBase;
+  const base = command === "serve" ? "/" : CUSTOM_DOMAIN_CONFIGURED ? "/" : ghPagesBase;
 
   return {
     base,
