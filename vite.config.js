@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 
 function fixLegacyScripts(base) {
   const normalizedBase =
-    base === "./" || base === "."
+    base === "./" || base === "." || base === "/" || base === ""
       ? "/"
       : `/${base.replace(/^\/|\/$/g, "")}/`;
   const normalizeToBase = (src) => {
@@ -102,7 +102,7 @@ function fixLegacyScripts(base) {
 function preserveCssLinks(base) {
   const cssLinkRegex = /<link\b[^>]*\brel=["']stylesheet["'][^>]*>/gi;
   const normalizedBase =
-    base === "./" || base === "."
+    base === "./" || base === "." || base === "/" || base === ""
       ? "/"
       : `/${base.replace(/^\/|\/$/g, "")}/`;
   const normalizeToBase = (href) => {
@@ -301,7 +301,7 @@ function copyStaticElementorJs() {
 
 function normalizeVideoLinks(base) {
   const normalizedBase =
-    base === "./" || base === "."
+    base === "./" || base === "." || base === "/" || base === ""
       ? "/"
       : `/${base.replace(/^\/|\/$/g, "")}/`;
   const normalizePath = (url) => {
@@ -339,7 +339,7 @@ function normalizeVideoLinks(base) {
 
 function normalizeHrefLinks(base) {
   const normalizedBase =
-    base === "./" || base === "."
+    base === "./" || base === "." || base === "/" || base === ""
       ? "/"
       : `/${base.replace(/^\/|\/$/g, "")}/`;
   const normalizeHref = (href) => {
