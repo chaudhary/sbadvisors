@@ -367,11 +367,64 @@ function normalizeCssUrls(base) {
     writeBundle(outputOptions) {
       const distDir = outputOptions.dir || path.resolve(__dirname, "dist");
       const cssFiles = collectCssFiles(distDir);
+      const hashedCache = new Map();
       const urlRegex = /url\(\s*(['"]?)([^'")]+)\1\s*\)/gi;
+
+      const addHashToFilename = (relativePath, hash) => {
+        const ext = path.posix.extname(relativePath);
+        const base = relativePath.slice(0, -ext.length);
+        return `${base}-${hash}${ext}`;
+      };
+      const hashFile = (filePath) => {
+        const content = fs.readFileSync(filePath);
+        return crypto.createHash("sha256").update(content).digest("hex").slice(0, 8);
+      };
+      const toHashedUrl = (originalUrl) => {
+        const cleaned = originalUrl.trim();
+        const hashIndex = cleaned.indexOf("#");
+        const queryIndex = cleaned.indexOf("?");
+        const cutIndex =
+          hashIndex === -1
+            ? queryIndex
+            : queryIndex === -1
+              ? hashIndex
+              : Math.min(hashIndex, queryIndex);
+        const basePart = cutIndex === -1 ? cleaned : cleaned.slice(0, cutIndex);
+        const suffix = cutIndex === -1 ? "" : cleaned.slice(cutIndex);
+
+        let relativePath = basePart.replace(/^\.\//, "");
+        if (relativePath.startsWith(normalizedBase)) {
+          relativePath = relativePath.slice(normalizedBase.length);
+        }
+        if (relativePath.startsWith("/")) relativePath = relativePath.slice(1);
+        if (!relativePath.startsWith("assets/img/")) return null;
+
+        if (hashedCache.has(relativePath)) {
+          return hashedCache.get(relativePath) + suffix;
+        }
+
+        const sourcePath = path.resolve(__dirname, relativePath);
+        if (!fs.existsSync(sourcePath)) return null;
+
+        const hash = hashFile(sourcePath);
+        const hashedRelative = addHashToFilename(relativePath, hash);
+        const outPath = path.join(distDir, hashedRelative);
+        fs.mkdirSync(path.dirname(outPath), { recursive: true });
+        fs.copyFileSync(sourcePath, outPath);
+
+        const publicPath = normalizeToBase(`/${hashedRelative}`);
+        hashedCache.set(relativePath, publicPath);
+        return publicPath + suffix;
+      };
 
       for (const filePath of cssFiles) {
         const css = fs.readFileSync(filePath, "utf8");
         const next = css.replace(urlRegex, (full, quote, url) => {
+          const hashed = toHashedUrl(url);
+          if (hashed) {
+            const finalQuote = quote || "";
+            return `url(${finalQuote}${hashed}${finalQuote})`;
+          }
           const normalized = normalizeUrl(url);
           if (normalized === url) return full;
           const finalQuote = quote || "";
