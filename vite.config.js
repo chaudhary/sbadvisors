@@ -546,7 +546,8 @@ export default defineConfig(({ command }) => {
             "compliance-aml-due-diligence-esr-risk-management-ras-al-khaimah-uae",
             "index.html"
           ),
-          contact: path.resolve(__dirname, "contact-us", "index.html")
+          contact: path.resolve(__dirname, "contact-us", "index.html"),
+          frequentlyAskedQuestions: path.resolve(__dirname, "frequently-asked-questions", "index.html")
         }
       }
     }
