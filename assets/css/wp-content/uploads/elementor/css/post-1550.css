@@ -20,7 +20,7 @@
 
 .elementor-1550 .elementor-element.elementor-element-3de05238:not(.elementor-motion-effects-element-type-background),
 .elementor-1550 .elementor-element.elementor-element-3de05238>.elementor-motion-effects-container>.elementor-motion-effects-layer {
-  background-image: url("/assets/img/wp-content/uploads/2025/09/square-bg.png");
+  background-image: url("/assets/img/square_bg.png");
   background-position: top center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -681,7 +681,7 @@
 
 .elementor-1550 .elementor-element.elementor-element-207dcad6:not(.elementor-motion-effects-element-type-background),
 .elementor-1550 .elementor-element.elementor-element-207dcad6>.elementor-motion-effects-container>.elementor-motion-effects-layer {
-  background-image: url("/assets/img/wp-content/uploads/2025/11/tax-support-uae.jpg");
+  background-image: url("/assets/img/tax_support_uae.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
