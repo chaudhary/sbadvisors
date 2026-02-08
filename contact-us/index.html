@@ -1000,10 +1000,14 @@
 					data-id="3eb271f0" data-element_type="widget"
 					data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
 					data-widget_type="form.default">
-					<form class="elementor-form" method="post" name="New Form" aria-label="New Form">
+					<form class="elementor-form" method="post" name="New Form" aria-label="New Form"
+						action="https://formsubmit.co/amit@qodex.ai">
 						<input type="hidden" name="post_id" value="1952" />
 						<input type="hidden" name="form_id" value="3eb271f0" />
 						<input type="hidden" name="referer_title" value="Contact Us" />
+						<input type="hidden" name="_subject" value="Contact Us - New Submission" />
+						<input type="hidden" name="_template" value="table" />
+						<input type="hidden" name="_captcha" value="false" />
 
 						<input type="hidden" name="queried_id" value="1952" />
 
@@ -1663,6 +1667,21 @@ var elementorFrontendConfig = {
 	<script id="wp-i18n-js-after">
 		wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
 		//# sourceURL=wp-i18n-js-after
+	</script>
+	<script>
+		document.addEventListener(
+			"submit",
+			function (event) {
+				const form = event.target;
+				if (!form || !form.classList || !form.classList.contains("elementor-form")) {
+					return;
+				}
+				if (form.getAttribute("action") === "https://formsubmit.co/amit@qodex.ai") {
+					event.stopPropagation();
+				}
+			},
+			true
+		);
 	</script>
 	<script id="elementor-pro-frontend-js-before">
 var ElementorProFrontendConfig = {
