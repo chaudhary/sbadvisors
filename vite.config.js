@@ -312,7 +312,9 @@ function copyStaticElementorJs() {
         const chunkEntries = fs.readdirSync(chunkSourceDir, { withFileTypes: true });
         for (const entry of chunkEntries) {
           if (!entry.isFile()) continue;
-          if (!entry.name.endsWith(".bundle.min.js")) continue;
+          if (!entry.name.endsWith(".bundle.min.js") && entry.name !== "dialog.min.js") {
+            continue;
+          }
           const srcPath = path.join(chunkSourceDir, entry.name);
           const nestedDestPath = path.join(destDir, entry.name);
           const flatDestPath = path.join(flatDestDir, entry.name);
