@@ -21,3 +21,16 @@ defaults:
     values:
       layout: "default"
 
+sass:
+  sass_dir: _sass
+  style: compressed   # expanded | compressed
+
+# _config.yml
+plugins:
+  - jekyll-assets
+
+assets:
+  sources:
+    - assets/css
+    - assets/js
+    - assets/img
