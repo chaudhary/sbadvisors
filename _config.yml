@@ -10,14 +10,9 @@ permalink: pretty
 exclude:
   - node_modules
   - dist
-  - package.json
-  - package-lock.json
-  - vite.config.js
-  - scripts
   - .github
   - README.md
   - Gemfile.lock
-  - package-lock.json
 
 defaults:
   - scope:

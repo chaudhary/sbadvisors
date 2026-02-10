@@ -1,6 +1,6 @@
 # sbadvisors
 
-Static multi-page marketing site for SBA Advisors, built with Vite and plain
+Static multi-page marketing site for SBA Advisors, built with Jekyll and plain
 HTML/CSS/JS. The site is organized as a set of standalone pages with shared
 assets under `assets/`.
 
@@ -13,23 +13,11 @@ assets under `assets/`.
 
 ## Development
 
-Install dependencies and start the dev server:
+Install Ruby dependencies and start the Jekyll dev server:
 
-```
-npm install
-npm run dev
-```
-
-Build the production site:
-
-```
-npm run build
-```
-
-Preview the production build:
-
-```
-npm run preview
+```bash
+bundle install
+bundle exec jekyll serve
 ```
 
 ## Deployment
