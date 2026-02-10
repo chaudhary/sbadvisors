@@ -22,18 +22,19 @@
 }
 .sb-header-inner {
   max-width: 1360px;
-  margin: 0 auto;
+  margin: 0px auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 24px 0px;
+  padding: 20px 0px;
 }
 
 .sb-header-logo {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
+  padding: 10px;
 }
 
 .sb-header-logo-image {
@@ -44,12 +45,13 @@
 
 .sb-header-nav {
   display: block;
+  padding: 10px;
 }
 
 .sb-header-nav-list {
   list-style: none;
   display: flex;
-  gap: 1.75rem;
+  gap: 36px;
   margin: 0;
   padding: 0;
 }
@@ -60,14 +62,13 @@
 }
 
 .sb-header-nav-link {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: #4E4E4E;
   text-decoration: none;
   letter-spacing: 0.02em;
   position: relative;
-  padding-bottom: 0.15rem;
+  padding: 10px 0px;
 
   &::after {
     content: "";
@@ -75,7 +76,7 @@
     left: 0;
     bottom: -0.15rem;
     width: 0;
-    height: 2px;
+    height: 3px;
     transition: width 0.2s ease;
   }
 }
@@ -117,9 +118,11 @@
 
     &:hover,
     &:focus {
-      color: var(--sb-header-light-accent);
+      color: #1CA5AA;
+      text-decoration: none;
 
       &::after {
+        background-color: #1CA5AA;
         width: 100%;
       }
     }
@@ -133,6 +136,7 @@
 
   .sb-header-nav-link {
     color: var(--sb-header-dark-text);
+    text-decoration: none;
 
     &::after {
       background-color: var(--sb-header-dark-text);
@@ -140,6 +144,7 @@
 
     &.selected {
       color: var(--sb-header-dark-text-strong);
+      font-size: 700;
 
       &::after {
         background-color: var(--sb-header-dark-text-strong);
@@ -150,8 +155,10 @@
     &:hover,
     &:focus {
       color: var(--sb-header-dark-text-strong);
+      font-size: 700;
 
       &::after {
+        background-color: var(--sb-header-dark-text-strong);
         width: 100%;
       }
     }
