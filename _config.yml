@@ -1,0 +1,28 @@
+title: "Success Business Advisors"
+description: "Static multi-page marketing site for SBA Advisors"
+url: "https://www.sbadvisors.ae"
+baseurl: ""
+
+theme: minima
+
+permalink: pretty
+
+exclude:
+  - node_modules
+  - dist
+  - package.json
+  - package-lock.json
+  - vite.config.js
+  - scripts
+  - .github
+  - README.md
+  - Gemfile.lock
+  - package-lock.json
+
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
