@@ -16,66 +16,25 @@
     <nav class="sb-header-nav" aria-label="Main navigation">
       <ul class="sb-header-nav-list">
         <li class="sb-header-nav-item">
-          <a href="/about-us/" class="sb-header-nav-link">About SBA</a>
+          <a href="/about-us/" class="sb-header-nav-link{% if page.url == '/about-us/' %} selected{% endif %}">About SBA</a>
         </li>
         <li class="sb-header-nav-item">
-          <a href="/accounting-finance-consulting-cfo-services-ras-al-khaimah-uae/" class="sb-header-nav-link">Accounting</a>
+          <a href="/accounting-finance-consulting-cfo-services-ras-al-khaimah-uae/" class="sb-header-nav-link{% if page.url == '/accounting-finance-consulting-cfo-services-ras-al-khaimah-uae/' %} selected{% endif %}">Accounting</a>
         </li>
         <li class="sb-header-nav-item">
-          <a href="/tax-support-corporate-tax-vat-consultancy-ras-al-khaimah-uae/" class="sb-header-nav-link">Tax Support</a>
+          <a href="/tax-support-corporate-tax-vat-consultancy-ras-al-khaimah-uae/" class="sb-header-nav-link{% if page.url == '/tax-support-corporate-tax-vat-consultancy-ras-al-khaimah-uae/' %} selected{% endif %}">Tax Support</a>
         </li>
         <li class="sb-header-nav-item">
-          <a href="/financial-planning-cost-control-business-setup-ras-al-khaimah-uae/" class="sb-header-nav-link">Financial Planning</a>
+          <a href="/financial-planning-cost-control-business-setup-ras-al-khaimah-uae/" class="sb-header-nav-link{% if page.url == '/financial-planning-cost-control-business-setup-ras-al-khaimah-uae/' %} selected{% endif %}">Financial Planning</a>
         </li>
         <li class="sb-header-nav-item">
-          <a href="/compliance-aml-due-diligence-esr-risk-management-ras-al-khaimah-uae/" class="sb-header-nav-link">Compliance</a>
+          <a href="/compliance-aml-due-diligence-esr-risk-management-ras-al-khaimah-uae/" class="sb-header-nav-link{% if page.url == '/compliance-aml-due-diligence-esr-risk-management-ras-al-khaimah-uae/' %} selected{% endif %}">Compliance</a>
         </li>
         <li class="sb-header-nav-item">
-          <a href="/contact-us/" class="sb-header-nav-link">Contact</a>
+          <a href="/contact-us/" class="sb-header-nav-link{% if page.url == '/contact-us/' %} selected{% endif %}">Contact</a>
         </li>
         <li class="sb-header-nav-item">
-          <a href="/frequently-asked-questions/" class="sb-header-nav-link">FAQ</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-{% assign logo_variant = include.logo_variant | default: 'color' %}
-{% if logo_variant == 'white' %}
-  {% assign logo_src = '/assets/img/sbawhite.svg' %}
-{% else %}
-  {% assign logo_src = '/assets/img/sbacolor.svg' %}
-{% endif %}
-
-<header class="sb-header">
-  <div class="sb-header-inner">
-    <a href="/" class="sb-header-logo">
-      <img src="{{ logo_src }}" alt="SBA Advisors logo" class="sb-header-logo-image">
-    </a>
-
-    <nav class="sb-header-nav" aria-label="Main navigation">
-      <ul class="sb-header-nav-list">
-        <li class="sb-header-nav-item">
-          <a href="/about-us/" class="sb-header-nav-link">About SBA</a>
-        </li>
-        <li class="sb-header-nav-item">
-          <a href="/accounting-finance-consulting-cfo-services-ras-al-khaimah-uae/" class="sb-header-nav-link">Accounting</a>
-        </li>
-        <li class="sb-header-nav-item">
-          <a href="/tax-support-corporate-tax-vat-consultancy-ras-al-khaimah-uae/" class="sb-header-nav-link">Tax Support</a>
-        </li>
-        <li class="sb-header-nav-item">
-          <a href="/financial-planning-cost-control-business-setup-ras-al-khaimah-uae/" class="sb-header-nav-link">Financial Planning</a>
-        </li>
-        <li class="sb-header-nav-item">
-          <a href="/compliance-aml-due-diligence-esr-risk-management-ras-al-khaimah-uae/" class="sb-header-nav-link">Compliance</a>
-        </li>
-        <li class="sb-header-nav-item">
-          <a href="/contact-us/" class="sb-header-nav-link">Contact</a>
-        </li>
-        <li class="sb-header-nav-item">
-          <a href="/frequently-asked-questions/" class="sb-header-nav-link">FAQ</a>
+          <a href="/frequently-asked-questions/" class="sb-header-nav-link{% if page.url == '/frequently-asked-questions/' %} selected{% endif %}">FAQ</a>
         </li>
       </ul>
     </nav>
