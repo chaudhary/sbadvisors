@@ -271,6 +271,23 @@ title: "Contact Us - Success Business Advisors"
 			text-transform: inherit;
 		}
 
+		.sb-form-message {
+			padding: 1rem 1.25rem;
+			margin-bottom: 1.25rem;
+			border-radius: 4px;
+			font-size: 1rem;
+		}
+		.sb-form-success {
+			background-color: #32373c;
+			color: #fff;
+			border: 1px solid #32373c;
+		}
+		.sb-form-error {
+			background-color: #f8d7da;
+			color: #721c24;
+			border: 1px solid #f5c6cb;
+		}
+
 		.has-black-color {
 			color: var(--wp--preset--color--black) !important;
 		}
@@ -992,26 +1009,22 @@ title: "Contact Us - Success Business Advisors"
 							data-id="3eb271f0" data-element_type="widget"
 							data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
 							data-widget_type="form.default">
-							<form class="elementor-form" method="post" name="New Form" aria-label="New Form">
-								<input type="hidden" name="post_id" value="1952">
-								<input type="hidden" name="form_id" value="3eb271f0">
-								<input type="hidden" name="referer_title" value="Contact Us">
+							<form class="elementor-form" id="contact-form" method="post" action="https://formspree.io/f/mqedkvpp" name="Contact Form" aria-label="Contact Form">
+								<input type="hidden" name="_subject" value="New contact form submission - Success Business Advisors">
 
-								<input type="hidden" name="queried_id" value="1952">
-
-								<div class="elementor-form-fields-wrapper elementor-labels-">
+								<div class="elementor-form-fields-wrapper elementor-labels-" id="contact-form-fields">
 									<div
 										class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-50">
 										<label for="form-field-name" class="elementor-field-label elementor-screen-only">
 											Full Name </label>
-										<input size="1" type="text" name="form_fields[name]" id="form-field-name"
-											class="elementor-field elementor-size-xl  elementor-field-textual" placeholder="Full Name">
+										<input size="1" type="text" name="name" id="form-field-name"
+											class="elementor-field elementor-size-xl  elementor-field-textual" placeholder="Full Name" required>
 									</div>
 									<div
 										class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-50 elementor-field-required">
 										<label for="form-field-email" class="elementor-field-label elementor-screen-only">
 											Email Address </label>
-										<input size="1" type="email" name="form_fields[email]" id="form-field-email"
+										<input size="1" type="email" name="email" id="form-field-email"
 											class="elementor-field elementor-size-xl  elementor-field-textual" placeholder="Email Address"
 											required="required">
 									</div>
@@ -1019,14 +1032,14 @@ title: "Contact Us - Success Business Advisors"
 										class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_31fee6f elementor-col-50">
 										<label for="form-field-field_31fee6f" class="elementor-field-label elementor-screen-only">
 											Company Name </label>
-										<input size="1" type="text" name="form_fields[field_31fee6f]" id="form-field-field_31fee6f"
+										<input size="1" type="text" name="company" id="form-field-field_31fee6f"
 											class="elementor-field elementor-size-xl  elementor-field-textual" placeholder="Company Name">
 									</div>
 									<div
 										class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_a4923ea elementor-col-50">
 										<label for="form-field-field_a4923ea" class="elementor-field-label elementor-screen-only">
 											Phone Number </label>
-										<input size="1" type="tel" name="form_fields[field_a4923ea]" id="form-field-field_a4923ea"
+										<input size="1" type="tel" name="phone" id="form-field-field_a4923ea"
 											class="elementor-field elementor-size-xl  elementor-field-textual" placeholder="Phone Number"
 											pattern="[0-9()#&amp;+*-=.]+"
 											title="Only numbers and phone characters (#, -, *, etc) are accepted.">
@@ -1037,33 +1050,8 @@ title: "Contact Us - Success Business Advisors"
 										<label for="form-field-message" class="elementor-field-label elementor-screen-only">
 											Message </label>
 										<textarea class="elementor-field-textual elementor-field  elementor-size-xl"
-											name="form_fields[message]" id="form-field-message" rows="10"
+											name="message" id="form-field-message" rows="10"
 											placeholder="How can we help your business?"></textarea>
-									</div>
-									<div
-										class="elementor-field-type-hidden elementor-field-group elementor-column elementor-field-group-date_field elementor-col-100">
-										<input size="1" type="hidden" name="form_fields[date_field]" id="form-field-date_field"
-											class="elementor-field elementor-size-xl  elementor-field-textual">
-									</div>
-									<div
-										class="elementor-field-type-hidden elementor-field-group elementor-column elementor-field-group-time_field elementor-col-100">
-										<input size="1" type="hidden" name="form_fields[time_field]" id="form-field-time_field"
-											class="elementor-field elementor-size-xl  elementor-field-textual">
-									</div>
-									<div
-										class="elementor-field-type-hidden elementor-field-group elementor-column elementor-field-group-page_url_field elementor-col-100">
-										<input size="1" type="hidden" name="form_fields[page_url_field]" id="form-field-page_url_field"
-											class="elementor-field elementor-size-xl  elementor-field-textual">
-									</div>
-									<div
-										class="elementor-field-type-hidden elementor-field-group elementor-column elementor-field-group-remote_ip_field elementor-col-100">
-										<input size="1" type="hidden" name="form_fields[remote_ip_field]" id="form-field-remote_ip_field"
-											class="elementor-field elementor-size-xl  elementor-field-textual">
-									</div>
-									<div
-										class="elementor-field-type-hidden elementor-field-group elementor-column elementor-field-group-user_agent_field elementor-col-100">
-										<input size="1" type="hidden" name="form_fields[user_agent_field]" id="form-field-user_agent_field"
-											class="elementor-field elementor-size-xl  elementor-field-textual">
 									</div>
 									<div
 										class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
@@ -1073,6 +1061,12 @@ title: "Contact Us - Success Business Advisors"
 											</span>
 										</button>
 									</div>
+									<div id="form-thank-you-message" class="sb-form-message sb-form-success" style="display: none;" role="alert">
+										Thank you for your message. We will get back to you soon.
+									</div>
+									<div id="form-error-message" class="sb-form-message sb-form-error" style="display: none;" role="alert">
+										Something went wrong. Please try again or email us directly.
+									</div>
 								</div>
 							</form>
 						</div>
@@ -1081,6 +1075,55 @@ title: "Contact Us - Success Business Advisors"
 			</div>
 		</div>
 	</div>
+
+	<script>
+		(function() {
+			var form = document.getElementById('contact-form');
+			var successMsg = document.getElementById('form-thank-you-message');
+			var errorMsg = document.getElementById('form-error-message');
+
+			if (!form) return;
+
+			form.addEventListener('submit', function(e) {
+				e.preventDefault();
+				successMsg.style.display = 'none';
+				errorMsg.style.display = 'none';
+
+				var submitBtn = form.querySelector('button[type="submit"]');
+				var originalText = submitBtn ? submitBtn.innerText : '';
+				if (submitBtn) {
+					submitBtn.disabled = true;
+					submitBtn.querySelector('.elementor-button-text').textContent = 'Sending...';
+				}
+
+				var formData = new FormData(form);
+				fetch(form.action, {
+					method: 'POST',
+					body: formData,
+					headers: { 'Accept': 'application/json' }
+				})
+				.then(function(r) { return r.json().then(function(data) { return { ok: r.ok, data: data }; }); })
+				.then(function(result) {
+					if (result.ok) {
+						successMsg.style.display = 'block';
+						form.querySelectorAll('input:not([type="hidden"]), textarea').forEach(function(f) { f.value = ''; });
+						form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					} else {
+						errorMsg.style.display = 'block';
+					}
+				})
+				.catch(function() {
+					errorMsg.style.display = 'block';
+				})
+				.finally(function() {
+					if (submitBtn) {
+						submitBtn.disabled = false;
+						submitBtn.querySelector('.elementor-button-text').textContent = originalText;
+					}
+				});
+			});
+		})();
+	</script>
 </body>
 
 </html>
