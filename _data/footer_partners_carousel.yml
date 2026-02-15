@@ -1,0 +1,9 @@
+# Footer "Who we work with" logo carousel – single source of truth; rendered twice for seamless loop
+- src: /assets/img/raklogo.jpg
+  alt: ""
+- src: /assets/img/l2_150x150.png
+  alt: ""
+- src: /assets/img/l3_150x150.png
+  alt: ""
+- src: /assets/img/l4_150x150.png
+  alt: ""
