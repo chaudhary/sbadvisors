@@ -1,0 +1,154 @@
+// SCSS for home page services carousel (footer-style CSS scroll)
+
+:root {
+  --sb-home-services-carousel-gap: 25px;
+  --sb-home-services-carousel-duration: 30s;
+  --sb-home-services-heading: #222;
+  --sb-home-services-text: #292929;
+  --sb-home-services-accent: #1CA5AA;
+  --sb-home-services-border: #C2C6C6;
+}
+.sb-home-services-carousel {
+  padding-bottom: 24px;
+  border-top: 1px solid #C2C6C6;
+  margin-top: 40px;
+}
+
+.sb-home-services-heading {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 80px 0px;
+}
+
+.sb-home-services-heading-title {
+  max-width: 50%;
+  font-family: "DM Sans", sans-serif;
+  font-size: 3.1vw;
+  font-weight: 600;
+  letter-spacing: -2.5px;
+  color: var(--sb-home-services-text);
+  margin: 0;
+}
+
+.sb-home-services-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.sb-home-services-carousel-track {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: sb-home-services-scroll var(--sb-home-services-carousel-duration) linear infinite;
+}
+
+.sb-home-services-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  width: 33vw;
+  min-height: 80vh;
+  margin-right: var(--sb-home-services-carousel-gap);
+  padding: 1.25rem 1rem;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  // border: 1px solid var(--sb-home-services-border);
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  overflow: hidden;
+  // transition: border-color 0.2s, transform 0.2s;
+
+  &:hover,
+  &:focus {
+    border-color: var(--sb-home-services-accent);
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+// Background image is set per slide via inline style from _data/home_services_carousel.yml
+
+// Overlay gradient (original: linear-gradient(180deg, #1CA5AA 0%, #292929 70%))
+.sb-home-services-slide-overlay {
+  position: absolute;
+  inset: 0;
+  // background-image: linear-gradient(180deg, rgba(28, 165, 170, 0.66) 0%, #292929 300%);
+  background-color: rgba(28, 165, 170, 0.66);
+  pointer-events: none;
+}
+
+.sb-home-services-slide-title {
+  position: relative;
+  z-index: 1;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.sb-home-services-slide-divider {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: #fff;
+  border: 0;
+  margin-top: auto;
+}
+
+@keyframes sb-home-services-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-home-services-carousel-track {
+    animation: none;
+  }
+}
+
+// Responsive: stack or grid on small screens, no scroll
+@media (max-width: 900px) {
+  .sb-home-services-heading {
+    max-width: 100%;
+  }
+
+  .sb-home-services-heading-title {
+    font-size: 10.5vw;
+    line-height: 0.95em;
+    letter-spacing: -1.5px;
+  }
+
+  .sb-home-services-carousel-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sb-home-services-carousel-gap);
+    width: 100%;
+  }
+
+  .sb-home-services-slide {
+    width: calc(50% - (var(--sb-home-services-carousel-gap) / 2));
+    margin-right: 0;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .sb-home-services-slide {
+    width: 100%;
+  }
+}

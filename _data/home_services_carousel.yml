@@ -1,0 +1,13 @@
+# Home page services carousel – single source of truth; rendered twice for seamless loop
+- title: Accounting
+  url: /accounting-finance-consulting-cfo-services-ras-al-khaimah-uae/
+  background_image: /assets/img/accounting.jpg
+- title: Tax Support
+  url: /tax-support-corporate-tax-vat-consultancy-ras-al-khaimah-uae/
+  background_image: /assets/img/financial.jpg
+- title: Financial Planning
+  url: /financial-planning-cost-control-business-setup-ras-al-khaimah-uae/
+  background_image: /assets/img/compliance_2.jpg
+- title: Compliance
+  url: /compliance-aml-due-diligence-esr-risk-management-ras-al-khaimah-uae/
+  background_image: /assets/img/tax.jpg
