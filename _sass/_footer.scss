@@ -89,6 +89,27 @@
   0% {
     transform: translateX(0);
   }
+  23% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-12.5%);
+  }
+  48% {
+    transform: translateX(-12.5%);
+  }
+  50% {
+    transform: translateX(-25%);
+  }
+  73% {
+    transform: translateX(-25%);
+  }
+  75% {
+    transform: translateX(-37.5%);
+  }
+  98% {
+    transform: translateX(-37.5%);
+  }
   100% {
     transform: translateX(-50%);
   }
