@@ -19,6 +19,17 @@
 }
 
 // —— Who we work with (partners strip) —————————————————————
+.sb-footer {
+  .sb-footer-contact{
+    padding: 12px;
+  }
+  .sb-footer-nav{
+    padding: 12px;
+  }
+  .sb-footer-services{
+    padding: 12px;
+  }
+}
 .sb-footer-partners {
   background: var(--sb-footer-partners-bg);
   border-top: 1px solid #C2C6C6;
@@ -142,23 +153,15 @@
 }
 
 // —— Main footer ————————————————————————————————————————————
-.sb-footer {
-  background: var(--sb-footer-bg);
-  color: var(--sb-footer-text);
-  padding: var(--sb-footer-padding-y) var(--sb-footer-padding-x);
-}
-
-.sb-footer-inner {
-  max-width: var(--sb-footer-max-width);
-  margin: 0 auto;
-}
-
 // Top row: contact + menu + services
 .sb-footer-grid {
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: var(--sb-footer-gap);
-  margin-bottom: 2rem;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  padding-top: 60px;
 }
 
 .sb-footer-contact-title {
