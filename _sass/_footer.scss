@@ -13,7 +13,7 @@
   --sb-footer-bg: #fff;
   --sb-footer-partners-bg: #fff;
   --sb-footer-partners-max-width: 1360px;
-  --sb-footer-btn-phone-bg: #21BFBF;
+  --sb-footer-btn-phone-bg: #1CA5AA;
   --sb-footer-btn-email-bg: #E0E0E0;
   --sb-footer-btn-email-text: #4e4e4e;
 }
@@ -162,10 +162,10 @@
 }
 
 .sb-footer-contact-title {
-  font-size: 1.25rem;
+  font-size: 60px;
   font-weight: 700;
   color: var(--sb-footer-heading);
-  margin: 0 0 1rem;
+  margin: 0 0 24px;
 }
 
 .sb-footer-contact-links {
@@ -181,12 +181,14 @@
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 24px;
   transition: opacity 0.2s, background-color 0.2s;
 
   &:hover,
   &:focus {
-    opacity: 0.9;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
   }
 }
 
@@ -196,8 +198,9 @@
 
   &:hover,
   &:focus {
-    background-color: var(--sb-footer-accent-dark);
+    background-color: #000;
     color: #fff;
+    text-decoration: none;
   }
 }
 
@@ -207,8 +210,9 @@
 
   &:hover,
   &:focus {
-    background-color: #d0d0d0;
-    color: var(--sb-footer-btn-email-text);
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
   }
 }
 
