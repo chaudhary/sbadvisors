@@ -10,6 +10,7 @@ permalink: pretty
 exclude:
   - node_modules
   - dist
+  - vendor
   - .github
   - README.md
   - Gemfile.lock
