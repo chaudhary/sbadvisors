@@ -13,7 +13,7 @@
     />
     {%- endif -%}
     {{ content_for_head }}
-    <link rel="stylesheet" href="/assets/css/application.css">
+    <link rel="stylesheet" href="/assets/css/application.css?v={{ site.time | date: '%s' }}">
   </head>
   <body>
     {{ content }}
