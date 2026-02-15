@@ -15,7 +15,6 @@
   --sb-footer-partners-max-width: 1360px;
   --sb-footer-btn-phone-bg: #1CA5AA;
   --sb-footer-btn-email-bg: #E0E0E0;
-  --sb-footer-btn-email-text: #4e4e4e;
 }
 
 // —— Who we work with (partners strip) —————————————————————
@@ -212,7 +211,7 @@
 
 .sb-footer-contact-link--email {
   background-color: var(--sb-footer-btn-email-bg);
-  color: var(--sb-footer-btn-email-text);
+  color: #4e4e4e;
 
   &:hover,
   &:focus {
