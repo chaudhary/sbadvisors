@@ -7,15 +7,11 @@
     </p>
     <div class="sb-footer-partners-carousel" aria-hidden="true">
       <div class="sb-footer-partners-track">
-        <img src="/assets/img/raklogo.jpg" alt="" decoding="async" />
-        <img src="/assets/img/l2_150x150.png" alt="" decoding="async" />
-        <img src="/assets/img/l3_150x150.png" alt="" decoding="async" />
-        <img src="/assets/img/l4_150x150.png" alt="" decoding="async" />
-        <!-- Duplicate set for seamless loop -->
-        <img src="/assets/img/raklogo.jpg" alt="" decoding="async" />
-        <img src="/assets/img/l2_150x150.png" alt="" decoding="async" />
-        <img src="/assets/img/l3_150x150.png" alt="" decoding="async" />
-        <img src="/assets/img/l4_150x150.png" alt="" decoding="async" />
+        {% for i in (1..2) %}
+          {% for logo in site.data.footer_partners_carousel %}
+        <img src="{{ logo.src | prepend: site.baseurl }}" alt="{{ logo.alt }}" decoding="async" />
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
   </div>
