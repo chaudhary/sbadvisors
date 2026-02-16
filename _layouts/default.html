@@ -12,6 +12,10 @@
       content="{{ page.description | default: site.description | escape }}"
     />
     {%- endif -%}
+    <link rel="icon" href="/assets/img/cropped_favicon_32x32.png" sizes="32x32" />
+    <link rel="icon" href="/assets/img/cropped_favicon_192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/img/cropped_favicon_180x180.png" />
+    <meta name="msapplication-TileImage" content="/assets/img/cropped_favicon_270x270.png" />
     {{ content_for_head }}
     <link rel="stylesheet" href="/assets/css/application.css?v={{ site.time | date: '%s' }}">
   </head>
