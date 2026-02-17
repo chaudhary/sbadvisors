@@ -3,9 +3,11 @@
 # only Main files contain this front matter, not partials.
 ---
 
+@import "common";
 @import "header";
 @import "footer";
 @import "home_services_carousel";
+@import "faq_page";
 
 .content {
   width: 45rem;

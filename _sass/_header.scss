@@ -133,6 +133,7 @@
 .sb-header--dark {
   width: 100%;
   border-bottom: 1px solid var(--sb-header-dark-border);
+  z-index: 10;
 
   .sb-header-nav-link {
     color: var(--sb-header-dark-text);
