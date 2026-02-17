@@ -93,13 +93,13 @@
   }
 
   .faq_page__item {
-    background: var(--faq-page-item-bg);
-    border: 1px solid var(--faq-page-border);
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: var(--faq-page-radius);
     overflow: hidden;
 
     &:hover {
-      background: var(--faq-page-item-bg-hover);
+      background: #f5f5f7;
     }
   }
 
@@ -111,16 +111,12 @@
     padding: 1rem 1.25rem;
     background: transparent;
     border: none;
-    color: var(--faq-page-text);
+    color: #111111;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     text-align: left;
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
-
-    &:hover {
-      color: var(--faq-page-accent);
-    }
 
     &:focus {
       outline: 2px solid var(--faq-page-accent);
@@ -150,9 +146,9 @@
 
   .faq_page__body {
     padding: 0 1.25rem 1.25rem;
-    color: var(--faq-page-text-muted);
+    color: #444444;
     font-size: 0.9375rem;
     line-height: 1.6;
-    border-top: 1px solid var(--faq-page-border);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
   }
 }
