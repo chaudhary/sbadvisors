@@ -38,6 +38,34 @@ title: "FAQ - Success Business Advisors"
     if (!accordion) return;
 
     var triggers = accordion.querySelectorAll('.faq_page__trigger');
+    var panels = accordion.querySelectorAll('.faq_page__panel');
+
+    // Start all panels collapsed
+    panels.forEach(function (panel) {
+      panel.style.height = '0px';
+    });
+
+    function collapsePanel(panel) {
+      if (!panel.classList.contains('show') && panel.style.height === '0px') return;
+      var startHeight = panel.scrollHeight;
+      panel.style.height = startHeight + 'px';
+      // force reflow so the browser registers the start height
+      void panel.offsetHeight;
+      panel.style.height = '0px';
+      panel.classList.remove('show');
+    }
+
+    function expandPanel(panel) {
+      panel.classList.add('show');
+      var targetHeight = panel.scrollHeight;
+      panel.style.height = targetHeight + 'px';
+      var onTransitionEnd = function (e) {
+        if (e.propertyName !== 'height') return;
+        panel.style.height = 'auto';
+        panel.removeEventListener('transitionend', onTransitionEnd);
+      };
+      panel.addEventListener('transitionend', onTransitionEnd);
+    }
 
     triggers.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -49,16 +77,25 @@ title: "FAQ - Success Business Advisors"
 
         var isOpen = panel.classList.contains('show');
 
-        accordion.querySelectorAll('.faq_page__panel').forEach(function (p) {
-          p.classList.remove('show');
+        // Collapse all panels
+        panels.forEach(function (p) {
+          collapsePanel(p);
         });
 
-        accordion.querySelectorAll('.faq_page__trigger').forEach(function (t) {
+        // Reset aria-expanded on all triggers
+        triggers.forEach(function (t) {
           t.setAttribute('aria-expanded', 'false');
         });
 
+        // Expand the clicked one if it was closed
         if (!isOpen) {
-          panel.classList.add('show');
+          // If height is auto from previous open, reset to 0 before expanding
+          if (panel.style.height === 'auto') {
+            panel.style.height = panel.scrollHeight + 'px';
+            void panel.offsetHeight;
+            panel.style.height = '0px';
+          }
+          expandPanel(panel);
           btn.setAttribute('aria-expanded', 'true');
         }
       });

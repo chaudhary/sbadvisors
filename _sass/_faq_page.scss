@@ -132,11 +132,8 @@
 
   .faq_page__panel {
     overflow: hidden;
+    height: 0;
     transition: height 0.25s ease;
-
-    &.collapse:not(.show) {
-      display: none;
-    }
   }
 
   .faq_page__body {
