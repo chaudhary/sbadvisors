@@ -31,3 +31,37 @@ title: "FAQ - Success Business Advisors"
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var accordion = document.querySelector('.faq_page__accordion');
+    if (!accordion) return;
+
+    var triggers = accordion.querySelectorAll('.faq_page__trigger');
+
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetSelector = btn.getAttribute('data-bs-target') || btn.dataset.bsTarget;
+        if (!targetSelector) return;
+
+        var panel = document.querySelector(targetSelector);
+        if (!panel) return;
+
+        var isOpen = panel.classList.contains('show');
+
+        accordion.querySelectorAll('.faq_page__panel').forEach(function (p) {
+          p.classList.remove('show');
+        });
+
+        accordion.querySelectorAll('.faq_page__trigger').forEach(function (t) {
+          t.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          panel.classList.add('show');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>
