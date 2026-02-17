@@ -113,11 +113,6 @@
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
 
-    &:focus {
-      outline: 2px solid var(--faq-page-accent);
-      outline-offset: 2px;
-    }
-
     .faq_page__icon {
       flex-shrink: 0;
       margin-left: 12px;
