@@ -10,11 +10,7 @@
   --faq-page-accent: #1CA5AA;
   --faq-page-radius: 8px;
   --faq-page-max-width: 900px;
-  --faq-page-padding-y: 2rem;
 
-  background: var(--faq-page-bg);
-  color: var(--faq-page-text);
-  padding: 0 0 var(--faq-page-padding-y);
   margin-block-start: -108px;
 
   .faq_page__banner {
@@ -47,7 +43,6 @@
   .faq_page__banner-title {
     max-width: 1340px;
     margin: auto;
-    padding: 1rem var(--faq-page-padding-x);
     font-size: 60px;
     font-weight: 600;
     color: var(--faq-page-text);
@@ -77,16 +72,16 @@
   }
 
   .faq_page__title {
-    margin: 0 0 1.5rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--faq-page-text);
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
   }
 
   .faq_page__accordion {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -108,11 +103,11 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem 1.25rem;
+    padding: 16px;
     background: transparent;
     border: none;
     color: #111111;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 600;
     text-align: left;
     cursor: pointer;
@@ -125,7 +120,7 @@
 
     .faq_page__icon {
       flex-shrink: 0;
-      margin-left: 0.75rem;
+      margin-left: 12px;
       transition: transform 0.25s ease;
       color: var(--faq-page-accent);
     }
@@ -145,9 +140,9 @@
   }
 
   .faq_page__body {
-    padding: 0 1.25rem 1.25rem;
+    padding: 16px;
     color: #444444;
-    font-size: 0.9375rem;
+    font-size: 16px;
     line-height: 1.6;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
   }
