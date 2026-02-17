@@ -20,7 +20,7 @@ title: "FAQ - Success Business Advisors"
         <div class="faq_page__item">
           <button class="faq_page__trigger" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-{{ forloop.index }}" aria-expanded="false" aria-controls="faq-collapse-{{ forloop.index }}">
             <span>{{ item.question }}</span>
-            <i class="bi bi-chevron-down faq_page__icon" aria-hidden="true"></i>
+            <span class="faq_page__icon" aria-hidden="true">&#9660;</span>
           </button>
           <div id="faq-collapse-{{ forloop.index }}" class="faq_page__panel collapse" data-bs-parent="#faqAccordion">
             <div class="faq_page__body">{{ item.answer }}</div>
