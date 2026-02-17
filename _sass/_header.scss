@@ -19,6 +19,7 @@
 .sb-header{
   position: relative;
   z-index: 1;
+  padding: 0px 24px;
 }
 .sb-header-inner {
   max-width: 1360px;
@@ -97,7 +98,6 @@
 
 // Light theme (logo on light background, dark nav items)
 .sb-header--light {
-  width: 100%;
   border-bottom: 1px solid var(--sb-header-light-border);
 
   .sb-header-nav-link {
@@ -131,7 +131,6 @@
 
 // Dark theme (white logo + white nav items on dark background)
 .sb-header--dark {
-  width: 100%;
   border-bottom: 1px solid var(--sb-header-dark-border);
   z-index: 10;
 

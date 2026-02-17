@@ -36,6 +36,7 @@
   background: var(--sb-footer-partners-bg);
   border-top: 1px solid #C2C6C6;
   border-bottom: 1px solid #C2C6C6;
+  padding: 0px 24px;
 }
 
 .sb-footer-partners-inner {
@@ -164,6 +165,8 @@
   margin: 0 auto;
   padding-bottom: 40px;
   padding-top: 120px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .sb-footer-contact-title {
@@ -260,7 +263,7 @@
 // Bottom row: copyright + social
 .sb-footer-bottom {
   border-top: 1px solid #C2C6C6;
-  padding: 4px;
+  padding: 4px 24px;
 }
 .sb-footer-bottom-inner {
   display: flex;
