@@ -7,14 +7,18 @@
   {% assign header_class = 'sb-header sb-header--light' %}
 {% endif %}
 
-<header class="{{ header_class }}">
+<header class="{{ header_class }}" id="sb-header">
   <div class="sb-header-inner">
     <a href="/" class="sb-header-logo">
       <img src="{{ logo_src }}" alt="SBA Advisors logo" class="sb-header-logo-image">
     </a>
 
-    <nav class="sb-header-nav" aria-label="Main navigation">
-      <div class="sb-header-nav-list">
+    <button type="button" class="sb-header-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sb-header-nav-list" id="sb-header-nav-toggle">
+      <span class="sb-header-nav-toggle-icon" aria-hidden="true"></span>
+    </button>
+
+    <nav class="sb-header-nav" id="sb-header-nav" aria-label="Main navigation">
+      <div class="sb-header-nav-list" id="sb-header-nav-list">
         <div class="sb-header-nav-item">
           <a href="/about-us/" class="sb-header-nav-link{% if page.url == '/about-us/' %} selected{% endif %}">About SBA</a>
         </div>
@@ -40,3 +44,20 @@
     </nav>
   </div>
 </header>
+<script>
+(function () {
+  var header = document.getElementById('sb-header');
+  var toggle = document.getElementById('sb-header-nav-toggle');
+  if (!header || !toggle) return;
+  toggle.addEventListener('click', function () {
+    var open = header.classList.toggle('sb-header--menu-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (open) {
+      document.body.classList.add('sb-no-scroll');
+    } else {
+      document.body.classList.remove('sb-no-scroll');
+    }
+  });
+})();
+</script>
