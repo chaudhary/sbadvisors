@@ -11,15 +11,17 @@
   --faq-page-radius: 8px;
   --faq-page-max-width: 900px;
 
-  margin-block-start: -108px;
+  margin-top: -108px;
+  margin-bottom: 0px;
+  display: block;
+  position: relative;
 
   .faq_page__banner {
     position: relative;
     width: 100%;
     height: 96vh;
     min-height: 220px;
-    overflow: hidden;
-    background: var(--faq-page-bg);
+    background: var(--faq-page-bg) url("/assets/img/sba_home_1.jpg") center / cover no-repeat;
 
     &::before {
       content: "";
@@ -49,16 +51,6 @@
     color: var(--faq-page-text);
     text-align: left;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  }
-
-  .faq_page__banner-img {
-    position: relative;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
   }
 
   .faq_page__inner {

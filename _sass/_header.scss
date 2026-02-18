@@ -5,6 +5,7 @@
   --sb-header-max-width: 1200px;
   --sb-header-padding-y: 0.75rem;
   --sb-header-padding-x: 1.5rem;
+  --sb-header-logo-width: 270px; /* logo + padding; adjust if logo size changes */
 
   --sb-header-light-border: #e5e5e5;
   --sb-header-light-text: #222222;
@@ -21,44 +22,51 @@
   z-index: 1;
   padding: 0px 24px;
 }
+
 .sb-header-inner {
   max-width: 1360px;
   margin: 0px auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   box-sizing: border-box;
   padding: 20px 0px;
+  font-size: 0;
 }
 
 .sb-header-logo {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
+  vertical-align: middle;
+  width: var(--sb-header-logo-width);
   text-decoration: none;
   padding: 10px;
+  box-sizing: border-box;
+  font-size: 1rem;
 }
 
 .sb-header-logo-image {
   display: block;
   height: 47px;
   width: auto;
+  max-width: 100%;
 }
 
 .sb-header-nav {
-  display: block;
-  padding: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - var(--sb-header-logo-width));
+  box-sizing: border-box;
+  padding: 10px 0;
+  font-size: 1rem;
 }
 
 .sb-header-nav-list {
-  list-style: none;
-  display: flex;
-  gap: 36px;
   margin: 0;
   padding: 0;
+  text-align: right;
 }
 
 .sb-header-nav-item {
-  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 36px;
   text-transform: uppercase;
 }
 
@@ -85,14 +93,43 @@
 // Simple mobile behavior: stack logo and nav, wrap links
 @media (max-width: 768px) {
   .sb-header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .sb-header-logo {
+    display: block;
+    width: auto;
+  }
+
+  .sb-header-nav {
+    display: block;
+    width: 100%;
   }
 
   .sb-header-nav-list {
+    display: flex;
     flex-wrap: wrap;
     row-gap: 0.5rem;
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .sb-header-nav-item {
+    margin: 0 24px 0 0;
+  }
+}
+
+// On smaller screens keep nav items in two lines
+@media (max-width: 600px) {
+  .sb-header-nav-list {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .sb-header-nav-item {
+    flex: 0 0 25%;
+    text-align: center;
+    margin: 0;
   }
 }
 
