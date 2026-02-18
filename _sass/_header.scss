@@ -302,7 +302,7 @@ body.sb-no-scroll {
     &:hover,
     &:focus {
       color: var(--sb-header-dark-text-strong);
-      font-weight: 700;
+      // font-weight: 700;
 
       &::after {
         background-color: var(--sb-header-dark-text-strong);
