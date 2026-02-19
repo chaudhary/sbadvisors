@@ -5,7 +5,7 @@ baseurl: ""
 
 # SEO
 locale: "en_AE"
-og_image: "/assets/img/sba_advisors_banner.png"
+og_image: "/assets/img/og-image.jpg"
 
 theme: minima
 
