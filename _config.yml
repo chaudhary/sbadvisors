@@ -29,6 +29,7 @@ sass:
 # _config.yml
 plugins:
   - jekyll-assets
+  - jekyll-sitemap
 
 assets:
   sources:
