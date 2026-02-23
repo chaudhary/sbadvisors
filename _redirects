@@ -1,3 +1,0 @@
-# Redirect all unmatched paths (404s) to home with 301 Permanent
-# Hosts like Netlify apply this after static file resolution, so only missing pages redirect.
-/*    /   301
