@@ -10,6 +10,9 @@ layout: default
       <div class="post-main">
         <div class="wrapper">
           <header class="post-header">
+            <p class="post-back-link">
+              <a href="{{ '/blogs/' | relative_url }}">← All Articles</a>
+            </p>
             <h1 class="post-title">{{ page.title }}</h1>
             <p class="post-meta">{{ page.date | date: "%-d %B %Y" }}</p>
           </header>
@@ -54,6 +57,9 @@ layout: default
 
 <style>
 .post-with-sidebar { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+.post-back-link { margin: 0 0 0.75rem 0; font-size: 0.9rem; }
+.post-back-link a { color: #0693e3; text-decoration: none; }
+.post-back-link a:hover { text-decoration: underline; }
 .post-outer { display: flex; gap: 2.5rem; align-items: flex-start; }
 .post-main { flex: 1; min-width: 0; }
 .post-sidebar { flex: 0 0 280px; position: sticky; top: 2rem; }
