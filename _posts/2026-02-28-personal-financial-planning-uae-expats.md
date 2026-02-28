@@ -3,6 +3,7 @@ layout: post
 title: "Personal Financial Planning for Expats in the UAE"
 date: 2026-02-28
 permalink: /blogs/personal-financial-planning-uae-expats/
+description: "A practical guide to personal financial planning for expats in the UAE: goals, savings, investments, and protection for you and your family."
 categories: [Financial Planning]
 tags: [UAE, Expats, Personal Finance, Planning]
 image: "/assets/img/blog/blog-financial-planning-expats.jpg"

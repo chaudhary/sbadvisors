@@ -56,6 +56,21 @@
       "priceRange": "$$"
     }
     </script>
+    {% if page.layout == 'post' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.description | default: site.description | jsonify }},
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+      "author": { "@type": "Organization", "name": "{{ site.title }}" },
+      "publisher": { "@type": "Organization", "name": "{{ site.title }}", "url": "{{ site.url }}{{ site.baseurl }}/" }
+      {% if page.image %}, "image": "{{ site.url }}{{ site.baseurl }}{{ page.image }}"{% endif %}
+    }
+    </script>
+    {% endif %}
   </head>
 
   <body>
