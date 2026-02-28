@@ -6,7 +6,7 @@ permalink: /blogs/uae-business-setup-compliance-checklist/
 description: "A structured checklist for UAE business setup and compliance: mainland, free zones, licensing, and ongoing regulatory requirements."
 categories: [Business Compliance]
 tags: [UAE, Business Setup, Compliance, Entrepreneurs]
-image: "/assets/img/blog/blog-business-compliance.jpg"
+image: "/assets/img/blog/blog-uae-business-setup-compliance-checklist.png"
 ---
 
 ## From idea to compliant business: an overview

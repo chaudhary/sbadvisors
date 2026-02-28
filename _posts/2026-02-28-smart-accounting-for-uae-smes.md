@@ -6,7 +6,7 @@ permalink: /blogs/smart-accounting-for-uae-smes/
 description: "Why clean, timely accounting matters for UAE SMEs—VAT, corporate tax, and how to get the basics right with limited resources."
 categories: [Accounting]
 tags: [UAE, SMEs, Accounting, Compliance]
-image: "/assets/img/blog/blog-smart-accounting.jpg"
+image: "/assets/img/blog/blog-smart-accounting-uae-smes.png"
 ---
 
 ## Why good accounting matters more than ever in the UAE

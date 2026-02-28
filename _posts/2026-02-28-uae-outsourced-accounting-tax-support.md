@@ -6,7 +6,7 @@ permalink: /blogs/uae-outsourced-accounting-tax-support/
 description: "The hidden costs of in-house accounting and tax—why outsourcing often saves money and improves compliance for UAE businesses."
 categories: [Accounting, Tax]
 tags: [UAE, Outsourcing, Accounting, Tax Support]
-image: "/assets/img/blog/blog-outsourced-accounting.jpg"
+image: "/assets/img/blog/blog-uae-outsourced-accounting-tax-support.png"
 ---
 
 ## The hidden costs of doing everything in-house
