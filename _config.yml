@@ -9,7 +9,8 @@ og_image: "/assets/img/og-image.jpg"
 
 theme: minima
 
-permalink: pretty
+# Post URLs: /blogs/<slug>/ (no date in URL)
+permalink: /blogs/:title/
 
 exclude:
   - node_modules
@@ -25,6 +26,11 @@ defaults:
       type: "pages"
     values:
       layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      permalink: /blogs/:title/
 
 sass:
   sass_dir: _sass

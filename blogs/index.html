@@ -1,0 +1,40 @@
+---
+layout: default
+title: "Blogs"
+---
+
+<main class="page-content" aria-label="Content">
+	{% include header.html %}
+
+  <div class="wrapper" style="max-width: 1200px; margin: 0 auto;">
+    <h1>All Articles</h1>
+
+    <p>Insights on accounting, tax support, financial planning, and business compliance in the UAE.</p>
+
+    <ul class="post-list" style="list-style: none; padding: 0;">
+      {% for post in site.posts %}
+        <li style="display: flex; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #eee; align-items: flex-start;">
+          {% if post.image %}
+          <a href="{{ post.url | relative_url }}" style="flex-shrink: 0; width: 200px;">
+            <img src="{{ post.image | relative_url }}" alt="" style="width: 200px; height: 120px; object-fit: cover; border-radius: 6px; display: block;" />
+          </a>
+          {% endif %}
+          <div style="flex: 1; min-width: 0;">
+            <h2 style="margin-top: 0;">
+              <a href="{{ post.url | relative_url }}">
+                {{ post.title }}
+              </a>
+            </h2>
+            <span class="post-meta" style="display: block; margin-bottom: 0.5rem; color: #666; font-size: 0.9em;">
+              {{ post.date | date: "%-d %B %Y" }}
+            </span>
+            <p style="margin-bottom: 0;">
+              {{ post.excerpt | strip_html | truncate: 180 }}
+            </p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</main>
+
