@@ -5,22 +5,69 @@ layout: default
 <main class="page-content" aria-label="Content">
   {% include header.html %}
 
-  <article class="post" style="max-width: 1200px; margin: 0 auto;padding: 2rem 0;">
-    <div class="wrapper">
-      <header class="post-header">
-        <h1 class="post-title">{{ page.title }}</h1>
-        <p class="post-meta">{{ page.date | date: "%-d %B %Y" }}</p>
-      </header>
+  <article class="post post-with-sidebar">
+    <div class="post-outer">
+      <div class="post-main">
+        <div class="wrapper">
+          <header class="post-header">
+            <h1 class="post-title">{{ page.title }}</h1>
+            <p class="post-meta">{{ page.date | date: "%-d %B %Y" }}</p>
+          </header>
 
-      {% if page.image %}
-      <div class="post-image" style="margin: 1.5rem 0; border-radius: 8px; overflow: hidden;">
-        <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" style="width: 100%; height: auto; display: block;" />
-      </div>
-      {% endif %}
+          {% if page.image %}
+          <div class="post-image" style="margin: 1.5rem 0; border-radius: 8px; overflow: hidden;">
+            <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" style="width: 100%; height: auto; display: block;" />
+          </div>
+          {% endif %}
 
-      <div class="post-content">
-        {{ content }}
+          <div class="post-content">
+            {{ content }}
+          </div>
+        </div>
       </div>
+
+      <aside class="post-sidebar">
+        <h2 class="post-sidebar-title">Related articles</h2>
+        <ul class="post-related-list">
+          {% assign related_count = 0 %}
+          {% for post in site.posts %}
+            {% if post.url != page.url and related_count < 5 %}
+              {% assign related_count = related_count | plus: 1 %}
+              <li class="post-related-item">
+                <a href="{{ post.url | relative_url }}" class="post-related-link">
+                  {% if post.image %}
+                  <span class="post-related-thumb">
+                    <img src="{{ post.image | relative_url }}" alt="" />
+                  </span>
+                  {% endif %}
+                  <span class="post-related-text">{{ post.title }}</span>
+                  <span class="post-related-meta">{{ post.date | date: "%-d %B %Y" }}</span>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </aside>
     </div>
   </article>
 </main>
+
+<style>
+.post-with-sidebar { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+.post-outer { display: flex; gap: 2.5rem; align-items: flex-start; }
+.post-main { flex: 1; min-width: 0; }
+.post-sidebar { flex: 0 0 280px; position: sticky; top: 2rem; }
+.post-sidebar-title { font-size: 1.1rem; margin: 0 0 1rem 0; color: #333; }
+.post-related-list { list-style: none; padding: 0; margin: 0; }
+.post-related-item { margin-bottom: 1rem; }
+.post-related-link { display: block; text-decoration: none; color: inherit; padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+.post-related-link:hover { color: #0693e3; }
+.post-related-thumb { display: block; width: 100%; height: 100px; border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem; }
+.post-related-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post-related-text { font-weight: 500; display: block; }
+.post-related-meta { font-size: 0.85em; color: #666; }
+@media (max-width: 768px) {
+  .post-outer { flex-direction: column; }
+  .post-sidebar { flex: none; width: 100%; position: static; }
+}
+</style>
