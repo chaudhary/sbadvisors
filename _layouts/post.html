@@ -19,7 +19,7 @@ layout: default
 
           {% if page.image %}
           <div class="post-image" style="margin: 1.5rem 0; border-radius: 8px; overflow: hidden;">
-            <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" loading="lazy" style="width: 100%; height: auto; display: block;" />
+            <img src="{{ page.image | replace: '.jpg', '-960w.jpg' | replace: '.png', '-960w.png' | relative_url }}" alt="{{ page.title | escape }}" loading="lazy" style="width: 100%; height: auto; display: block;" />
           </div>
           {% endif %}
 
@@ -40,7 +40,7 @@ layout: default
                 <a href="{{ post.url | relative_url }}" class="post-related-link">
                   {% if post.image %}
                   <span class="post-related-thumb">
-                    <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" />
+                    <img src="{{ post.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ post.title | escape }}" />
                   </span>
                   {% endif %}
                   <span class="post-related-text">{{ post.title }}</span>
