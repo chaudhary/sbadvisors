@@ -39,7 +39,6 @@
     <link rel="icon" href="/assets/img/cropped_favicon_192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/assets/img/cropped_favicon_180x180.png" />
     <meta name="msapplication-TileImage" content="/assets/img/cropped_favicon_270x270.png" />
-    {{ content_for_head }}
     <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/application.css?v={{ site.time | date: '%s' }}">
     <script type="application/ld+json">
@@ -70,6 +69,9 @@
       {% if page.image %}, "image": "{{ site.url }}{{ site.baseurl }}{{ page.image }}"{% endif %}
     }
     </script>
+    {% endif %}
+    {% if page.custom_head %}
+      {% include {{ page.custom_head }} %}
     {% endif %}
   </head>
 
