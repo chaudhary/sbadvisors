@@ -280,6 +280,17 @@
   font-weight: 500;
   color: var(--sb-footer-text);
   margin: 0;
+  
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: var(--sb-footer-accent);
+      text-decoration: none;
+    }
+  }
 }
 
 .sb-footer-social {
