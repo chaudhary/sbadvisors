@@ -9,12 +9,15 @@ layout: default
     <div class="post-outer">
       <div class="post-main">
         <div class="wrapper">
-          <header class="post-header">
+          <header class="post-header" style="position: relative;">
             <p class="post-back-link">
               <a href="{{ '/blogs/' | relative_url }}">← All Articles</a>
             </p>
             <h1 class="post-title">{{ page.title }}</h1>
-            <p class="post-meta">{{ page.date | date: "%-d %B %Y" }}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <p class="post-meta" style="margin: 0;">{{ page.date | date: "%-d %B %Y" }}</p>
+              <a href="https://booknow.sbadvisors.ae/" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #1CA5AA; color: #fff; padding: 8px 16px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 0.95rem; transition: background-color 0.3s ease;">Schedule an Appointment</a>
+            </div>
           </header>
 
           {% if page.image %}
@@ -25,6 +28,11 @@ layout: default
 
           <div class="post-content">
             {{ content }}
+          </div>
+
+          <div class="post-action" style="margin-top: 3rem; text-align: center; border-top: 1px solid #eee; padding-top: 2rem;">
+            <p style="margin-bottom: 1rem; font-size: 1.1rem; color: #333;">Ready to take the next step?</p>
+            <a href="https://booknow.sbadvisors.ae/" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #1CA5AA; color: #fff; padding: 12px 28px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1.1rem; transition: background-color 0.3s ease;">Schedule an Appointment</a>
           </div>
         </div>
       </div>
