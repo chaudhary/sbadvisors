@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Business Setup and Compliance Checklist for UAE Entrepreneurs"
-date: 2026-02-28
+date: 2026-03-30
 permalink: /blogs/uae-business-setup-compliance-checklist/
 description: "A structured checklist for UAE business setup and compliance: mainland, free zones, licensing, and ongoing regulatory requirements."
 categories: [Business Compliance]

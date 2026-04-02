@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Exploring the 0% UAE Corporate Tax: Qualifying vs. Non-Qualifying Income for Free Zones"
-date: 2026-03-17 12:00:00 +0400
+date: 2026-02-04 12:00:00 +0400
 description: "Confused by the UAE Corporate Tax for Free Zones? Learn about Qualifying vs. Non-Qualifying Income and how to secure the 0% tax rate under the new UAE Corporate Tax Law."
 categories: blogs
 author: Success Business Advisors

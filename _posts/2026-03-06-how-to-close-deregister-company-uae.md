@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to Close and Deregister a Company in the UAE: A Complete Guide"
-date: 2026-04-01 12:00:00 +0400
+date: 2026-03-06 12:00:00 +0400
 description: "Closing a UAE company involves more than cancelling your trade licence. This guide covers every step: visa cancellation, VAT deregistration, Corporate Tax, bank closure, and final licence cancellation."
 categories: blogs
 author: Success Business Advisors

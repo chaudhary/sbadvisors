@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "UAE Country-by-Country Reporting (CbCR): Who Must Comply and How"
-date: 2026-04-01 12:00:00 +0400
+date: 2026-02-25 12:00:00 +0400
 description: "UAE CbCR obligations apply to large multinational enterprise groups. Learn the AED 3.15 billion threshold, what information must be reported, filing deadlines, notification rules, and penalties."
 categories: blogs
 author: Success Business Advisors

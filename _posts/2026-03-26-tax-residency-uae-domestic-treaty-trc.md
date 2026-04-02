@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tax Residency in UAE - Domestic vs Treaty TRC"
-date: 2026-02-28
+date: 2026-03-26
 permalink: /blogs/tax-residency-uae-domestic-treaty-trc/
 description: "There are two types of TRC - Domestic and Treaty. Domestic TRC is helpful for all purposes in UAE whereas Treaty tax residency is needed if you are submitting a tax declaration in your home country or any third country where you hold a Tax Identification number and making some income."
 categories: [Tax, UAE]

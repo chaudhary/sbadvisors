@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to File Your First UAE Corporate Tax Return: A Practical Guide"
-date: 2026-04-01 12:00:00 +0400
+date: 2026-02-10 12:00:00 +0400
 description: "Filing your first UAE Corporate Tax return can feel daunting. This step-by-step guide covers registration on EmaraTax, key deadlines, required documents, and common mistakes to avoid."
 categories: blogs
 author: Success Business Advisors

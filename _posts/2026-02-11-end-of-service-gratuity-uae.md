@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "End-of-Service Gratuity in the UAE: A Complete Guide for Employers and Employees"
-date: 2026-04-01 12:00:00 +0400
+date: 2026-02-11 12:00:00 +0400
 description: "UAE end-of-service gratuity is a statutory entitlement for most employees. Learn how it is calculated, when it is payable, how resignation affects the amount, and what employers must account for."
 categories: blogs
 author: Success Business Advisors

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Navigating the UAE Economic Substance Regulations (ESR): A Compliance Guide"
-date: 2026-03-17 12:00:00 +0400
+date: 2026-02-18 12:00:00 +0400
 description: "Understand the UAE Economic Substance Regulations (ESR) and how they impact your business. Learn about 'Relevant Activities,' compliance deadlines, and the consequences of non-compliance."
 categories: blogs
 author: Success Business Advisors

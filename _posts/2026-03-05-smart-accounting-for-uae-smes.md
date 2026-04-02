@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Smart Accounting for UAE SMEs: Getting the Basics Right"
-date: 2026-02-28
+date: 2026-03-05
 permalink: /blogs/smart-accounting-for-uae-smes/
 description: "Why clean, timely accounting matters for UAE SMEs—VAT, corporate tax, and how to get the basics right with limited resources."
 categories: [Accounting]

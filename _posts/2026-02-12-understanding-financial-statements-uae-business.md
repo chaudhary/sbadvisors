@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Understanding Financial Statements: A Guide for UAE Business Owners Who Are Not Accountants"
-date: 2026-04-01 12:00:00 +0400
+date: 2026-02-12 12:00:00 +0400
 description: "Your accountant hands you financial statements every quarter — but what do they actually mean? Learn how to read a P&L, balance sheet, and cash flow statement as a UAE business owner."
 categories: blogs
 author: Success Business Advisors

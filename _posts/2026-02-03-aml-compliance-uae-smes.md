@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AML Compliance for UAE SMEs: Obligations, Risks, and How to Build a Programme"
-date: 2026-04-01 12:00:00 +0400
+date: 2026-02-03 12:00:00 +0400
 description: "Anti-money laundering compliance is not just for banks in the UAE. Many SMEs are classified as DNFBPs with real AML obligations. Learn what is required, what penalties apply, and how to comply."
 categories: blogs
 author: Success Business Advisors

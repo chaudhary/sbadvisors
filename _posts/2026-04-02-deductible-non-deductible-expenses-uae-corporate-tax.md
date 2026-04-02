@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Deductible vs. Non-Deductible Expenses Under UAE Corporate Tax"
-date: 2026-04-01 12:00:00 +0400
+date: 2026-04-02 12:00:00 +0400
 description: "Not every business expense reduces your UAE Corporate Tax bill. Learn which costs are fully deductible, which are partially restricted, and which are disallowed entirely under UAE law."
 categories: blogs
 author: Success Business Advisors

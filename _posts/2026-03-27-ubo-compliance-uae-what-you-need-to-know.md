@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ultimate Beneficial Ownership (UBO) Compliance in the UAE: What You Need to Know"
-date: 2026-03-17 12:00:00 +0400
+date: 2026-03-27 12:00:00 +0400
 description: "Ensure your UAE business complies with Ultimate Beneficial Ownership (UBO) regulations. Learn who qualifies as a UBO, how to maintain registers, and avoid penalties."
 categories: blogs
 author: Success Business Advisors

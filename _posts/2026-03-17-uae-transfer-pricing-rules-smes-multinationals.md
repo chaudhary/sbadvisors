@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Transfer Pricing Rules in the UAE: What SMEs and Multinationals Need to Know"
-date: 2026-04-01 12:00:00 +0400
+date: 2026-03-17 12:00:00 +0400
 description: "UAE Corporate Tax introduced formal transfer pricing rules. Learn what the arm's length principle means, who must comply, what documentation is required, and how to avoid penalties."
 categories: blogs
 author: Success Business Advisors
