@@ -5,7 +5,7 @@ date: 2026-02-25 12:00:00 +0400
 description: "UAE CbCR obligations apply to large multinational enterprise groups. Learn the AED 3.15 billion threshold, what information must be reported, filing deadlines, notification rules, and penalties."
 categories: blogs
 author: Success Business Advisors
-tags: ["CbCR", "Transfer Pricing", "Corporate Tax", "Multinationals", "BEPS", "Compliance"]
+tags: ["CbCR", "Transfer Pricing", "Corporate Tax", "Multinationals", "Compliance", "UAE Business"]
 image: "/assets/img/blog/blog-uae-country-by-country-reporting-cbcr.png"
 ---
 

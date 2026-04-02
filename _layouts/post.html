@@ -41,22 +41,85 @@ layout: default
         <h2 class="post-sidebar-title">Related articles</h2>
         <ul class="post-related-list">
           {% assign related_count = 0 %}
+
+          {% comment %} Pass 1: posts sharing 2 or more tags (highly relevant) {% endcomment %}
           {% for post in site.posts %}
             {% if post.url != page.url and related_count < 5 %}
-              {% assign related_count = related_count | plus: 1 %}
-              <li class="post-related-item">
-                <a href="{{ post.url | relative_url }}" class="post-related-link">
-                  {% if post.image %}
-                  <span class="post-related-thumb">
-                    <img src="{{ post.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ post.title | escape }}" />
-                  </span>
-                  {% endif %}
-                  <span class="post-related-text">{{ post.title }}</span>
-                  <span class="post-related-meta">{{ post.date | date: "%-d %B %Y" }}</span>
-                </a>
-              </li>
+              {% assign shared_tags = 0 %}
+              {% for tag in post.tags %}
+                {% if page.tags contains tag %}
+                  {% assign shared_tags = shared_tags | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              {% if shared_tags >= 2 %}
+                {% assign related_count = related_count | plus: 1 %}
+                <li class="post-related-item">
+                  <a href="{{ post.url | relative_url }}" class="post-related-link">
+                    {% if post.image %}
+                    <span class="post-related-thumb">
+                      <img src="{{ post.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ post.title | escape }}" />
+                    </span>
+                    {% endif %}
+                    <span class="post-related-text">{{ post.title }}</span>
+                    <span class="post-related-meta">{{ post.date | date: "%-d %B %Y" }}</span>
+                  </a>
+                </li>
+              {% endif %}
             {% endif %}
           {% endfor %}
+
+          {% comment %} Pass 2: posts sharing exactly 1 tag (somewhat relevant) {% endcomment %}
+          {% for post in site.posts %}
+            {% if post.url != page.url and related_count < 5 %}
+              {% assign shared_tags = 0 %}
+              {% for tag in post.tags %}
+                {% if page.tags contains tag %}
+                  {% assign shared_tags = shared_tags | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              {% if shared_tags == 1 %}
+                {% assign related_count = related_count | plus: 1 %}
+                <li class="post-related-item">
+                  <a href="{{ post.url | relative_url }}" class="post-related-link">
+                    {% if post.image %}
+                    <span class="post-related-thumb">
+                      <img src="{{ post.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ post.title | escape }}" />
+                    </span>
+                    {% endif %}
+                    <span class="post-related-text">{{ post.title }}</span>
+                    <span class="post-related-meta">{{ post.date | date: "%-d %B %Y" }}</span>
+                  </a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% comment %} Pass 3: fallback to recent posts with no tag overlap {% endcomment %}
+          {% for post in site.posts %}
+            {% if post.url != page.url and related_count < 5 %}
+              {% assign shared_tags = 0 %}
+              {% for tag in post.tags %}
+                {% if page.tags contains tag %}
+                  {% assign shared_tags = shared_tags | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              {% if shared_tags == 0 %}
+                {% assign related_count = related_count | plus: 1 %}
+                <li class="post-related-item">
+                  <a href="{{ post.url | relative_url }}" class="post-related-link">
+                    {% if post.image %}
+                    <span class="post-related-thumb">
+                      <img src="{{ post.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ post.title | escape }}" />
+                    </span>
+                    {% endif %}
+                    <span class="post-related-text">{{ post.title }}</span>
+                    <span class="post-related-meta">{{ post.date | date: "%-d %B %Y" }}</span>
+                  </a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
         </ul>
       </aside>
     </div>

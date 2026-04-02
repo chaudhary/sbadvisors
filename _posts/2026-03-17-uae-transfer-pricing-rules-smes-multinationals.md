@@ -5,7 +5,7 @@ date: 2026-03-17 12:00:00 +0400
 description: "UAE Corporate Tax introduced formal transfer pricing rules. Learn what the arm's length principle means, who must comply, what documentation is required, and how to avoid penalties."
 categories: blogs
 author: Success Business Advisors
-tags: ["Transfer Pricing", "Corporate Tax", "UAE Business", "Compliance", "Multinationals"]
+tags: ["Transfer Pricing", "Corporate Tax", "UAE Business", "Compliance", "Multinationals", "SME"]
 image: "/assets/img/blog/blog-uae-transfer-pricing-rules-smes-multinationals.png"
 ---
 

@@ -5,7 +5,7 @@ date: 2026-03-19
 permalink: /blogs/uae-corporate-tax-and-vat-basics/
 description: "An overview of UAE corporate tax and VAT for business owners: rates, registration, compliance, and how to stay on the right side of the law."
 categories: [Tax]
-tags: [UAE, VAT, Corporate Tax, Compliance]
+tags: ["Corporate Tax", "VAT", "UAE Business", "Compliance", "Tax Planning"]
 image: "/assets/img/blog/blog-uae-corporate-tax-and-vat-basics.png"
 ---
 
