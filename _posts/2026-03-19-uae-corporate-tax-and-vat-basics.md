@@ -37,7 +37,7 @@ To manage VAT properly, you need:
 
 ## Corporate tax: what it means for your business
 
-Corporate tax applies to the **net profits** of certain business entities and activities, subject to thresholds, exemptions, and special rules (for example, for free zones, natural resources, and qualifying income).
+Corporate tax applies to the **net profits** of certain business entities and activities, subject to thresholds, exemptions, and special rules (for example, the [0% rate on Qualifying Income for Free Zones](/blogs/0-percent-uae-corporate-tax-qualifying-income-free-zones/), natural resources, and qualifying income).
 
 Key points include:
 
@@ -58,7 +58,7 @@ VAT and corporate tax both rely heavily on **accurate, complete accounting recor
 A strong tax support framework includes:
 
 - Clear accounting policies aligned with tax rules
-- Proper classification of expenses (deductible vs non-deductible)
+- Proper classification of expenses ([deductible vs non-deductible](/blogs/deductible-non-deductible-expenses-uae-corporate-tax/))
 - Reconciliation between accounting ledgers and tax returns
 - Timely reviews before filing deadlines
 

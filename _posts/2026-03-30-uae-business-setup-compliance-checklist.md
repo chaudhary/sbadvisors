@@ -19,8 +19,8 @@ A structured approach reduces delays, avoids costly mistakes, and sets your busi
 
 Your first major decision is **where** and **how** to set up:
 
-- **Mainland**: Offers flexibility in doing business across the UAE market, dealing with government entities, and broad operational freedom.
-- **Free zones**: Often attractive for sector-specific ecosystems, 100% foreign ownership, and streamlined processes.
+- **Mainland**: Offers flexibility in doing business across the UAE market, dealing with government entities, and broad operational freedom. The choice of [emirate (RAK, Dubai, or Abu Dhabi)](/blogs/rak-vs-dubai-vs-abu-dhabi-choosing-emirate-for-business/) matters as much as the structure.
+- **Free zones**: Often attractive for sector-specific ecosystems, 100% foreign ownership, and streamlined processes; for regulated financial services compare [DIFC vs ADGM](/blogs/difc-vs-adgm-financial-free-zone-uae/).
 - **Offshore**: Typically used for holding structures rather than active trading.
 
 Within these, you’ll need to choose a legal form (e.g., LLC, branch, sole establishment, free zone company). The right choice affects:
@@ -70,7 +70,7 @@ Employees are central to your operation, and compliance here is closely monitore
 
 - Proper employment contracts aligned with UAE labour law
 - Timely and documented salary payments (e.g. via WPS where applicable)
-- Clear policies on leave, working hours, and end-of-service benefits
+- Clear policies on leave, working hours, and [end-of-service gratuity](/blogs/end-of-service-gratuity-uae/)
 - Visa, medical, and insurance processes correctly managed
 
 Non-compliance can quickly lead to fines and operational disruption.
@@ -84,7 +84,7 @@ Set up a simple compliance calendar covering:
 - Corporate tax filing and payment dates
 - ESR and UBO reporting deadlines (if applicable)
 - Lease renewals and insurance renewals
-- Annual financial statement preparation and audit (where required)
+- Annual financial statement preparation and audit (where required), and a clear plan for [closing or deregistering the company](/blogs/how-to-close-deregister-company-uae/) if you ever wind down
 
 Keeping ahead of deadlines avoids penalties and protects your reputation.
 

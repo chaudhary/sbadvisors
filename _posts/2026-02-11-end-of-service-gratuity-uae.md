@@ -13,6 +13,15 @@ End-of-service gratuity is one of the most important — and most frequently mis
 
 This guide covers everything you need to know about UAE gratuity: who is entitled, how it is calculated, what happens in different termination scenarios, and how the rules are evolving.
 
+### Quick answers
+
+*   **Who qualifies:** Private sector employees with at least 1 year of continuous service.
+*   **Calculation base:** Basic salary only (housing, transport, and other allowances are excluded).
+*   **Rate:** 21 days basic salary per year for the first 5 years, 30 days per year thereafter, capped at 2 years total basic salary.
+*   **Resignation:** Since February 2022, resignation no longer reduces gratuity. Full entitlement applies whether the employee resigns or is terminated.
+*   **Payment deadline:** All end-of-service entitlements must be settled within 14 days of the termination date.
+*   **Accounting:** Accrue monthly on the balance sheet; do not wait until the employee leaves.
+
 ---
 
 ### What is End-of-Service Gratuity?
@@ -103,7 +112,7 @@ One of the most significant accounting obligations arising from gratuity is the 
 3.  When an employee leaves and gratuity is paid: **Debit Gratuity Provision → Credit Bank.**
 4.  Adjust the provision up or down annually for salary changes.
 
-For **Corporate Tax purposes**, the gratuity provision is generally deductible as an expense as it accrues (subject to the general rules on expense deductibility), because it represents a real liability the business has to employees for services already rendered.
+For **Corporate Tax purposes**, the gratuity provision is generally deductible as an expense as it accrues, subject to the [general rules on deductible vs non-deductible expenses](/blogs/deductible-non-deductible-expenses-uae-corporate-tax/), because it represents a real liability the business has to employees for services already rendered. Reflecting this correctly is also important for [understanding your financial statements](/blogs/understanding-financial-statements-uae-business/).
 
 ---
 
@@ -125,18 +134,51 @@ The traditional gratuity system is undergoing a significant structural reform. T
 2.  **Using total salary instead of basic salary:** Gratuity is calculated on basic salary only. Including allowances inflates the liability.
 3.  **Failing to update the provision after salary increases:** When an employee gets a pay rise, the gratuity liability must be recalculated from year one using the new basic salary rate.
 4.  **Deducting gratuity for resignations post-February 2022:** Under the new law, resignation does not reduce gratuity. Employers who still apply the old rules are exposed to labour complaints.
-5.  **Not budgeting for gratuity in cash flow planning:** A team of 10 employees with 3+ years of service can represent several hundred thousand dirhams in accrued gratuity — a material cash outflow when key staff leave simultaneously.
+5.  **Not budgeting for gratuity in cash flow planning:** A team of 10 employees with 3+ years of service can represent several hundred thousand dirhams in accrued gratuity, a material cash outflow when key staff leave simultaneously. Build it into your [cash flow management process](/blogs/cash-flow-management-uae-small-businesses/) early.
 
 ---
 
-### How Success Business Advisors Can Help
+For startups still budgeting their first hires, the [build a budget for your UAE startup](/blogs/build-budget-uae-startup/) guide explains how to fold gratuity accrual into your monthly fixed costs from day one.
 
-At **Success Business Advisors**, we help UAE employers manage their gratuity obligations correctly — both from a compliance and financial planning perspective:
+### Frequently Asked Questions
 
-*   **Gratuity calculation and reconciliation** for your entire workforce.
-*   **Balance sheet provisioning** to ensure your financials accurately reflect the liability.
-*   **Payroll setup** with monthly gratuity accrual accounting.
-*   **Advisory on the DEWS and emerging UAE savings scheme alternatives.**
-*   **Labour law compliance review** to ensure your employment terms align with the 2022 Labour Law reforms.
+**Who is entitled to end-of-service gratuity in the UAE?**
+Private sector employees who complete at least 1 year of continuous service. UAE and GCC nationals are enrolled in pension schemes (GPSSA) instead and do not receive traditional gratuity.
 
-Gratuity is not optional — and miscalculating it is costly. Contact **Success Business Advisors** for expert guidance on UAE employee entitlements and HR financial compliance.
+**Is gratuity calculated on basic salary or total salary?**
+Basic salary only. Housing, transport, and other allowances are excluded from the calculation base.
+
+**How is the amount calculated?**
+21 calendar days of basic salary per year for the first 5 years of service, and 30 calendar days per year thereafter, capped at a maximum of 2 years of total basic salary.
+
+**Does resignation reduce my gratuity?**
+No. Since the new Labour Law came into effect on 2 February 2022, full gratuity applies regardless of whether the employee resigns or is terminated, provided they have completed 1 year of service.
+
+**When must gratuity be paid after the end of employment?**
+All end-of-service entitlements, including gratuity, must be settled within 14 days of the termination date.
+
+**How should employers account for gratuity?**
+Accrue the liability monthly on the balance sheet (debit gratuity expense, credit gratuity provision). Recalculate after every salary change. Treating gratuity as a cost only when paid overstates profit and creates cash flow shocks.
+
+**Can an employer refuse to pay gratuity?**
+Only in narrow circumstances of serious misconduct under Article 44 of the Labour Law (false identity, significant financial loss to the employer, prolonged unauthorised absence, and similar). Resignation is not one of them.
+
+### How Success Business Advisors can help
+
+We calculate gratuity exposure across your workforce, set up monthly accrual accounting, and align your employment terms with the 2022 Labour Law. [Schedule a call](https://booknow.sbadvisors.ae/) and we will review your gratuity position in 30 minutes.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Who is entitled to end-of-service gratuity in the UAE?", "acceptedAnswer": {"@type": "Answer", "text": "Private sector employees who have completed at least 1 year of continuous service with their employer. UAE and GCC nationals are enrolled in pension schemes such as GPSSA instead of receiving traditional gratuity."}},
+    {"@type": "Question", "name": "Is UAE gratuity calculated on basic salary or total salary?", "acceptedAnswer": {"@type": "Answer", "text": "Basic salary only. Housing, transport, and other allowances are excluded from the gratuity calculation base."}},
+    {"@type": "Question", "name": "How is end-of-service gratuity calculated in the UAE?", "acceptedAnswer": {"@type": "Answer", "text": "21 calendar days of basic salary per year for the first 5 years of service, and 30 calendar days per year for each year thereafter. The total amount is capped at 2 years of total basic salary."}},
+    {"@type": "Question", "name": "Does resignation reduce gratuity in the UAE?", "acceptedAnswer": {"@type": "Answer", "text": "No. Since the new Labour Law came into effect on 2 February 2022, full gratuity entitlement applies regardless of whether the employee resigns or is terminated, provided at least 1 year of service has been completed."}},
+    {"@type": "Question", "name": "When must end-of-service gratuity be paid?", "acceptedAnswer": {"@type": "Answer", "text": "All end-of-service entitlements, including gratuity, must be paid within 14 days of the termination date under the UAE Labour Law."}},
+    {"@type": "Question", "name": "How should employers account for the gratuity liability?", "acceptedAnswer": {"@type": "Answer", "text": "Employers should accrue the gratuity liability monthly on the balance sheet by debiting gratuity expense and crediting a gratuity provision, and recalculate the liability after every salary change. Treating gratuity as a cost only when paid overstates profit and creates cash flow shocks."}},
+    {"@type": "Question", "name": "Can an employer refuse to pay end-of-service gratuity?", "acceptedAnswer": {"@type": "Answer", "text": "Only in narrow circumstances of serious misconduct under Article 44 of the UAE Labour Law, such as assuming a false identity, causing significant financial loss to the employer, or prolonged unauthorised absence. Resignation is not a ground for refusal."}}
+  ]
+}
+</script>

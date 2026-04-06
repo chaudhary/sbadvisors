@@ -52,7 +52,7 @@ Businesses that meet either of the following thresholds must maintain a **Master
 The **Master File** provides an overview of the group's global business, value chain, and transfer pricing policies. The **Local File** provides transaction-specific information and the economic analysis supporting arm's length pricing for each related-party transaction.
 
 #### Country-by-Country Report (CbCR)
-MNE groups with consolidated global revenues of AED 3.15 billion or more must also file a **Country-by-Country Report** (discussed in a separate guide). 
+MNE groups with consolidated global revenues of AED 3.15 billion or more must also file a **[Country-by-Country Report](/blogs/uae-country-by-country-reporting-cbcr/)**. 
 
 ### Choosing a Transfer Pricing Method
 

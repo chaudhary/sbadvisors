@@ -13,6 +13,15 @@ Not every business in the UAE succeeds, and even successful businesses sometimes
 
 This guide walks you through every stage of the company closure process, from initiating the wind-down to receiving official confirmation of deregistration.
 
+### Quick answers
+
+*   **Timeline:** A clean closure typically takes 2 to 4 months end-to-end, longer if there are disputes or a creditor notice period.
+*   **Order matters:** Pass the resolution, settle liabilities, cancel visas, deregister VAT, file final Corporate Tax return, then cancel the trade licence, then close the bank account.
+*   **VAT deregistration:** Must be filed via EmaraTax with a final VAT return for the period up to cessation.
+*   **Corporate Tax:** A final return is required for the short stub period; the LLC remains a taxable person until formally deregistered.
+*   **Liquidation notice:** Mainland LLCs typically require a notice in two UAE newspapers giving creditors a window (commonly 45 days) to file claims.
+*   **Worst mistake:** Letting the licence simply lapse. Fees and penalties accumulate until you formally close.
+
 ### Why Proper Closure Matters
 
 Many business owners make the mistake of simply stopping operations and allowing the trade licence to expire. This approach is risky because:
@@ -65,7 +74,7 @@ All employee residency visas sponsored under the company must be formally cancel
 *   **MOHRE (Ministry of Human Resources and Emiratisation):** Cancel all labour cards and work permits.
 *   **GDRFA (General Directorate of Residency and Foreigners Affairs):** Cancel all residency stamps in passports.
 
-Outstanding end-of-service gratuity must be paid to employees at this stage. Underpayment of gratuity is a common cause of labour complaints that can block company closure.
+Outstanding [end-of-service gratuity](/blogs/end-of-service-gratuity-uae/) must be paid to employees at this stage. Underpayment of gratuity is a common cause of labour complaints that can block company closure.
 
 If the business owner's own visa is sponsored through the company, it too must be cancelled or transferred to another sponsor before the licence is cancelled.
 
@@ -85,7 +94,7 @@ If your company is registered for VAT, you must **apply for VAT deregistration**
 3.  Pay any VAT liability or reclaim any excess credit balance.
 4.  The FTA will review the application and may request supporting evidence of cessation.
 
-Important: the FTA has the right to audit your VAT history as part of the deregistration process. Ensure your records are in order for at least the prior five years.
+Important: the FTA has the right to audit your VAT history as part of the deregistration process. Ensure your records are in order for at least the prior five years. If you are owed VAT refunds at this point, see our [UAE VAT refund process](/blogs/vat-refund-process-uae/) guide.
 
 ---
 
@@ -93,8 +102,8 @@ Important: the FTA has the right to audit your VAT history as part of the deregi
 
 Even if you are closing, you must fulfil your Corporate Tax obligations up to the date of cessation:
 
-1.  File your final **Corporate Tax Return** for the last (potentially short) tax period.
-2.  Pay any outstanding Corporate Tax liability.
+1.  File your final **[Corporate Tax Return](/blogs/how-to-file-uae-corporate-tax-return/)** for the last (potentially short) tax period.
+2.  Pay any outstanding Corporate Tax liability after applying the [deductible expense rules](/blogs/deductible-non-deductible-expenses-uae-corporate-tax/).
 3.  Apply for **Corporate Tax deregistration** on EmaraTax once the return is filed and assessed.
 
 The FTA will confirm deregistration once satisfied that all outstanding obligations have been met.
@@ -155,14 +164,67 @@ Costs include:
 
 ---
 
-### How Success Business Advisors Can Help
+If you are not actually closing but restructuring, our guide on [converting a sole establishment to an LLC](/blogs/convert-sole-establishment-to-llc-uae/) may be the better starting point.
 
-Winding down a company properly requires coordinating multiple government authorities simultaneously. At **Success Business Advisors**, we manage the entire closure process on your behalf:
+### Frequently Asked Questions
 
-*   Preparing and submitting all cancellation applications.
-*   Filing final VAT and Corporate Tax returns.
-*   Coordinating MOHRE, GDRFA, FTA, and DED/free zone authority filings.
-*   Managing the newspaper liquidation notice process.
-*   Advising on gratuity calculations and employee settlements.
+**How long does it take to close a UAE company?**
+A clean closure typically takes 2 to 4 months. Mainland LLCs with a creditor notice period or unresolved liabilities can take longer.
 
-Close your company cleanly and completely. Contact **Success Business Advisors** today for a smooth, compliant company closure.
+**Can I just let my trade licence expire?**
+No. Letting a licence lapse without formal cancellation accumulates renewal fees and penalties, leaves visa and tax obligations open, and can freeze your bank account. Always close formally.
+
+**Do I need to file a final Corporate Tax return when closing?**
+Yes. Even on closure, you must file a final Corporate Tax return covering the short stub period to the cessation date and apply for deregistration on EmaraTax.
+
+**What happens to VAT registration when I close?**
+You must apply for VAT deregistration via EmaraTax and file a final VAT return. The FTA may audit your VAT history as part of the process; have at least 5 years of records ready.
+
+**Is a newspaper liquidation notice always required?**
+For mainland LLCs above a certain size it is. The notice runs in two UAE newspapers (typically one Arabic, one English) and gives creditors a window (commonly 45 days) to file claims.
+
+**When should I close my corporate bank account?**
+After the trade licence cancellation certificate is issued. Closing the bank account too early can complicate the licence cancellation; some authorities want a clean closure document from the bank.
+
+**What if I have unpaid employee gratuity at closure?**
+You must settle all gratuity and other end-of-service entitlements before MOHRE will release labour clearances. Unpaid gratuity is the single most common cause of stalled closures.
+
+### How Success Business Advisors can help
+
+We project-manage the full closure across MOHRE, GDRFA, FTA, and DED or the free zone authority, including the final tax filings and the liquidation notice. [Schedule a call](https://booknow.sbadvisors.ae/) and we will scope your closure timeline in 30 minutes.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Close and Deregister a Company in the UAE",
+  "description": "Step-by-step process for formally closing and deregistering a UAE mainland or free zone company, including visa cancellation, VAT and Corporate Tax deregistration, trade licence cancellation, and bank account closure.",
+  "totalTime": "P90D",
+  "step": [
+    {"@type": "HowToStep", "position": 1, "name": "Pass a shareholder resolution", "text": "Pass and, where required, notarise a shareholder or board resolution to wind up the company in line with the MoA or Articles of Association."},
+    {"@type": "HowToStep", "position": 2, "name": "Settle all liabilities", "text": "Pay outstanding suppliers, employees, rent, government fees, and any pending court matters before approaching authorities for cancellation."},
+    {"@type": "HowToStep", "position": 3, "name": "Cancel employee visas and labour cards", "text": "Cancel all work permits with MOHRE and residency visas with GDRFA, and pay any outstanding end-of-service gratuity to employees."},
+    {"@type": "HowToStep", "position": 4, "name": "Deregister for VAT", "text": "Submit a VAT deregistration application via EmaraTax, file the final VAT return up to the cessation date, and settle any outstanding VAT liability."},
+    {"@type": "HowToStep", "position": 5, "name": "File final Corporate Tax return and deregister", "text": "File the final Corporate Tax return for the stub period, pay any liability, and apply for Corporate Tax deregistration on EmaraTax."},
+    {"@type": "HowToStep", "position": 6, "name": "Cancel the trade licence", "text": "Submit the cancellation application to the DED or the relevant free zone authority with all supporting clearances and resolutions."},
+    {"@type": "HowToStep", "position": 7, "name": "Publish a liquidation notice if required", "text": "For mainland LLCs above the relevant threshold, publish a liquidation notice in two UAE newspapers and observe the creditor objection window."},
+    {"@type": "HowToStep", "position": 8, "name": "Close the corporate bank accounts", "text": "Once the trade licence cancellation certificate is issued, close all corporate bank accounts and distribute any remaining balances to shareholders."}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How long does it take to close a UAE company?", "acceptedAnswer": {"@type": "Answer", "text": "A clean closure typically takes 2 to 4 months end-to-end. Mainland LLCs with a creditor notice period or unresolved liabilities can take longer."}},
+    {"@type": "Question", "name": "Can I just let my UAE trade licence expire instead of closing the company?", "acceptedAnswer": {"@type": "Answer", "text": "No. Letting a licence lapse without formal cancellation accumulates renewal fees and penalties, leaves visa and tax obligations open, and can freeze the company bank account. A formal closure is always the right approach."}},
+    {"@type": "Question", "name": "Do I need to file a final Corporate Tax return when closing my UAE company?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Even when closing, the company must file a final Corporate Tax return covering the short stub period up to the cessation date and apply for Corporate Tax deregistration on EmaraTax."}},
+    {"@type": "Question", "name": "What happens to my VAT registration when I close the company?", "acceptedAnswer": {"@type": "Answer", "text": "The company must apply for VAT deregistration via EmaraTax and file a final VAT return. The Federal Tax Authority may audit historic VAT records as part of the deregistration process."}},
+    {"@type": "Question", "name": "Is a newspaper liquidation notice always required to close a UAE company?", "acceptedAnswer": {"@type": "Answer", "text": "For mainland LLCs above the relevant threshold it is. The notice is published in two UAE newspapers, typically one Arabic and one English, giving creditors a window of around 45 days to file claims."}},
+    {"@type": "Question", "name": "When should I close my UAE corporate bank account during company closure?", "acceptedAnswer": {"@type": "Answer", "text": "After the trade licence cancellation certificate has been issued. Closing the bank account too early can complicate the licence cancellation, since some authorities require a clean closure document from the bank."}},
+    {"@type": "Question", "name": "What if I have unpaid employee gratuity when closing a UAE company?", "acceptedAnswer": {"@type": "Answer", "text": "All end-of-service gratuity and other employee entitlements must be settled before MOHRE will release the labour clearances needed to cancel the trade licence. Unpaid gratuity is the single most common cause of stalled closures."}}
+  ]
+}
+</script>

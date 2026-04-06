@@ -17,8 +17,8 @@ If this is new territory for you, this guide walks you through every stage — f
 
 Every **Taxable Person** registered for UAE Corporate Tax must file an annual Corporate Tax Return. This includes:
 
-*   UAE mainland and free zone companies (subject to tax at 9% on taxable income above AED 375,000).
-*   Qualifying Free Zone Persons who are subject to 0% on qualifying income (they still have a filing obligation).
+*   UAE mainland and free zone companies (subject to tax at 9% on taxable income above AED 375,000, after applying the [deductible vs non-deductible expense rules](/blogs/deductible-non-deductible-expenses-uae-corporate-tax/)).
+*   [Qualifying Free Zone Persons](/blogs/0-percent-uae-corporate-tax-qualifying-income-free-zones/) who are subject to 0% on qualifying income (they still have a filing obligation).
 *   Foreign companies with a Permanent Establishment in the UAE.
 
 **Exempted entities** — such as UAE government entities, qualifying public benefit entities, and pension funds — are generally not required to file.

@@ -16,8 +16,8 @@ For many small and medium-sized businesses in the UAE, accounting is something t
 Good accounting gives you three crucial advantages:
 
 - **Visibility**: You know where money is coming from and where it’s going.
-- **Control**: You can manage cash flow, costs, and profitability.
-- **Compliance**: You stay on the right side of the UAE’s evolving tax and regulatory requirements.
+- **Control**: You can manage [cash flow](/blogs/cash-flow-management-uae-small-businesses/), costs, and profitability against a [proper startup budget](/blogs/build-budget-uae-startup/).
+- **Compliance**: You stay on the right side of the UAE’s evolving tax and regulatory requirements, including the rules on [deductible vs non-deductible expenses](/blogs/deductible-non-deductible-expenses-uae-corporate-tax/).
 
 ## Common accounting challenges UAE businesses face
 

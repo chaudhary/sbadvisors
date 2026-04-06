@@ -37,7 +37,7 @@ Typical goals for UAE residents include:
 
 - Building an emergency fund (3–6 months of expenses)
 - Saving for children’s education
-- Buying a home (in the UAE or abroad)
+- Buying a home (in the UAE or abroad), drawing on our guide to [investing in UAE real estate as an expat](/blogs/investing-uae-real-estate-expats/)
 - Starting or growing a business
 - Planning for retirement, often in another country
 

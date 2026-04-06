@@ -13,6 +13,16 @@ The UAE real estate market has long attracted expatriate investors — drawn by 
 
 But investing in UAE real estate as an expat involves navigating a specific set of legal, tax, and financial considerations that differ meaningfully from property investment in most Western markets. This guide covers the most important factors to understand before you commit.
 
+### Quick answers
+
+*   **Foreign ownership:** Freehold ownership is permitted in designated zones across all major emirates; leasehold elsewhere.
+*   **Personal income tax on rent:** Zero, for individuals.
+*   **Capital gains tax:** Zero, for individuals.
+*   **Transaction costs:** Budget around 6 to 8% of the purchase price on top in Dubai.
+*   **Mortgage LTV (residents):** Up to 80% on a first home below AED 5m, lower above and lower for non-residents.
+*   **Holding via a company:** Triggers 9% UAE Corporate Tax on net rental income and gains; weigh that against the structural benefits.
+*   **Wills:** Non-Muslim owners should register a will (DIFC or ADJD) to control how UAE property passes on death.
+
 ---
 
 ### 1. Foreign Ownership Rules: Freehold vs. Leasehold
@@ -47,7 +57,7 @@ If you sell a UAE property at a profit, **no UAE capital gains tax applies to in
 **Important caveat — your home country tax obligations:**
 While the UAE imposes no tax on your property income or gains, your **home country may still tax you**. Citizens of countries with worldwide taxation systems (such as the United States, which taxes its citizens globally regardless of residence) must report UAE rental income and capital gains to their home tax authority and pay any applicable taxes there. Even residents of countries with territorial taxation may have obligations if they are considered tax resident in their home country.
 
-Always take advice from a tax professional in your home country before investing, particularly if you are from a country with a global taxation system.
+Always take advice from a tax professional in your home country before investing, particularly if you are from a country with a global taxation system. Where UAE tax residency itself is the question, our guide on [UAE tax residency and the TRC](/blogs/tax-residency-uae-domestic-treaty-trc/) explains the domestic and treaty positions.
 
 **VAT on Property**
 *   **Residential property (first sale):** The first sale of a new residential property is subject to UAE VAT at **0%** (zero-rated, not exempt — meaning the developer can recover input VAT). Subsequent resales of residential property are **VAT-exempt**.
@@ -98,7 +108,7 @@ Most individual expat investors purchase UAE property in their personal name, wh
 *   **Liability protection:** Insulating personal assets from property-related liabilities.
 *   **Privacy:** The company holds the property rather than the individual's name appearing in public land registers.
 
-**Important Corporate Tax note:** A UAE company that derives income from property may be subject to UAE Corporate Tax at 9% on its net rental income and capital gains. Individual property investors are not subject to Corporate Tax. Holding property through a company therefore has a tax cost that must be weighed against the structural benefits.
+**Important Corporate Tax note:** A UAE company that derives income from property may be subject to [UAE Corporate Tax](/blogs/uae-corporate-tax-and-vat-basics/) at 9% on its net rental income and capital gains. Individual property investors are not subject to Corporate Tax. Holding property through a company therefore has a tax cost that must be weighed against the structural benefits, alongside the [deductible expense rules](/blogs/deductible-non-deductible-expenses-uae-corporate-tax/) that apply to property-holding entities.
 
 ---
 
@@ -118,18 +128,47 @@ These services allow non-Muslims to register English-language wills that govern 
 
 The UAE has **no restrictions on the repatriation of capital or income**. If you sell a property and want to transfer the proceeds to your home country, there are no UAE foreign exchange controls preventing this. The transfer is straightforward through the UAE banking system, though your bank may apply standard international transfer charges and exchange rate conversions.
 
-Your home country may, however, have **reporting requirements** for the inbound receipt of large funds — check with your home country bank and tax advisor.
+Your home country may, however, have **reporting requirements** for the inbound receipt of large funds, check with your home country bank and tax advisor. For broader expat wealth planning, see our guide to [personal financial planning for UAE expats](/blogs/personal-financial-planning-uae-expats/).
 
----
+### Frequently Asked Questions
 
-### How Success Business Advisors Can Help
+**Can foreigners own property outright in the UAE?**
+Yes, in designated freehold zones across Dubai, Abu Dhabi, RAK, and other emirates. Outside these zones, foreigners are typically limited to long-term leasehold (up to 99 years).
 
-Whether you are buying your first UAE property as an investment or building a real estate portfolio, the financial and tax dimensions deserve careful planning. At **Success Business Advisors**, we assist expat investors with:
+**Is rental income from UAE property taxed?**
+Not for individuals. There is no UAE personal income tax on rental income. Companies that hold property are subject to 9% Corporate Tax on their net rental income above the threshold.
 
-*   Tax analysis of UAE property income and capital gains (UAE and home-country perspective).
-*   Structuring advice: personal name vs. company vs. trust/foundation.
-*   UAE Corporate Tax implications for property-holding companies.
-*   Financial planning integration — aligning your property investment with your broader wealth and retirement strategy.
-*   Will registration referrals for non-Muslim expats.
+**Are capital gains from selling UAE property taxed?**
+Not for individuals. Capital gains realised by individual owners on UAE property are not subject to UAE tax. Companies are taxed on net gains under the Corporate Tax regime.
 
-Make your UAE property investment with full financial clarity. Contact **Success Business Advisors** for expert, independent advice.
+**What are the typical transaction costs of buying property in Dubai?**
+Around 6 to 8% of the purchase price, dominated by the 4% Dubai Land Department transfer fee plus agent commission, mortgage registration if financed, and various smaller fees.
+
+**Can non-residents get a UAE mortgage?**
+Yes, but on stricter terms than residents. Non-resident LTV ratios are typically 50 to 60%, fewer banks lend to non-residents, and documentation requirements are heavier.
+
+**Should I hold UAE property in my personal name or through a company?**
+Personal name is simplest and avoids the 9% Corporate Tax that applies to property-holding companies. Companies make more sense for estate planning, liability protection, or where you are building a portfolio.
+
+**Do I need a UAE will if I own property here?**
+Non-Muslim expat owners should register a will (DIFC Wills Service Centre or Abu Dhabi Judicial Department) so their UAE property passes to the intended beneficiaries rather than defaulting to UAE succession rules.
+
+### How Success Business Advisors can help
+
+We help expat investors model the UAE and home-country tax position, choose the right ownership structure, and integrate property into a broader wealth plan. [Schedule a call](https://booknow.sbadvisors.ae/) and we will review your investment in 30 minutes.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can foreigners own property outright in the UAE?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in designated freehold zones across Dubai, Abu Dhabi, RAK, and other emirates. Outside these zones, foreigners are typically limited to long-term leasehold arrangements of up to 99 years."}},
+    {"@type": "Question", "name": "Is rental income from UAE property taxed?", "acceptedAnswer": {"@type": "Answer", "text": "Not for individuals. There is no UAE personal income tax on rental income earned by individual owners. Companies that hold property are subject to 9% UAE Corporate Tax on their net rental income above the AED 375,000 threshold."}},
+    {"@type": "Question", "name": "Are capital gains from selling UAE property taxed?", "acceptedAnswer": {"@type": "Answer", "text": "Not for individuals. Capital gains realised by individual owners on UAE property are not subject to UAE tax. Companies are taxed on net gains under the Corporate Tax regime."}},
+    {"@type": "Question", "name": "What are the typical transaction costs of buying property in Dubai?", "acceptedAnswer": {"@type": "Answer", "text": "Around 6 to 8% of the purchase price. The largest item is the 4% Dubai Land Department transfer fee, followed by agent commission, mortgage registration if financed, valuation, and smaller administrative fees."}},
+    {"@type": "Question", "name": "Can non-residents get a UAE mortgage?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but on stricter terms than residents. Loan-to-value ratios for non-residents are typically 50 to 60%, fewer banks lend to non-residents, and the documentation requirements are heavier."}},
+    {"@type": "Question", "name": "Should I hold UAE property in my personal name or through a company?", "acceptedAnswer": {"@type": "Answer", "text": "Personal name is the simplest approach and avoids the 9% Corporate Tax that applies to property-holding companies. Holding through a company makes more sense for estate planning, liability protection, or where the investor is building a larger portfolio."}},
+    {"@type": "Question", "name": "Do I need a UAE will if I own property here?", "acceptedAnswer": {"@type": "Answer", "text": "Non-Muslim expat owners should register a UAE will through the DIFC Wills Service Centre or the Abu Dhabi Judicial Department so their property passes to their intended beneficiaries rather than defaulting to UAE succession rules."}}
+  ]
+}
+</script>
