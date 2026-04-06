@@ -2,7 +2,7 @@
 layout: post
 title: "AML Compliance for UAE SMEs: Obligations, Risks, and How to Build a Programme"
 date: 2026-02-03 12:00:00 +0400
-description: "Anti-money laundering compliance is not just for banks in the UAE. Many SMEs are classified as DNFBPs with real AML obligations. Learn what is required, what penalties apply, and how to comply."
+description: "AML compliance is not just for banks. UAE SMEs classified as DNFBPs face real obligations on CDD, goAML registration, STRs, and record keeping. Here is what to do."
 categories: blogs
 author: Success Business Advisors
 tags: ["AML", "Compliance", "UAE Business", "DNFBP", "Risk Management", "SME"]
@@ -12,6 +12,14 @@ image: "/assets/img/blog/blog-aml-compliance-uae-smes.png"
 When most business owners think about Anti-Money Laundering (AML) compliance, they think of banks and financial institutions. In the UAE, this perception is dangerously incomplete. A broad category of non-financial businesses — known as **Designated Non-Financial Businesses and Professions (DNFBPs)** — are subject to the same core AML obligations as banks.
 
 If your business falls into this category and you do not have an AML compliance programme, you are exposed to significant penalties and, in severe cases, criminal liability.
+
+### Quick answers
+
+*   **Who must comply?** UAE DNFBPs: real estate brokers, dealers in precious metals and gemstones, corporate service providers, auditors, accountants, tax advisors, lawyers, and notaries when carrying out specified transactions.
+*   **What are the core obligations?** A documented Business Risk Assessment, written AML policies, Customer Due Diligence (CDD), ongoing monitoring, Suspicious Transaction Reporting via goAML, and five-year record keeping.
+*   **Where do I file STRs?** Through the UAE Financial Intelligence Unit's goAML portal. Registration on goAML is itself mandatory for all DNFBPs.
+*   **What are the penalties?** Administrative fines from AED 50,000 to AED 5 million per violation, licence suspension, and in serious cases criminal prosecution.
+*   **How big does my programme need to be?** Proportionate to your risk profile. A small DNFBP can run a credible programme on a documented BRA, simple CDD checklists, and consistent monitoring.
 
 ### The UAE's AML Legal Framework
 
@@ -29,7 +37,7 @@ DNFBPs are businesses in specific sectors that are considered vulnerable to mone
 
 *   **Real estate agents and brokers:** When acting in transactions involving the purchase or sale of real estate.
 *   **Dealers in precious metals and gemstones:** Including gold, diamonds, and jewellery traders, when engaging in cash transactions above AED 55,000.
-*   **Corporate service providers:** Firms that help form companies, manage trusts, provide registered office services, or act as directors/shareholders.
+*   **Corporate service providers:** Firms that help with [UAE business setup and ongoing compliance](/blogs/uae-business-setup-compliance-checklist/), manage trusts, provide registered office services, or act as directors/shareholders.
 *   **Auditors, accountants, and tax advisors:** When carrying out certain financial transactions or providing advice on asset structuring, business transactions, or tax matters on behalf of a client.
 *   **Lawyers and notaries:** When participating in financial or real estate transactions for clients.
 
@@ -52,7 +60,7 @@ You must establish written **AML policies and procedures** that are proportionat
 CDD — also called "Know Your Customer" (KYC) — is the process of identifying and verifying the identity of your clients before and during a business relationship. At minimum, CDD requires:
 
 *   Collecting and verifying the **identity** of the customer (passport, Emirates ID).
-*   Identifying the **Ultimate Beneficial Owner (UBO)** of any legal entity client.
+*   Identifying the **Ultimate Beneficial Owner (UBO)** of any legal entity client. This often dovetails with your client's own [UBO compliance obligations](/blogs/ubo-compliance-uae-what-you-need-to-know/).
 *   Understanding the **purpose and nature** of the business relationship.
 *   Obtaining information on the **source of funds** for significant transactions.
 
@@ -88,7 +96,7 @@ The UAE takes AML violations extremely seriously. Penalties can include:
 *   **Business licence suspension or cancellation**.
 *   **Criminal prosecution** for serious offences, including money laundering itself (which carries imprisonment of up to 10 years and fines of up to AED 5,000,000).
 
-Regulatory inspections by supervisory authorities (such as the relevant DED, free zone authority, or CBUAE) are increasing in frequency.
+Regulatory inspections by supervisory authorities (such as the relevant DED, free zone authority, or CBUAE) are increasing in frequency. Many DNFBPs underestimate this risk because they think of themselves as small operators rather than regulated firms, which is exactly why a proportionate AML programme matters even for an [outsourced accounting and tax practice](/blogs/uae-outsourced-accounting-tax-support/).
 
 ### Building a Proportionate AML Programme
 
@@ -101,15 +109,45 @@ The good news for SMEs is that AML compliance does not need to be an expensive, 
 5.  Registration on **goAML**.
 6.  **Staff training** so that everyone in the business understands their obligations.
 
-### How Success Business Advisors Can Help
+### Frequently Asked Questions
 
-At **Success Business Advisors**, we help UAE DNFBPs build practical, proportionate AML compliance programmes. Our services include:
+**Is my UAE SME a DNFBP?**
+If your business is in real estate brokerage, dealing in precious metals or gemstones, corporate services, audit, accounting, tax advice, law, or notary work, and you carry out the specified transactions, you are almost certainly a DNFBP. A formal classification assessment removes the doubt.
 
-*   DNFBP classification assessment — determining whether and how AML obligations apply to your business.
-*   Business Risk Assessment preparation.
-*   AML policy and procedure drafting.
-*   CDD framework and client onboarding template design.
-*   goAML registration support.
-*   Staff AML awareness training.
+**Do I need to register on goAML even if I have nothing to report?**
+Yes. Registration on the UAE FIU's goAML portal is mandatory for all DNFBPs, independent of whether you ever file a Suspicious Transaction Report. Operating without it is itself a violation.
 
-Protect your business, your licence, and your reputation. Contact **Success Business Advisors** for a confidential AML compliance review today.
+**What is the threshold for cash transactions in precious metals and gemstones?**
+AED 55,000. Cash transactions at or above this level trigger DNFBP obligations, including CDD on the customer.
+
+**How long do I need to keep AML records?**
+At least five years from the date of the transaction or the end of the business relationship, whichever is later.
+
+**What happens if I tip off a client about an STR?**
+Tipping off is a criminal offence under UAE AML law. The STR process is strictly confidential, and you should not communicate the existence or content of a report to the client or any unauthorised third party.
+
+**Do I need a dedicated AML Compliance Officer?**
+Larger or higher-risk DNFBPs are expected to appoint one. Smaller firms can assign the role to an existing senior person, but the responsibility must be formal and documented. See our note on [UBO compliance](/blogs/ubo-compliance-uae-what-you-need-to-know/) for the related governance picture.
+
+**Will the FTA or my licensing authority actually inspect me?**
+Yes. Sector supervisors and free zone authorities run inspections, and these have been stepping up since the UAE's FATF reforms. Walking into an inspection with no documented BRA is a fast route to penalties.
+
+### How we can help
+
+We classify your DNFBP status, draft a proportionate AML programme, and handle goAML registration and ongoing CDD design so the regulator finds what it expects to find. [Book a confidential AML review](https://booknow.sbadvisors.ae/) and we will scope your obligations in 30 minutes.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is my UAE SME a DNFBP?", "acceptedAnswer": {"@type": "Answer", "text": "If your business is in real estate brokerage, dealing in precious metals or gemstones, corporate services, audit, accounting, tax advice, law, or notary work, and you carry out the specified transactions, you are almost certainly a DNFBP under UAE law."}},
+    {"@type": "Question", "name": "Do I need to register on goAML even if I have nothing to report?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Registration on the UAE FIU goAML portal is mandatory for all DNFBPs, independent of whether you ever file a Suspicious Transaction Report. Operating without it is itself a violation."}},
+    {"@type": "Question", "name": "What is the cash threshold for dealers in precious metals and gemstones?", "acceptedAnswer": {"@type": "Answer", "text": "AED 55,000. Cash transactions at or above this level trigger DNFBP obligations, including Customer Due Diligence on the customer."}},
+    {"@type": "Question", "name": "How long must AML records be retained in the UAE?", "acceptedAnswer": {"@type": "Answer", "text": "At least five years from the date of the transaction or the end of the business relationship, whichever is later."}},
+    {"@type": "Question", "name": "Is tipping off a client about a Suspicious Transaction Report illegal?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Tipping off is a criminal offence under UAE AML law. The STR process is strictly confidential and should not be communicated to the client or unauthorised third parties."}},
+    {"@type": "Question", "name": "Does every DNFBP need a dedicated AML Compliance Officer?", "acceptedAnswer": {"@type": "Answer", "text": "Larger or higher-risk DNFBPs are expected to appoint one. Smaller firms can assign the role to an existing senior person, but the responsibility must be formal and documented."}},
+    {"@type": "Question", "name": "Will my licensing authority actually inspect for AML compliance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Sector supervisors and free zone authorities run AML inspections, and these have increased in frequency following the UAE's FATF reforms."}}
+  ]
+}
+</script>
