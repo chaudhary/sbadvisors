@@ -6,7 +6,7 @@ description: "Not every UAE business needs a statutory audit, but many do and do
 categories: blogs
 author: Success Business Advisors
 tags: ["Audit", "Compliance", "UAE Business", "Corporate Tax", "Free Zone", "Financial Statements"]
-image: "/assets/img/blog/blog-uae-statutory-audit-requirements-v2.png"
+image: "/assets/img/blog/blog-uae-statutory-audit-requirements.png"
 ---
 
 A surprising number of UAE businesses discover their audit obligation only when a licensing authority rejects a renewal or the FTA requests audited financials during a Corporate Tax review. By that point, catching up is expensive and stressful.
