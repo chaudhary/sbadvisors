@@ -30,7 +30,7 @@ description: "Insights on accounting, tax, financial planning, and business comp
               {{ post.date | date: "%-d %B %Y" }}
             </span>
             <p style="margin-bottom: 0;">
-              {{ post.excerpt | strip_html | truncate: 180 }}
+              {{ post.description | default: post.excerpt | strip_html | truncate: 180 }}
             </p>
           </div>
         </li>
