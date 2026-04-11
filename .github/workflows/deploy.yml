@@ -34,7 +34,7 @@ jobs:
         run: bundle exec jekyll build --trace
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@fc324d354710a1674da7bab99ad2bb544a18c9f1 # main, uses upload-artifact v7
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./_site
 
