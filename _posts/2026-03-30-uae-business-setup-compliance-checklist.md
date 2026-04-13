@@ -79,7 +79,7 @@ Employees are central to your operation, and compliance here is closely monitore
 
 - Proper employment contracts aligned with UAE labour law
 - Timely and documented salary payments (e.g. via WPS where applicable)
-- Clear policies on leave, working hours, and [end-of-service gratuity](/blogs/end-of-service-gratuity-uae/)
+- Clear policies on leave, working hours, [WPS payroll compliance](/blogs/wps-payroll-compliance-dews-uae/), and [end-of-service gratuity](/blogs/end-of-service-gratuity-uae/)
 - Visa, medical, and insurance processes correctly managed
 
 Non-compliance can quickly lead to fines and operational disruption.

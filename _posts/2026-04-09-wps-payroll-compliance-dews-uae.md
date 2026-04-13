@@ -90,7 +90,7 @@ From a payroll compliance perspective, the key points are:
 
 DEWS is a **defined-contribution savings plan** that replaced the traditional end-of-service gratuity for employees based in the **Dubai International Financial Centre (DIFC)** from 1 February 2020. Instead of accruing a lump-sum liability, employers contribute monthly to an externally managed fund.
 
-If you are deciding between [DIFC and ADGM](/blogs/difc-vs-adgm-uae-financial-free-zones/) for your financial services setup, the savings scheme is one of the practical differences worth factoring in.
+If you are deciding between [DIFC and ADGM](/blogs/difc-vs-adgm-financial-free-zone-uae/) for your financial services setup, the savings scheme is one of the practical differences worth factoring in.
 
 #### How it works
 

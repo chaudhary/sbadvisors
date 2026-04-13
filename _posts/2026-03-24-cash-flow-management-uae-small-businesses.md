@@ -38,7 +38,7 @@ The single most powerful cash flow tool for any small business is a **rolling 13
 
 Your forecast should include:
 *   **Inflows:** Expected client payments (matched to invoice due dates, not invoice dates), any financing drawdowns, VAT refunds.
-*   **Outflows:** Salaries and WPS (Wages Protection System) payments, rent, supplier payments, VAT payments, trade licence renewals, visa fees, bank loan repayments, insurance premiums.
+*   **Outflows:** Salaries and [WPS (Wages Protection System) payments](/blogs/wps-payroll-compliance-dews-uae/), rent, supplier payments, VAT payments, trade licence renewals, visa fees, bank loan repayments, insurance premiums.
 
 The 13-week horizon gives you enough visibility to take action **before** a cash shortage hits. Update this weekly, the discipline of maintaining it forces you to confront reality early. If you cannot read your own [financial statements](/blogs/understanding-financial-statements-uae-business/) confidently, the forecast will not stick.
 

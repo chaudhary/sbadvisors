@@ -20,7 +20,7 @@ Many entrepreneurs in the UAE underestimate the importance of budgeting until th
 *   **Trough cash:** Your lowest cumulative cash balance tells you how much startup capital you need, plus a buffer.
 *   **Working capital reserve:** Plan for 3 to 6 months of fixed costs before meaningful revenue lands.
 *   **Review cadence:** Monthly variance review against actuals, not "set and forget".
-*   **Often missed:** Trade licence renewal, visa renewal cycles, end-of-service gratuity accrual, and Corporate Tax due 9 months after year end.
+*   **Often missed:** Trade licence renewal, visa renewal cycles, [end-of-service gratuity accrual](/blogs/end-of-service-gratuity-uae/), and Corporate Tax due 9 months after year end.
 
 ### What is a Budget and Why Does It Matter?
 
@@ -68,7 +68,7 @@ Build a comprehensive list of all anticipated setup costs **before** you launch.
 **Fixed costs** are expenses that remain broadly constant regardless of your revenue level. These must be paid every month, even in a slow month. For a UAE startup, typical fixed costs include:
 
 *   **Rent:** Commercial office or retail space. Factor in the full annual rent divided by 12, even if rent is paid in quarterly or annual cheques.
-*   **Salaries:** Employee remuneration, including your own if you are drawing a salary. Remember to include employer-side costs such as annual airfare allowances, health insurance premiums, and [end-of-service gratuity accruals](/blogs/end-of-service-gratuity-uae/) (approximately 8.33% of monthly basic salary per year for the first five years).
+*   **Salaries:** Employee remuneration, including your own if you are drawing a salary. Remember to include employer-side costs such as [WPS compliance](/blogs/wps-payroll-compliance-dews-uae/), annual airfare allowances, health insurance premiums, and [end-of-service gratuity accruals](/blogs/end-of-service-gratuity-uae/) (approximately 8.33% of monthly basic salary per year for the first five years).
 *   **Health insurance:** Mandatory in Dubai and Abu Dhabi, and strongly advised in other emirates. Costs vary significantly by coverage level and employee age.
 *   **Internet and utilities:** Estimated monthly cost for office connectivity and electricity/water.
 *   **Software subscriptions:** Accounting, CRM, project management, and communication tools.

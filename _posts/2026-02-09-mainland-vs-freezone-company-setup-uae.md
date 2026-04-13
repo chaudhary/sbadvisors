@@ -20,7 +20,7 @@ While both offer significant advantages, they cater to different business models
 *   **Foreign ownership:** Both structures allow 100% foreign ownership for the vast majority of activities. Mainland 100% foreign ownership has been permitted since June 2021 under Federal Decree-Law 26 of 2020.
 *   **Office space:** Mainland needs physical premises. Free zones offer flexi-desks, co-working, and virtual options.
 *   **Visas:** Mainland visa quota scales with office area. Free zone quota is tied to the facility package.
-*   **Corporate Tax:** Both fall under 9% UAE Corporate Tax above AED 375,000. Free zone entities can access the 0% Qualifying Free Zone Person rate on qualifying income only.
+*   **Corporate Tax:** Both fall under 9% UAE Corporate Tax above AED 375,000. Free zone entities can access the [0% Qualifying Free Zone Person rate on qualifying income](/blogs/0-percent-uae-corporate-tax-qualifying-income-free-zones/) only.
 
 ### 1. Ownership Structure
 
