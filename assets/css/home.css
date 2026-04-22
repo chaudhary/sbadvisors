@@ -400,7 +400,8 @@ background: teal;
     height:285px !important;
     width:100% !important;
     margin-top: 120px;
-    object-fit: fill;
+    object-fit: cover;
+    object-position: center top;
     border-radius: 10px !important;
 }
 .meet-team .team-text{
