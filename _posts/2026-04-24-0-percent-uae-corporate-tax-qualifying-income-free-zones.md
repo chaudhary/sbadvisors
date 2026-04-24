@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "UAE Free Zone 0% Corporate Tax: QFZP Rules, De Minimis, and Where Companies Lose It"
-date: 2026-02-04 12:00:00 +0400
+date: 2026-04-24 10:00:00 +0400
 last_modified_at: 2026-04-24 10:00:00 +0400
 description: "The UAE Free Zone 0% Corporate Tax rate isn't automatic. Five QFZP conditions, the Qualifying vs Non-Qualifying Income split, the AED 5m / 5% de minimis cap, and the common mistakes that push free zone companies onto the 9% rate."
 categories: blogs

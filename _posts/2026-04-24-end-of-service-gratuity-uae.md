@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "UAE End-of-Service Gratuity: 21/30 Day Formula, 14-Day Pay Deadline, and the Accrual Most Employers Skip"
-date: 2026-02-11 12:00:00 +0400
+date: 2026-04-24 10:00:00 +0400
 last_modified_at: 2026-04-24 10:00:00 +0400
 description: "UAE gratuity under Federal Decree-Law 33 of 2021: who qualifies after 1 year, the 21 vs 30 days formula on basic salary, the 14-day pay window, why resignation no longer reduces gratuity since Feb 2022, and the monthly accrual most UAE SMEs still get wrong."
 categories: blogs

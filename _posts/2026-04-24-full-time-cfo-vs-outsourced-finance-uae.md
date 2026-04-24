@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Full-Time UAE CFO vs Outsourced Finance: When AED 600k+ a Year Is Worth It, and When It Isn't"
-date: 2026-02-20 12:00:00 +0400
+date: 2026-04-24 10:00:00 +0400
 last_modified_at: 2026-04-24 10:00:00 +0400
 description: "A UAE CFO's fully loaded cost sits at AED 600k–1.4m before the finance team underneath them. For businesses under AED 20–30m in revenue, that's almost always the wrong hire. Here's the revenue, complexity, and capital-event framework that tells you when to stop outsourcing and when to keep doing it."
 categories: blogs
