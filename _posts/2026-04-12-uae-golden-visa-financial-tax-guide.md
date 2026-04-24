@@ -100,7 +100,7 @@ If you qualify through real estate investment, consider:
 If you qualify through business ownership:
 
 *   Choose the right jurisdiction ([mainland vs. free zone](/blogs/mainland-vs-freezone-company-setup-uae/)) based on your market, not just the visa.
-*   Ensure the business has genuine [economic substance](/blogs/uae-economic-substance-regulations/) if you plan to use UAE tax residency status internationally.
+*   Ensure the business has genuine [economic substance](/blogs/navigating-uae-economic-substance-regulations-esr/) if you plan to use UAE tax residency status internationally.
 *   Maintain proper books and [file Corporate Tax returns](/blogs/how-to-file-uae-corporate-tax-return/) on time. A business that supports a Golden Visa but has no compliance history raises red flags with both UAE and foreign tax authorities.
 
 #### Banking and wealth management

@@ -79,7 +79,7 @@ A statutory audit is an independent examination of your financial statements to 
 *   **Expense validity:** Costs are genuine, business-related, and properly documented.
 *   **Bank reconciliation:** Bank balances match the general ledger with all reconciling items explained.
 *   **Related-party transactions:** Any dealings with connected persons are identified, disclosed, and at arm's length. This overlaps directly with the [transfer pricing rules](/blogs/uae-transfer-pricing-rules-smes-multinationals/).
-*   **VAT reconciliation:** VAT on the balance sheet reconciles with VAT returns filed. If your [VAT refund claims](/blogs/uae-vat-refund-process-guide/) are pending, the auditor will verify the receivable.
+*   **VAT reconciliation:** VAT on the balance sheet reconciles with VAT returns filed. If your [VAT refund claims](/blogs/vat-refund-process-uae/) are pending, the auditor will verify the receivable.
 *   **Gratuity provision:** [End-of-service gratuity](/blogs/end-of-service-gratuity-uae/) is properly calculated and accrued.
 *   **Going concern:** The business can continue operating for at least 12 months from the balance sheet date.
 
@@ -100,7 +100,7 @@ Good preparation cuts audit time (and therefore cost) significantly. Here is a p
 
 #### Before the auditor arrives
 
-1.  **Close your books properly.** All transactions for the year should be recorded, accruals posted, and the trial balance finalised. If you need help with the basics, see our guide on [smart accounting for UAE SMEs](/blogs/smart-accounting-uae-smes/).
+1.  **Close your books properly.** All transactions for the year should be recorded, accruals posted, and the trial balance finalised. If you need help with the basics, see our guide on [smart accounting for UAE SMEs](/blogs/smart-accounting-for-uae-smes/).
 2.  **Reconcile all bank accounts.** Every bank account should be reconciled to the general ledger as at year-end, with all outstanding items explained.
 3.  **Prepare a receivables and payables ageing.** The auditor will test these. Flag any old or disputed balances and document any write-offs.
 4.  **Gather supporting documents.** Have contracts, invoices, receipts, and board resolutions organised and accessible. Digital records are fine; the auditor does not need paper.
@@ -139,7 +139,7 @@ For a well-prepared SME, fieldwork takes 1 to 2 weeks and the final report is is
 An audit provides reasonable assurance (the highest level) that the financial statements are free from material misstatement. A review provides limited assurance, based on analytical procedures and inquiries rather than detailed testing. Most statutory requirements specify an audit, not a review.
 
 **Do I need IFRS financial statements for the audit?**
-Most free zones and the FTA expect financial statements prepared under IFRS or IFRS for SMEs. Some smaller entities may use other frameworks, but IFRS is the safest default. Understanding [financial statements](/blogs/understanding-financial-statements-uae/) is essential for any business owner going through this process.
+Most free zones and the FTA expect financial statements prepared under IFRS or IFRS for SMEs. Some smaller entities may use other frameworks, but IFRS is the safest default. Understanding [financial statements](/blogs/understanding-financial-statements-uae-business/) is essential for any business owner going through this process.
 
 **Can the FTA reject my Corporate Tax return if I don't have an audit?**
 The FTA will not automatically reject a return for lack of audit, but it can request audited financials during a review. For QFZPs, the absence of an audit means the 0% rate is not available, and the FTA will assess tax at 9%.

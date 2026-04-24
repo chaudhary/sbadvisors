@@ -66,7 +66,7 @@ The subsidiary has its own legal personality, its own assets and liabilities, an
 
 #### Setting up a subsidiary
 
-1.  **Choose a jurisdiction and legal form:** [Mainland LLC](/blogs/mainland-vs-freezone-company-setup-uae/), free zone company (FZCO/FZE), or a company in [DIFC or ADGM](/blogs/difc-vs-adgm-uae-financial-free-zones/).
+1.  **Choose a jurisdiction and legal form:** [Mainland LLC](/blogs/mainland-vs-freezone-company-setup-uae/), free zone company (FZCO/FZE), or a company in [DIFC or ADGM](/blogs/difc-vs-adgm-financial-free-zone-uae/).
 2.  **Draft memorandum and articles of association.**
 3.  **Allocate share capital:** Minimum share capital requirements vary by jurisdiction and activity.
 4.  **Register with the relevant authority:** DED, free zone authority, or financial centre registrar.

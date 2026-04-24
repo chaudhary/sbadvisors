@@ -51,14 +51,14 @@ The trade licence must include an **e-commerce activity** (the specific activity
 Many free zones actively court e-commerce businesses:
 
 *   **Dubai CommerCity:** The region's first dedicated e-commerce free zone. Offers warehousing, fulfilment, and logistics infrastructure alongside the licence.
-*   **DMCC, IFZA, RAKEZ, Ajman Free Zone:** All offer e-commerce activities. Compare [RAK vs. Dubai vs. Abu Dhabi](/blogs/rak-vs-dubai-vs-abu-dhabi-choosing-emirate/) for cost and ecosystem differences.
+*   **DMCC, IFZA, RAKEZ, Ajman Free Zone:** All offer e-commerce activities. Compare [RAK vs. Dubai vs. Abu Dhabi](/blogs/rak-vs-dubai-vs-abu-dhabi-choosing-emirate-for-business/) for cost and ecosystem differences.
 *   **JAFZA:** Strong option if you need bonded warehousing for import/re-export.
 
 The key trade-off: free zone companies can sell directly to UAE end consumers but historically needed a local distributor or fulfilment partner for physical delivery within the mainland. This has eased in practice with most free zones now permitting direct-to-consumer sales, but check your specific zone's rules. For the [benefits and tax treatment of free zone structures](/blogs/benefits-freezone-company-uae/), including the potential 0% Corporate Tax rate, see our dedicated guide.
 
 #### 4. Offshore Company
 
-An [offshore company](/blogs/offshore-company-setup-uae/) is **not suitable** for e-commerce operations that involve selling to UAE customers. Offshore entities cannot conduct business within the UAE, hold a trade licence, or rent warehouse space. They are holding or invoicing vehicles, not operating businesses.
+An [offshore company](/blogs/offshore-company-setup-uae-pros-cons/) is **not suitable** for e-commerce operations that involve selling to UAE customers. Offshore entities cannot conduct business within the UAE, hold a trade licence, or rent warehouse space. They are holding or invoicing vehicles, not operating businesses.
 
 ### VAT for E-Commerce Businesses
 
@@ -87,7 +87,7 @@ If you sell through **Noon, Amazon.ae, Namshi**, or similar marketplaces:
 *   **Digital services to UAE customers:** Standard 5% VAT applies. This includes SaaS subscriptions, digital content, online courses, and app-based services.
 *   **Imports into the UAE:** Subject to 5% VAT at the point of customs clearance (import VAT), which is reclaimable as input tax if the goods are for your taxable business.
 
-For handling excess input VAT, see our guide on the [UAE VAT refund process](/blogs/uae-vat-refund-process-guide/).
+For handling excess input VAT, see our guide on the [UAE VAT refund process](/blogs/vat-refund-process-uae/).
 
 ### Customs Duties on Imported Inventory
 
@@ -146,7 +146,7 @@ E-commerce accounting has specific complexity:
 *   **Returns and refunds:** Must be tracked and netted against revenue, not buried in a general expense line. VAT adjustments on returns need to match your VAT return.
 *   **Foreign currency transactions:** If you buy inventory in USD or CNY and sell in AED, foreign exchange differences must be recorded and may be taxable or deductible.
 
-For foundational accounting practices, see our guide on [smart accounting for UAE SMEs](/blogs/smart-accounting-uae-smes/). If the complexity exceeds what you can handle in-house, [outsourced accounting support](/blogs/uae-outsourced-accounting-tax-support/) is worth considering early.
+For foundational accounting practices, see our guide on [smart accounting for UAE SMEs](/blogs/smart-accounting-for-uae-smes/). If the complexity exceeds what you can handle in-house, [outsourced accounting support](/blogs/uae-outsourced-accounting-tax-support/) is worth considering early.
 
 ### Common Mistakes E-Commerce Businesses Make
 

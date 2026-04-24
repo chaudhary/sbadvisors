@@ -93,17 +93,17 @@ Trade credit insurance also improves your [cash flow](/blogs/cash-flow-managemen
 
 #### Cyber insurance
 
-Covers losses from data breaches, ransomware, system outages, and related incidents. Increasingly important as UAE [data protection law (PDPL)](/blogs/uae-data-protection-pdpl-compliance/) creates financial exposure for data breaches.
+Covers losses from data breaches, ransomware, system outages, and related incidents. Increasingly important as the UAE Personal Data Protection Law (PDPL) creates financial exposure for data breaches.
 
 Relevant for any business that stores customer data, processes payments online, or relies on digital infrastructure.
 
 #### Key person insurance
 
-Covers the financial impact of losing a critical individual (founder, key salesperson, lead technical person) due to death or disability. Useful for [startups](/blogs/how-to-build-budget-uae-startup/) where one or two people drive most of the revenue.
+Covers the financial impact of losing a critical individual (founder, key salesperson, lead technical person) due to death or disability. Useful for [startups](/blogs/build-budget-uae-startup/) where one or two people drive most of the revenue.
 
 #### Directors' and officers' (D&O) insurance
 
-Covers personal liability of directors and officers for decisions made in their capacity. Relevant for companies with boards, particularly in [DIFC and ADGM](/blogs/difc-vs-adgm-uae-financial-free-zones/) where directors face regulatory exposure.
+Covers personal liability of directors and officers for decisions made in their capacity. Relevant for companies with boards, particularly in [DIFC and ADGM](/blogs/difc-vs-adgm-financial-free-zone-uae/) where directors face regulatory exposure.
 
 ### Insurance You Can Probably Skip
 
@@ -167,7 +167,7 @@ For a small business with basic digital exposure, cyber insurance typically cost
 
 ### How Success Business Advisors can help
 
-We assess your actual insurance needs based on your business structure, sector, and risk profile, and connect you with competitive quotes from licensed insurers. We also ensure your premiums are correctly treated in your [accounting](/blogs/smart-accounting-uae-smes/) and Corporate Tax return. [Book a consultation](https://booknow.sbadvisors.ae/) and we will review your coverage in 30 minutes.
+We assess your actual insurance needs based on your business structure, sector, and risk profile, and connect you with competitive quotes from licensed insurers. We also ensure your premiums are correctly treated in your [accounting](/blogs/smart-accounting-for-uae-smes/) and Corporate Tax return. [Book a consultation](https://booknow.sbadvisors.ae/) and we will review your coverage in 30 minutes.
 
 <script type="application/ld+json">
 {

@@ -140,7 +140,7 @@ DTAs are not a magic shield. Be aware of:
 
 *   **Beneficial ownership:** Most treaties require the recipient to be the "beneficial owner" of the income. Conduit arrangements (routing income through the UAE purely to access a treaty) can be challenged.
 *   **Anti-avoidance provisions:** Many modern treaties include Principal Purpose Test (PPT) clauses. If the main purpose of an arrangement is to obtain treaty benefits, the benefit can be denied.
-*   **Substance requirements:** Both the UAE (under [Economic Substance Regulations](/blogs/uae-economic-substance-regulations/)) and foreign countries increasingly require genuine economic activity to support treaty claims.
+*   **Substance requirements:** Both the UAE (under [Economic Substance Regulations](/blogs/navigating-uae-economic-substance-regulations-esr/)) and foreign countries increasingly require genuine economic activity to support treaty claims.
 *   **Domestic law overrides:** Some countries have domestic anti-avoidance rules (like India's GAAR) that can override treaty provisions in specific circumstances.
 
 ### Frequently Asked Questions

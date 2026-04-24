@@ -54,7 +54,7 @@ Key features of the ADGM framework:
 
 #### DIFC (DFSA)
 
-The DFSA regulates crypto tokens within the [DIFC](/blogs/difc-vs-adgm-uae-financial-free-zones/) under its Investment Token framework. Recognised crypto tokens (currently Bitcoin and Ethereum) can be used in certain licensed activities. The DFSA framework is narrower than VARA or ADGM, focusing primarily on investment tokens.
+The DFSA regulates crypto tokens within the [DIFC](/blogs/difc-vs-adgm-financial-free-zone-uae/) under its Investment Token framework. Recognised crypto tokens (currently Bitcoin and Ethereum) can be used in certain licensed activities. The DFSA framework is narrower than VARA or ADGM, focusing primarily on investment tokens.
 
 #### SCA (Federal)
 

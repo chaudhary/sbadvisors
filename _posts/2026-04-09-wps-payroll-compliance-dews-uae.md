@@ -146,7 +146,7 @@ Records should be kept for a minimum of **7 years** to satisfy FTA audit require
 3.  **Miscalculating gratuity on total package instead of basic salary.** This either overpays (a cost problem) or underpays (a legal problem).
 4.  **Late GPSSA contributions for UAE nationals.** Penalties accumulate and the GPSSA pursues collection aggressively.
 5.  **Not enrolling DIFC employees in DEWS within 20 days.** The DIFC Authority monitors registration and the employer is liable for back-contributions plus penalties.
-6.  **Ignoring the payroll impact on [budgets and cash flow](/blogs/cash-flow-management-uae-small-businesses/).** Gratuity accruals, GPSSA, and DEWS contributions are real cash obligations that many startups underestimate in their [budget planning](/blogs/how-to-build-budget-uae-startup/).
+6.  **Ignoring the payroll impact on [budgets and cash flow](/blogs/cash-flow-management-uae-small-businesses/).** Gratuity accruals, GPSSA, and DEWS contributions are real cash obligations that many startups underestimate in their [budget planning](/blogs/build-budget-uae-startup/).
 
 ### Frequently Asked Questions
 
