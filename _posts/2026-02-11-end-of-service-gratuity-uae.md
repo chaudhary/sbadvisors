@@ -1,17 +1,18 @@
 ---
 layout: post
-title: "End-of-Service Gratuity in the UAE: A Complete Guide for Employers and Employees"
+title: "UAE End-of-Service Gratuity: 21/30 Day Formula, 14-Day Pay Deadline, and the Accrual Most Employers Skip"
 date: 2026-02-11 12:00:00 +0400
-description: "UAE end-of-service gratuity is a statutory entitlement for most employees. Learn how it is calculated, when it is payable, how resignation affects the amount, and what employers must account for."
+last_modified_at: 2026-04-24 10:00:00 +0400
+description: "UAE gratuity under Federal Decree-Law 33 of 2021: who qualifies after 1 year, the 21 vs 30 days formula on basic salary, the 14-day pay window, why resignation no longer reduces gratuity since Feb 2022, and the monthly accrual most UAE SMEs still get wrong."
 categories: blogs
 author: Success Business Advisors
 tags: ["Gratuity", "UAE Labour Law", "HR", "Compliance", "UAE Business"]
 image: "/assets/img/blog/blog-end-of-service-gratuity-uae.png"
 ---
 
-End-of-service gratuity is one of the most important — and most frequently misunderstood — provisions of UAE labour law. For **employees**, it represents a significant financial entitlement that can amount to several months' salary after years of service. For **employers**, it is both a statutory obligation and a meaningful accruing financial liability that must be accounted for correctly.
+Gratuity is the UAE's most-miscalculated payroll line. Employees routinely underestimate it because they calculate against total salary instead of basic. Employers routinely understate profit because they treat gratuity as a payment event instead of a monthly accrual. Both get caught out when someone leaves and a six- or seven-figure dirham liability suddenly needs to clear in fourteen days.
 
-This guide covers everything you need to know about UAE gratuity: who is entitled, how it is calculated, what happens in different termination scenarios, and how the rules are evolving.
+The rules are actually simple once you separate the 2022 changes from the folk wisdom still floating around HR WhatsApp groups. Under Federal Decree-Law 33 of 2021, resignation no longer reduces the amount, the calculation runs strictly off basic salary, and the payment window is fixed. This guide walks through the formula, the termination scenarios, the accounting treatment, and the specific mistakes that turn a predictable liability into a cash flow shock.
 
 ### Quick answers
 

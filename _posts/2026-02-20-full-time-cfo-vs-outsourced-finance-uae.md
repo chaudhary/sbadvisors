@@ -1,19 +1,18 @@
 ---
 layout: post
-title: "Full-Time CFO vs. Outsourced Finance Services: What's Right for Your UAE Business?"
+title: "Full-Time UAE CFO vs Outsourced Finance: When AED 600k+ a Year Is Worth It, and When It Isn't"
 date: 2026-02-20 12:00:00 +0400
-description: "Should you hire a full-time CFO or outsource your finance function? This guide compares cost, capability, and timing to help UAE business owners make the right choice at the right stage."
+last_modified_at: 2026-04-24 10:00:00 +0400
+description: "A UAE CFO's fully loaded cost sits at AED 600k–1.4m before the finance team underneath them. For businesses under AED 20–30m in revenue, that's almost always the wrong hire. Here's the revenue, complexity, and capital-event framework that tells you when to stop outsourcing and when to keep doing it."
 categories: blogs
 author: Success Business Advisors
 tags: ["CFO Services", "Outsourced Accounting", "UAE Business", "Financial Planning", "SME"]
 image: "/assets/img/blog/blog-full-time-cfo-vs-outsourced-finance-uae.png"
 ---
 
-Every growing UAE business reaches a point where basic bookkeeping is no longer enough. You need financial insight, strategic guidance, and robust compliance — not just a record of what happened last month.
+A full-time CFO in the UAE costs AED 600,000 to 1.4 million a year in fully loaded employment cost, and that is before the accountants, payroll administrators, and controller they will ask you to hire underneath them. That math works above a certain scale. Below it, the seat drains more value than it creates, and the business ends up paying senior CFO salary for work a senior accountant could have done on a fraction of the cost.
 
-The question then becomes: **do you hire a full-time finance leader, or do you outsource your finance function?**
-
-There is no single right answer: the optimal choice depends on your business's stage, complexity, budget, and strategic needs. This guide gives you an honest framework for making that decision.
+Most UAE founders ask the wrong version of this question. It isn't "do I need a CFO?" — it's "what strategic depth does my business actually need in the next 12 months, and is a permanent senior hire the cheapest way to get it?" The honest answer for businesses under roughly AED 20–30 million in revenue is almost always no. Above that, or when a capital event is on the calendar, the answer flips. This guide gives you the revenue, complexity, and strategic-event thresholds that separate the two cases, the real cost stack of each model, and the hybrid setup that works for most companies in the middle.
 
 ### Quick answers
 

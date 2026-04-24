@@ -1,17 +1,18 @@
 ---
 layout: post
-title: "Exploring the 0% UAE Corporate Tax: Qualifying vs. Non-Qualifying Income for Free Zones"
+title: "UAE Free Zone 0% Corporate Tax: QFZP Rules, De Minimis, and Where Companies Lose It"
 date: 2026-02-04 12:00:00 +0400
-description: "How UAE Free Zone companies keep the 0% Corporate Tax rate: QFZP rules, Qualifying vs Non-Qualifying Income, the de minimis threshold, and the mistakes that trigger 9%."
+last_modified_at: 2026-04-24 10:00:00 +0400
+description: "The UAE Free Zone 0% Corporate Tax rate isn't automatic. Five QFZP conditions, the Qualifying vs Non-Qualifying Income split, the AED 5m / 5% de minimis cap, and the common mistakes that push free zone companies onto the 9% rate."
 categories: blogs
 author: Success Business Advisors
 tags: ["Corporate Tax", "Free Zone", "UAE Business", "Tax Planning", "Compliance"]
 image: "/assets/img/blog/blog-0-percent-uae-corporate-tax-qualifying-income-free-zones.png"
 ---
 
-The UAE’s introduction of Corporate Tax was a landmark move, transforming the country’s fiscal landscape. However, the Federal Tax Authority (FTA) provided significant relief to businesses operating within Free Zones by offering a **0% Corporate Tax rate**.
+Most Free Zone companies assume the 0% Corporate Tax rate is theirs by default. It isn't. Miss any one of the five Qualifying Free Zone Person (QFZP) conditions and you pay 9% on your **entire** taxable income for that tax period, not just the non-qualifying slice.
 
-But this 0% rate is not automatic. To benefit from it, a Free Zone entity must be classified as a **Qualifying Free Zone Person (QFZP)**. The cornerstone of achieving this status is distinguishing between **Qualifying Income** and **Non-Qualifying Income**.
+The rules reward free zone entities that can prove real substance, clean qualifying income, and audited books. They punish the ones treating the free zone licence as a tax-exempt flag. This guide covers the QFZP conditions, how Qualifying vs Non-Qualifying Income actually splits, the de minimis safety net, and where operators most often lose the 0% rate in practice.
 
 ### Quick answers
 
