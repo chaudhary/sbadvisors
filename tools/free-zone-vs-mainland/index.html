@@ -1,0 +1,253 @@
+---
+layout: default
+title: "UAE Free Zone vs Mainland: Decision Tool"
+description: "Free decision tool that recommends UAE free zone, mainland, ADGM, DIFC, or RAK ICC based on your activity, target market, ownership, and visa needs."
+permalink: /tools/free-zone-vs-mainland/
+---
+
+{% include header.html header_theme='light' %}
+
+<div class="sb-tool" id="fzvm">
+  <section class="sb-tool-hero">
+    <div class="sb-tool-hero-inner">
+      <span class="sb-tool-eyebrow">Decision Tool</span>
+      <h1>Free Zone vs Mainland — UAE</h1>
+      <p>Six questions to recommend the jurisdiction that actually fits your business: cost-efficient free zone, standard free zone, mainland, financial free zone (DIFC/ADGM), or RAK ICC offshore. Built around the 2024+ rules — including 100% foreign ownership on mainland.</p>
+    </div>
+  </section>
+
+  <section class="sb-tool-section">
+    <div class="sb-tool-grid">
+      <div class="sb-tool-card">
+        <h2>Tell us about your business</h2>
+        <p class="sb-tool-card-sub">No data leaves your browser.</p>
+
+        <form id="fzvm-form" novalidate>
+          <div class="sb-tool-field">
+            <label for="fzvm-activity">Primary activity</label>
+            <select id="fzvm-activity" name="activity" class="sb-tool-select">
+              <option value="services" selected>Professional services / consulting</option>
+              <option value="ecom">E-commerce / online retail</option>
+              <option value="trading">Wholesale trading / distribution</option>
+              <option value="manufacturing">Manufacturing / industrial</option>
+              <option value="logistics">Logistics / freight / warehousing</option>
+              <option value="holding">Holding company / SPV</option>
+              <option value="ip">IP / royalties</option>
+              <option value="finance">Banking / fund / fintech</option>
+              <option value="govt">Government contracting</option>
+            </select>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="fzvm-market">Primary target market</label>
+            <select id="fzvm-market" name="market" class="sb-tool-select">
+              <option value="uae-mainland" selected>UAE consumers &amp; businesses (direct)</option>
+              <option value="uae-fz-only">Other free zone or international companies only</option>
+              <option value="gcc">GCC export</option>
+              <option value="international">International export (outside GCC)</option>
+              <option value="mixed">Mixed (UAE + international)</option>
+            </select>
+          </div>
+
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Do you need to bid on UAE government contracts?</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Govt contracts">
+              <label class="sb-tool-radio"><input type="radio" name="govt" value="no" checked><span>No</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="govt" value="yes"><span>Yes</span></label>
+            </div>
+          </div>
+
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">First-year setup budget</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Budget">
+              <label class="sb-tool-radio"><input type="radio" name="budget" value="low" checked><span>Up to AED 25k</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="budget" value="mid"><span>AED 25k–75k</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="budget" value="high"><span>AED 75k+</span></label>
+            </div>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="fzvm-visas">Number of residence visas needed</label>
+            <input type="number" inputmode="numeric" min="0" max="50" step="1" id="fzvm-visas" name="visas" value="2" class="sb-tool-input">
+          </div>
+
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Importance of common-law / international legal framework?</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Common law">
+              <label class="sb-tool-radio"><input type="radio" name="commonlaw" value="low" checked><span>Not critical</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="commonlaw" value="high"><span>Critical (fund / family office / fintech)</span></label>
+            </div>
+          </div>
+
+          <button type="submit" class="sb-tool-button">Get my recommendation</button>
+        </form>
+      </div>
+
+      <div class="sb-tool-card">
+        <h2>Recommendation</h2>
+        <p class="sb-tool-card-sub">Best-fit jurisdiction with reasoning.</p>
+
+        <div id="fzvm-result" class="sb-tool-result" hidden aria-live="polite">
+          <h3>Best fit</h3>
+          <p class="sb-tool-result-amount" id="fzvm-result-amount">—</p>
+          <ul class="sb-tool-result-list" id="fzvm-result-breakdown"></ul>
+          <div id="fzvm-result-callouts"></div>
+        </div>
+
+        <div id="fzvm-result-empty" class="sb-tool-callout">
+          Answer the six questions on the left and we'll score five jurisdiction families against your situation and recommend the strongest fit, with the trade-offs spelled out.
+        </div>
+      </div>
+    </div>
+
+    <p class="sb-tool-disclaimer">
+      Decision tool, not a legal opinion. The full picture also depends on activity sub-category, special approvals, capital requirements, banking-relationship preferences, and group / shareholder considerations. Mainland 100% foreign ownership is available for most activities since 2021 but a small list of strategic activities still requires UAE national involvement.
+    </p>
+  </section>
+
+  <section class="sb-tool-cta">
+    <div class="sb-tool-cta-inner">
+      <h2>Want a structuring memo, not just a recommendation?</h2>
+      <p>We compare 3–4 jurisdictions side by side for your specific activity — including tax, banking access, visa allocation, exit flexibility, and ongoing compliance load.</p>
+      <a href="/contact-us/" class="sb-tool-button">Get a structuring memo</a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('fzvm-form');
+  if (!form) return;
+
+  var resultBox = document.getElementById('fzvm-result');
+  var resultEmpty = document.getElementById('fzvm-result-empty');
+  var resultAmount = document.getElementById('fzvm-result-amount');
+  var resultList = document.getElementById('fzvm-result-breakdown');
+  var resultCallouts = document.getElementById('fzvm-result-callouts');
+
+  var OPTIONS = {
+    'cost-fz':    { label: 'Cost-efficient Free Zone (RAKEZ / IFZA)' },
+    'std-fz':     { label: 'Standard Free Zone (Meydan / DMCC / SHAMS)' },
+    'logistics':  { label: 'Logistics Free Zone (JAFZA / KEZAD)' },
+    'mainland':   { label: 'Mainland (RAK / Dubai / Abu Dhabi DET)' },
+    'financial':  { label: 'Financial Free Zone (DIFC / ADGM)' },
+    'offshore':   { label: 'RAK ICC (offshore — holding only)' }
+  };
+
+  function row(label, value) {
+    var li = document.createElement('li');
+    var l = document.createElement('span'); l.className = 'label'; l.textContent = label;
+    var v = document.createElement('span'); v.className = 'value'; v.textContent = value;
+    li.appendChild(l); li.appendChild(v);
+    return li;
+  }
+
+  function callout(text, kind) {
+    var div = document.createElement('div');
+    div.className = 'sb-tool-callout' + (kind ? ' sb-tool-callout--' + kind : '');
+    div.textContent = text;
+    return div;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var activity = form.elements.activity.value;
+    var market = form.elements.market.value;
+    var govt = form.querySelector('input[name="govt"]:checked').value === 'yes';
+    var budget = form.querySelector('input[name="budget"]:checked').value;
+    var visas = Math.max(0, parseInt(form.elements.visas.value, 10) || 0);
+    var commonlaw = form.querySelector('input[name="commonlaw"]:checked').value === 'high';
+
+    var s = { 'cost-fz': 0, 'std-fz': 0, 'logistics': 0, 'mainland': 0, 'financial': 0, 'offshore': 0 };
+    var reasons = [];
+
+    // Activity scoring
+    var actMap = {
+      services:      { 'cost-fz': 4, 'std-fz': 3, 'mainland': 3, 'financial': 1 },
+      ecom:          { 'cost-fz': 4, 'std-fz': 3, 'mainland': 4, 'logistics': 2 },
+      trading:       { 'std-fz': 3, 'mainland': 4, 'logistics': 3, 'cost-fz': 2 },
+      manufacturing: { 'logistics': 4, 'mainland': 3, 'std-fz': 2 },
+      logistics:     { 'logistics': 5, 'mainland': 2 },
+      holding:       { 'offshore': 4, 'financial': 4, 'cost-fz': 2 },
+      ip:            { 'financial': 4, 'cost-fz': 2, 'offshore': 3 },
+      finance:       { 'financial': 5 },
+      govt:          { 'mainland': 5 }
+    };
+    var aMap = actMap[activity] || {};
+    Object.keys(aMap).forEach(function (k) { s[k] += aMap[k]; });
+    if (activity === 'govt') reasons.push('Government contracting on UAE federal / Emirate level effectively requires a mainland license.');
+    if (activity === 'finance') reasons.push('Banking, fund management, and fintech are best located in DIFC or ADGM under their dedicated regulators.');
+    if (activity === 'logistics' || activity === 'manufacturing') reasons.push('Logistics and industrial activity benefit from free zones with port / airport / land access (JAFZA, KEZAD, KIZAD).');
+
+    // Market
+    if (market === 'uae-mainland' || market === 'mixed') {
+      s['mainland'] += 4;
+      reasons.push('Direct sales to mainland UAE customers without a local distributor is the main reason to pay the mainland premium.');
+    }
+    if (market === 'international' || market === 'gcc') {
+      s['cost-fz'] += 3; s['std-fz'] += 2; s['logistics'] += 2;
+      reasons.push('Export-focused businesses don\'t need mainland licensing for direct sales — free zones are usually cheaper and faster.');
+    }
+    if (market === 'uae-fz-only') {
+      s['cost-fz'] += 3; s['std-fz'] += 3;
+      reasons.push('Trading exclusively with other free zone or international companies preserves QFZP 0% corporate tax on qualifying income.');
+    }
+
+    // Govt contracting
+    if (govt) { s['mainland'] += 6; reasons.push('Confirmed: government contracts → mainland.'); }
+
+    // Budget
+    if (budget === 'low') { s['cost-fz'] += 4; s['offshore'] += 1; }
+    if (budget === 'mid') { s['std-fz'] += 3; s['mainland'] += 2; s['logistics'] += 2; }
+    if (budget === 'high') { s['financial'] += 4; s['mainland'] += 2; s['logistics'] += 2; }
+
+    // Visas
+    if (visas === 0) { s['offshore'] += 2; }
+    if (visas >= 6) { s['mainland'] += 2; s['logistics'] += 2; s['financial'] += 1; reasons.push(visas + '+ visas usually require physical office — favours mainland or larger free zones.'); }
+
+    // Common law
+    if (commonlaw) { s['financial'] += 5; reasons.push('Common-law jurisdiction (English law, DIFC / ADGM Courts) is critical for funds, family offices, and cross-border investors.'); }
+
+    // Hard exclusions
+    if (visas > 0) s['offshore'] = -10;
+    if (govt || market === 'uae-mainland') s['offshore'] = Math.min(s['offshore'], 0);
+
+    // Pick winner
+    var ranked = Object.keys(s).sort(function (a, b) { return s[b] - s[a]; });
+    var winner = ranked[0];
+    var runnerUp = ranked[1];
+
+    resultAmount.textContent = OPTIONS[winner].label;
+
+    resultList.innerHTML = '';
+    resultList.appendChild(row('Best fit', OPTIONS[winner].label));
+    resultList.appendChild(row('Score', s[winner].toString()));
+    resultList.appendChild(row('Runner-up', OPTIONS[runnerUp].label + ' (' + s[runnerUp] + ')'));
+
+    resultCallouts.innerHTML = '';
+    reasons.forEach(function (r) { resultCallouts.appendChild(callout(r)); });
+
+    var winnerCallout = '';
+    if (winner === 'mainland') winnerCallout = 'Mainland gives you direct UAE market access and government contract eligibility. With 100% foreign ownership now allowed for most activities (since 2021), the historic local-sponsor barrier is gone. Trade-off: highest setup and office cost.';
+    else if (winner === 'cost-fz') winnerCallout = 'RAKEZ and IFZA are the most cost-efficient routes: low setup, fast incorporation, full foreign ownership, and access to QFZP 0% corporate tax on qualifying income. Trade-off: no direct mainland sales without a distributor.';
+    else if (winner === 'std-fz') winnerCallout = 'Standard free zones (Meydan, DMCC, SHAMS) give you a Dubai address, mid-tier brand, and an industry cluster. Trade-off: 2–3× the cost of cost-efficient free zones for similar legal benefits.';
+    else if (winner === 'logistics') winnerCallout = 'JAFZA / KEZAD / KIZAD give you port-side or airport-side warehousing, customs facilitation, and the strongest logistics ecosystem. Trade-off: high real-estate cost and minimum lease commitments.';
+    else if (winner === 'financial') winnerCallout = 'DIFC / ADGM offer English common-law courts, dedicated regulators (DFSA / FSRA), and the strongest reputation for funds, family offices, fintech, and holding structures with international LPs. Trade-off: setup costs are 3–10× a cost-efficient free zone.';
+    else if (winner === 'offshore') winnerCallout = 'RAK ICC is a pure offshore vehicle for holding shares, IP, and assets. Trade-off: no UAE residence visas, no physical presence, no local trading.';
+    resultCallouts.appendChild(callout(winnerCallout, 'success'));
+
+    resultBox.hidden = false;
+    if (resultEmpty) resultEmpty.hidden = true;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'tool_calculate', {
+        tool: 'free_zone_vs_mainland',
+        recommendation: winner,
+        activity: activity,
+        market: market
+      });
+    }
+  });
+})();
+</script>
