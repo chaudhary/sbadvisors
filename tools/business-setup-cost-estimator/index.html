@@ -1,0 +1,255 @@
+---
+layout: default
+title: "UAE Business Setup Cost Estimator (RAK, RAKEZ, Free Zone, Mainland)"
+description: "Free UAE company formation cost estimator. Indicative all-in first-year cost for RAK ICC, RAKEZ, Dubai free zones, ADGM, DIFC, and mainland based on activity, visas, and office."
+permalink: /tools/business-setup-cost-estimator/
+---
+
+{% include header.html header_theme='light' %}
+
+<div class="sb-tool" id="setup-calc">
+  <section class="sb-tool-hero">
+    <div class="sb-tool-hero-inner">
+      <span class="sb-tool-eyebrow">Business Setup</span>
+      <h1>UAE Business Setup Cost Estimator</h1>
+      <p>Indicative all-in first-year cost to incorporate in the UAE — RAK ICC, RAKEZ, Dubai free zones, ADGM, DIFC, or mainland. Tell us your activity, visas, and office type and we'll show you the realistic range.</p>
+    </div>
+  </section>
+
+  <section class="sb-tool-section">
+    <div class="sb-tool-grid">
+      <div class="sb-tool-card">
+        <h2>Configure your setup</h2>
+        <p class="sb-tool-card-sub">All figures in AED. Estimates are 2026 indicative ranges and exclude bank account opening, accounting, and tax services.</p>
+
+        <form id="setup-form" novalidate>
+          <div class="sb-tool-field">
+            <label for="su-jurisdiction">Jurisdiction</label>
+            <select id="su-jurisdiction" name="jurisdiction" class="sb-tool-select">
+              <optgroup label="Ras Al Khaimah">
+                <option value="rak-icc">RAK ICC (offshore / holding)</option>
+                <option value="rakez" selected>RAKEZ (free zone)</option>
+                <option value="rak-mainland">RAK Mainland (DED)</option>
+              </optgroup>
+              <optgroup label="Dubai">
+                <option value="ifza">IFZA (Dubai free zone)</option>
+                <option value="meydan">Meydan Free Zone</option>
+                <option value="dmcc">DMCC</option>
+                <option value="jafza">JAFZA</option>
+                <option value="dubai-mainland">Dubai Mainland (DET)</option>
+              </optgroup>
+              <optgroup label="Abu Dhabi">
+                <option value="adgm">ADGM</option>
+                <option value="ad-mainland">Abu Dhabi Mainland (ADDED)</option>
+              </optgroup>
+              <optgroup label="Dubai (premium financial)">
+                <option value="difc">DIFC</option>
+              </optgroup>
+            </select>
+            <span class="sb-tool-help">RAK ICC is offshore (no UAE residence visas). All others issue residence visas.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Activity type</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Activity">
+              <label class="sb-tool-radio"><input type="radio" name="activity" value="services" checked><span>Services / Consulting</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="activity" value="trading"><span>Trading / E-commerce</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="activity" value="industrial"><span>Industrial / Manufacturing</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="activity" value="holding"><span>Holding / SPV</span></label>
+            </div>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="su-visas">Number of residence visas</label>
+            <input type="number" inputmode="numeric" min="0" max="50" step="1" id="su-visas" name="visas" value="2" class="sb-tool-input">
+            <span class="sb-tool-help">Most jurisdictions allocate 0–6 visas with flexi-desk; more visas usually require a physical office.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Office type</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Office">
+              <label class="sb-tool-radio"><input type="radio" name="office" value="flexi" checked><span>Flexi-desk / Virtual</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="office" value="smart"><span>Smart office</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="office" value="physical"><span>Physical office</span></label>
+            </div>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="su-shareholders">Number of shareholders</label>
+            <input type="number" inputmode="numeric" min="1" max="50" step="1" id="su-shareholders" name="shareholders" value="1" class="sb-tool-input">
+          </div>
+
+          <button type="submit" class="sb-tool-button">Estimate setup cost</button>
+        </form>
+      </div>
+
+      <div class="sb-tool-card">
+        <h2>Indicative first-year cost</h2>
+        <p class="sb-tool-card-sub">Range appears below.</p>
+
+        <div id="setup-result" class="sb-tool-result" hidden aria-live="polite">
+          <h3 id="setup-result-label">Total first-year cost (range)</h3>
+          <p class="sb-tool-result-amount" id="setup-result-amount">AED 0</p>
+          <ul class="sb-tool-result-list" id="setup-result-breakdown"></ul>
+          <div id="setup-result-callouts"></div>
+        </div>
+
+        <div id="setup-result-empty" class="sb-tool-callout">
+          Pick a jurisdiction and activity, set visas and office type, then click <em>Estimate</em>. We'll break down license, immigration, visa, and office costs and flag jurisdiction-specific catches.
+        </div>
+      </div>
+    </div>
+
+    <p class="sb-tool-disclaimer">
+      Estimates are 2026 indicative ranges based on standard packages. Actual fees vary by activity sub-category, package promotions, share capital, special approvals (DCAS, DHA, KHDA, MoH, NMC, etc.), name reservation, attestation, medical and Emirates ID, deposits, and broker fees. They exclude corporate bank account opening, accounting, audit, and tax compliance. Always get a written quotation before committing.
+    </p>
+  </section>
+
+  <section class="sb-tool-cta">
+    <div class="sb-tool-cta-inner">
+      <h2>Want a fixed quote, not a range?</h2>
+      <p>Tell us your activity and we'll come back with a written, all-in quotation across the jurisdictions that actually fit your business — usually within 24 hours.</p>
+      <a href="/contact-us/" class="sb-tool-button">Get a fixed quote</a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('setup-form');
+  if (!form) return;
+
+  var resultBox = document.getElementById('setup-result');
+  var resultEmpty = document.getElementById('setup-result-empty');
+  var resultAmount = document.getElementById('setup-result-amount');
+  var resultList = document.getElementById('setup-result-breakdown');
+  var resultCallouts = document.getElementById('setup-result-callouts');
+
+  // [low, high] ranges in AED, 2026 indicative
+  var JURISDICTIONS = {
+    'rak-icc':       { name: 'RAK ICC',          license: [4500, 7500],   imm: [0, 0],         visa: [0, 0],          flexi: [0, 0],          smart: [0, 0],           physical: [0, 0],          notes: 'offshore' },
+    'rakez':         { name: 'RAKEZ',            license: [11500, 15000], imm: [2000, 3500],   visa: [3500, 5500],    flexi: [5000, 12000],   smart: [15000, 28000],   physical: [28000, 60000],  notes: 'low-cost-fz' },
+    'rak-mainland':  { name: 'RAK Mainland',     license: [12000, 18000], imm: [2500, 4000],   visa: [4500, 6500],    flexi: [10000, 18000],  smart: [22000, 40000],   physical: [35000, 75000],  notes: 'mainland' },
+    'ifza':          { name: 'IFZA',             license: [12900, 18000], imm: [2000, 3500],   visa: [3500, 5500],    flexi: [0, 6000],       smart: [16000, 30000],   physical: [30000, 65000],  notes: 'low-cost-fz' },
+    'meydan':        { name: 'Meydan Free Zone', license: [12500, 25000], imm: [2500, 4000],   visa: [4000, 6000],    flexi: [0, 8000],       smart: [18000, 32000],   physical: [32000, 70000],  notes: 'standard-fz' },
+    'dmcc':          { name: 'DMCC',             license: [20000, 35000], imm: [3500, 5000],   visa: [4500, 6500],    flexi: [15000, 25000],  smart: [40000, 70000],   physical: [80000, 200000], notes: 'premium-fz' },
+    'jafza':         { name: 'JAFZA',            license: [25000, 45000], imm: [3500, 5000],   visa: [4500, 7000],    flexi: [10000, 22000],  smart: [40000, 90000],   physical: [120000, 400000],notes: 'logistics-fz' },
+    'dubai-mainland':{ name: 'Dubai Mainland',   license: [15000, 30000], imm: [2500, 4500],   visa: [4500, 6500],    flexi: [12000, 22000],  smart: [25000, 55000],   physical: [60000, 200000], notes: 'mainland' },
+    'adgm':          { name: 'ADGM',             license: [22000, 50000], imm: [3500, 5500],   visa: [5500, 8000],    flexi: [18000, 35000],  smart: [60000, 120000],  physical: [120000, 400000],notes: 'premium-fz' },
+    'ad-mainland':   { name: 'Abu Dhabi Mainland',license: [13000, 25000],imm: [2500, 4500],   visa: [4500, 6500],    flexi: [12000, 22000],  smart: [25000, 55000],   physical: [60000, 200000], notes: 'mainland' },
+    'difc':          { name: 'DIFC',             license: [45000, 90000], imm: [4500, 7000],   visa: [6500, 9500],    flexi: [40000, 80000],  smart: [120000, 250000], physical: [250000, 800000],notes: 'premium-fz' }
+  };
+
+  var ACTIVITY_MULT = {
+    services: 1.0,
+    trading: 1.05,
+    industrial: 1.20,
+    holding: 0.85
+  };
+
+  function fmt(n) { return 'AED ' + Math.round(n).toLocaleString('en-AE'); }
+  function fmtRange(lo, hi) { return fmt(lo) + ' – ' + fmt(hi); }
+
+  function row(label, value) {
+    var li = document.createElement('li');
+    var l = document.createElement('span'); l.className = 'label'; l.textContent = label;
+    var v = document.createElement('span'); v.className = 'value'; v.textContent = value;
+    li.appendChild(l); li.appendChild(v);
+    return li;
+  }
+
+  function callout(text, kind) {
+    var div = document.createElement('div');
+    div.className = 'sb-tool-callout' + (kind ? ' sb-tool-callout--' + kind : '');
+    div.textContent = text;
+    return div;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var jKey = form.elements.jurisdiction.value;
+    var activity = form.querySelector('input[name="activity"]:checked').value;
+    var visas = Math.max(0, parseInt(form.elements.visas.value, 10) || 0);
+    var office = form.querySelector('input[name="office"]:checked').value;
+    var shareholders = Math.max(1, parseInt(form.elements.shareholders.value, 10) || 1);
+
+    var j = JURISDICTIONS[jKey];
+    var actMult = ACTIVITY_MULT[activity] || 1;
+
+    var licLo = j.license[0] * actMult;
+    var licHi = j.license[1] * actMult;
+    var immLo = visas > 0 ? j.imm[0] : 0;
+    var immHi = visas > 0 ? j.imm[1] : 0;
+    var visaLo = visas * j.visa[0];
+    var visaHi = visas * j.visa[1];
+    var offLo = j[office][0];
+    var offHi = j[office][1];
+
+    var notarLo = (shareholders - 1) * 500;
+    var notarHi = (shareholders - 1) * 1500;
+
+    var totalLo = licLo + immLo + visaLo + offLo + notarLo;
+    var totalHi = licHi + immHi + visaHi + offHi + notarHi;
+
+    resultAmount.textContent = fmtRange(totalLo, totalHi);
+
+    resultList.innerHTML = '';
+    resultList.appendChild(row(j.name + ' license (activity: ' + activity + ')', fmtRange(licLo, licHi)));
+    if (visas > 0) {
+      resultList.appendChild(row('Establishment / immigration card', fmtRange(immLo, immHi)));
+      resultList.appendChild(row('Residence visas × ' + visas, fmtRange(visaLo, visaHi)));
+    }
+    resultList.appendChild(row('Office (' + office + ')', offLo === 0 && offHi === 0 ? 'Included' : fmtRange(offLo, offHi)));
+    if (shareholders > 1) {
+      resultList.appendChild(row('Notarisation / attestation', fmtRange(notarLo, notarHi)));
+    }
+
+    resultCallouts.innerHTML = '';
+
+    if (j.notes === 'offshore' && visas > 0) {
+      resultCallouts.appendChild(callout(
+        'RAK ICC is an offshore vehicle and does not issue UAE residence visas. If you need visas, switch to RAKEZ (low-cost) or another free zone.', 'danger'
+      ));
+    }
+    if (visas > 6 && office === 'flexi') {
+      resultCallouts.appendChild(callout(
+        'Most jurisdictions cap flexi-desk at 4–6 visas. For ' + visas + ' visas, plan to upgrade to a smart or physical office — costs above are likely understated.', 'danger'
+      ));
+    }
+    if (jKey === 'difc' || jKey === 'adgm') {
+      resultCallouts.appendChild(callout(
+        j.name + ' is a financial free zone with English common law and its own regulator (DFSA / FSRA). Setup costs are higher but you get the strongest reputational and legal framework in the region — best for funds, fintech, family offices, and holding structures.'
+      ));
+    }
+    if (activity === 'industrial') {
+      resultCallouts.appendChild(callout(
+        'Industrial activity requires factory/warehouse space and additional approvals (Civil Defence, MOIAT). The 20% uplift in license fees here is approximate; physical premises will be the dominant cost.'
+      ));
+    }
+    if (activity === 'trading' && (jKey === 'dubai-mainland' || jKey === 'rak-mainland' || jKey === 'ad-mainland')) {
+      resultCallouts.appendChild(callout(
+        'Mainland trading licenses can sell directly to the UAE market without a local distributor — that ability is the main reason to pay the mainland premium over a free zone.', 'success'
+      ));
+    }
+    if (jKey === 'rakez' || jKey === 'ifza') {
+      resultCallouts.appendChild(callout(
+        j.name + ' is one of the most cost-efficient routes for service or e-commerce SMEs that don\'t need direct mainland sales access. Strong choice if you want to keep first-year setup under AED 25k.', 'success'
+      ));
+    }
+
+    resultBox.hidden = false;
+    if (resultEmpty) resultEmpty.hidden = true;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'tool_calculate', {
+        tool: 'business_setup_cost_estimator',
+        jurisdiction: jKey,
+        activity: activity,
+        visas: visas,
+        office: office
+      });
+    }
+  });
+})();
+</script>
