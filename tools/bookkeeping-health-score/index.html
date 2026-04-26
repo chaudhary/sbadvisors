@@ -1,0 +1,199 @@
+---
+layout: default
+title: "Bookkeeping Health Score for UAE SMEs (CT & Audit Readiness)"
+description: "Free 10-question bookkeeping health score for UAE SMEs. Get a 0–100 score on corporate tax and audit readiness, with a tailored action list."
+permalink: /tools/bookkeeping-health-score/
+---
+
+{% include header.html header_theme='light' %}
+
+<div class="sb-tool" id="bk-score">
+  <section class="sb-tool-hero">
+    <div class="sb-tool-hero-inner">
+      <span class="sb-tool-eyebrow">Bookkeeping</span>
+      <h1>Bookkeeping Health Score</h1>
+      <p>Ten yes/no questions covering month-end close, IFRS / UAE CT alignment, fixed assets, payroll, VAT reconciliation, and document retention. Get a 0–100 score on corporate tax and audit readiness — and a tailored action list of what to fix first.</p>
+    </div>
+  </section>
+
+  <section class="sb-tool-section">
+    <div class="sb-tool-grid">
+      <div class="sb-tool-card">
+        <h2>Answer honestly</h2>
+        <p class="sb-tool-card-sub">Each question is worth 10 points. Score is calculated locally.</p>
+
+        <form id="bk-form" novalidate>
+          <ol id="bk-questions" style="padding-left: 20px; margin: 0;"></ol>
+          <button type="submit" class="sb-tool-button" style="margin-top: 18px;">Get my score</button>
+        </form>
+      </div>
+
+      <div class="sb-tool-card">
+        <h2>Your readiness score</h2>
+        <p class="sb-tool-card-sub">Score, band, and action list appear below.</p>
+
+        <div id="bk-result" class="sb-tool-result" hidden aria-live="polite">
+          <h3 id="bk-result-band">—</h3>
+          <p class="sb-tool-result-amount" id="bk-result-score">0 / 100</p>
+          <ul class="sb-tool-result-list" id="bk-result-breakdown"></ul>
+          <div id="bk-result-callouts"></div>
+        </div>
+
+        <div id="bk-result-empty" class="sb-tool-callout">
+          Tick the boxes that apply. We'll tot up your score, place you in one of four readiness bands (Audit-ready / Minor cleanup / Significant work / Restate first), and list the specific weaknesses to fix.
+        </div>
+      </div>
+    </div>
+
+    <p class="sb-tool-disclaimer">
+      Self-assessment only. A real CT or statutory audit readiness review covers the chart of accounts, opening balances, related-party transactions, transfer pricing, accrual cut-off, deferred tax, and prior-period restatements — none of which can be diagnosed from a 10-question form. Use this as a directional check, not a clean bill of health.
+    </p>
+  </section>
+
+  <section class="sb-tool-cta">
+    <div class="sb-tool-cta-inner">
+      <h2>Want us to fix what we found?</h2>
+      <p>We do CT-readiness clean-ups, statutory audit preparation, monthly bookkeeping, and full controllership for UAE SMEs. Most engagements close the gap inside 30 days.</p>
+      <a href="/contact-us/" class="sb-tool-button">Get a clean-up quote</a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('bk-form');
+  if (!form) return;
+
+  var QUESTIONS = [
+    { id: 'q1',  q: 'Books are closed monthly, with bank reconciliations completed.', fix: 'Close the books monthly and reconcile every bank account by the 10th of the following month — without this, every other check below is built on sand.' },
+    { id: 'q2',  q: 'Chart of accounts is aligned with IFRS for SMEs (or full IFRS) and CT-ready categories.', fix: 'Restructure the chart of accounts now. CT returns require expense categories that map to allowable / disallowable items; bolting it on later is painful.' },
+    { id: 'q3',  q: 'Revenue is recognised on the accrual basis (not cash basis), with proper cut-off at period end.', fix: 'Switch to accrual accounting. UAE CT applies on accrual basis (with a one-time election to use cash basis only if revenue ≤ AED 3M); cut-off at period end matters for the audit and the CT return.' },
+    { id: 'q4',  q: 'Non-deductible expenses (fines, 50% entertainment, non-approved donations, related-party payments above market) are flagged separately in the ledger.', fix: 'Add sub-accounts or tags for non-deductible items. The CT return needs to add them back; doing it manually at year-end is where errors creep in.' },
+    { id: 'q5',  q: 'A fixed asset register is maintained with cost, useful life, depreciation, and disposals.', fix: 'Build a fixed asset register. Depreciation is a CT-allowable expense only with proper records; auditors will not sign off without one.' },
+    { id: 'q6',  q: 'Inventory (if any) is counted at least annually and valued consistently (FIFO or weighted average).', fix: 'Run an inventory count and document the method. Inventory swings are the most common audit adjustment in UAE SME books.' },
+    { id: 'q7',  q: 'Receivables are aged regularly and a provision for doubtful debts is recorded.', fix: 'Add an AR ageing report and an expected credit loss provision. Auditors will want a documented policy; CT allows bad debt deduction only with evidence.' },
+    { id: 'q8',  q: 'Payroll, WPS, end-of-service benefits (EOSB), and leave accruals are recorded each month.', fix: 'Accrue EOSB and leave monthly. Booking them only at year-end overstates profit during the year and misstates current and non-current liabilities.' },
+    { id: 'q9',  q: 'VAT records (output, input, reverse-charge) reconcile to filed VAT201 returns.', fix: 'Reconcile every VAT return back to the trial balance. Differences are the #1 trigger for FTA queries; fix the process before the next quarterly filing.' },
+    { id: 'q10', q: 'Source documents (invoices, contracts, supplier statements, bank confirmations) are stored and retrievable for at least the last 7 years.', fix: 'Set up a documented retention process. UAE CT and VAT law require records for 7 years; missing source documents can cause input VAT to be disallowed and CT deductions denied.' }
+  ];
+
+  var listEl = document.getElementById('bk-questions');
+  QUESTIONS.forEach(function (q) {
+    var li = document.createElement('li');
+    li.style.margin = '14px 0';
+    var lab = document.createElement('label');
+    lab.style.display = 'flex';
+    lab.style.alignItems = 'flex-start';
+    lab.style.gap = '12px';
+    lab.style.cursor = 'pointer';
+    lab.style.fontSize = '14px';
+    lab.style.lineHeight = '1.45';
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.name = q.id;
+    cb.style.marginTop = '3px';
+    cb.style.flexShrink = '0';
+    cb.style.transform = 'scale(1.15)';
+    cb.style.accentColor = '#1CA5AA';
+    var span = document.createElement('span');
+    span.textContent = q.q;
+    lab.appendChild(cb); lab.appendChild(span);
+    li.appendChild(lab);
+    listEl.appendChild(li);
+  });
+
+  var resultBox = document.getElementById('bk-result');
+  var resultEmpty = document.getElementById('bk-result-empty');
+  var resultBand = document.getElementById('bk-result-band');
+  var resultScore = document.getElementById('bk-result-score');
+  var resultList = document.getElementById('bk-result-breakdown');
+  var resultCallouts = document.getElementById('bk-result-callouts');
+
+  function row(label, value) {
+    var li = document.createElement('li');
+    var l = document.createElement('span'); l.className = 'label'; l.textContent = label;
+    var v = document.createElement('span'); v.className = 'value'; v.textContent = value;
+    li.appendChild(l); li.appendChild(v);
+    return li;
+  }
+
+  function callout(text, kind) {
+    var div = document.createElement('div');
+    div.className = 'sb-tool-callout' + (kind ? ' sb-tool-callout--' + kind : '');
+    div.textContent = text;
+    return div;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var passed = 0;
+    var gaps = [];
+
+    QUESTIONS.forEach(function (q) {
+      var el = form.elements[q.id];
+      if (el && el.checked) passed++;
+      else gaps.push(q);
+    });
+
+    var score = passed * 10;
+    var band, bandKind, bandMessage;
+    if (score >= 80) {
+      band = 'Audit & CT ready'; bandKind = 'success';
+      bandMessage = 'Books are in good shape. Final pre-audit checks (cut-off, related-party disclosures, transfer pricing documentation) are still worth doing — but no major restatement risk.';
+    } else if (score >= 60) {
+      band = 'Minor cleanup needed'; bandKind = 'success';
+      bandMessage = 'Books are reasonable but a few specific gaps below need closing before the next audit or CT return.';
+    } else if (score >= 40) {
+      band = 'Significant work required'; bandKind = '';
+      bandMessage = 'Multiple control gaps. Plan a 30–60 day clean-up before the next compliance event — patching at year-end will cost more.';
+    } else {
+      band = 'Restate before any audit or CT filing'; bandKind = 'danger';
+      bandMessage = 'Books are not reliable for a UAE CT return or statutory audit. Restate prior periods, fix the chart of accounts, and rebuild reconciliations from a clean opening balance.';
+    }
+
+    resultBand.textContent = band;
+    resultScore.textContent = score + ' / 100';
+
+    resultList.innerHTML = '';
+    resultList.appendChild(row('Questions passed', passed + ' / 10'));
+    resultList.appendChild(row('Gap count', gaps.length.toString()));
+    resultList.appendChild(row('Readiness band', band));
+
+    resultCallouts.innerHTML = '';
+    resultCallouts.appendChild(callout(bandMessage, bandKind));
+
+    if (gaps.length > 0) {
+      var actions = document.createElement('div');
+      actions.className = 'sb-tool-callout';
+      var title = document.createElement('strong');
+      title.textContent = 'Action list — fix these first:';
+      title.style.display = 'block';
+      title.style.marginBottom = '8px';
+      actions.appendChild(title);
+      var ol = document.createElement('ol');
+      ol.style.paddingLeft = '20px';
+      ol.style.margin = '0';
+      gaps.forEach(function (g) {
+        var li = document.createElement('li');
+        li.style.marginBottom = '6px';
+        li.textContent = g.fix;
+        ol.appendChild(li);
+      });
+      actions.appendChild(ol);
+      resultCallouts.appendChild(actions);
+    }
+
+    resultBox.hidden = false;
+    if (resultEmpty) resultEmpty.hidden = true;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'tool_calculate', {
+        tool: 'bookkeeping_health_score',
+        score: score,
+        band: band
+      });
+    }
+  });
+})();
+</script>
