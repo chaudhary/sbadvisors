@@ -1,0 +1,238 @@
+---
+layout: default
+title: "UAE Corporate Tax Registration Deadline Checker (FTA)"
+description: "Free UAE corporate tax registration deadline calculator. Enter your license issue date and see your FTA deadline plus the AED 10,000 late-registration penalty risk."
+permalink: /tools/corporate-tax-registration-deadline/
+---
+
+{% include header.html header_theme='light' %}
+
+<div class="sb-tool" id="ct-deadline">
+  <section class="sb-tool-hero">
+    <div class="sb-tool-hero-inner">
+      <span class="sb-tool-eyebrow">Corporate Tax</span>
+      <h1>CT Registration Deadline Checker</h1>
+      <p>Enter your trade license issue date and we'll show your FTA corporate tax registration deadline under FTA Decision 3 of 2024 — plus how many days are left and the AED 10,000 late-registration penalty exposure.</p>
+    </div>
+  </section>
+
+  <section class="sb-tool-section">
+    <div class="sb-tool-grid">
+      <div class="sb-tool-card">
+        <h2>Your details</h2>
+        <p class="sb-tool-card-sub">Local-only — no data leaves your browser.</p>
+
+        <form id="ctd-form" novalidate>
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Taxpayer type</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Taxpayer type">
+              <label class="sb-tool-radio"><input type="radio" name="type" value="resident-jur" checked><span>Resident juridical person (LLC, Free Zone, Branch)</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="type" value="nonresident-pe"><span>Non-resident with UAE Permanent Establishment</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="type" value="nonresident-nexus"><span>Non-resident with UAE nexus</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="type" value="natural"><span>Natural person (sole prop, freelancer)</span></label>
+            </div>
+          </div>
+
+          <div class="sb-tool-field" id="ctd-license-wrap">
+            <label for="ctd-license">Trade license / incorporation date</label>
+            <input type="date" id="ctd-license" name="license" class="sb-tool-input" required>
+            <span class="sb-tool-help">Earliest license issuance date (ignore subsequent renewals). For branches, use the date the branch was registered with the licensing authority.</span>
+          </div>
+
+          <div class="sb-tool-field" id="ctd-pe-wrap" hidden>
+            <label for="ctd-pe-date">Date PE / nexus established in UAE</label>
+            <input type="date" id="ctd-pe-date" name="peDate" class="sb-tool-input">
+          </div>
+
+          <div class="sb-tool-field" id="ctd-natural-wrap" hidden>
+            <label for="ctd-turnover">Calendar year in which turnover first exceeded AED 1,000,000</label>
+            <input type="number" inputmode="numeric" min="2024" max="2030" step="1" id="ctd-turnover" name="turnoverYear" placeholder="e.g. 2024" class="sb-tool-input">
+          </div>
+
+          <button type="submit" class="sb-tool-button">Check my deadline</button>
+        </form>
+      </div>
+
+      <div class="sb-tool-card">
+        <h2>Your FTA deadline</h2>
+        <p class="sb-tool-card-sub">Result appears below.</p>
+
+        <div id="ctd-result" class="sb-tool-result" hidden aria-live="polite">
+          <h3>Registration deadline</h3>
+          <p class="sb-tool-result-amount" id="ctd-result-amount">—</p>
+          <ul class="sb-tool-result-list" id="ctd-result-breakdown"></ul>
+          <div id="ctd-result-callouts"></div>
+        </div>
+
+        <div id="ctd-result-empty" class="sb-tool-callout">
+          Enter your license / incorporation date and we'll apply the FTA Decision 3 of 2024 timeline (existing entities) or the 3-month rule (post-1-March-2024 entities) and surface days remaining or overdue.
+        </div>
+      </div>
+    </div>
+
+    <p class="sb-tool-disclaimer">
+      Based on FTA Decision 3 of 2024 (resident juridical persons) and FTA Cabinet Decision 75 of 2023 (penalty regime, AED 10,000 for late CT registration). Real-world deadlines can be affected by license cancellation, deregistration applications, group restructuring, and Tax Group registration. Always confirm directly with the FTA portal (EmaraTax) before relying on a calculated deadline.
+    </p>
+  </section>
+
+  <section class="sb-tool-cta">
+    <div class="sb-tool-cta-inner">
+      <h2>Missed the deadline?</h2>
+      <p>We help businesses register for corporate tax with the FTA, manage waiver applications for late-registration penalties, and prepare the first CT return. Get your registration filed within 24–48 hours.</p>
+      <a href="/contact-us/" class="sb-tool-button">Register me now</a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('ctd-form');
+  if (!form) return;
+
+  var licenseWrap = document.getElementById('ctd-license-wrap');
+  var peWrap = document.getElementById('ctd-pe-wrap');
+  var naturalWrap = document.getElementById('ctd-natural-wrap');
+  var resultBox = document.getElementById('ctd-result');
+  var resultEmpty = document.getElementById('ctd-result-empty');
+  var resultAmount = document.getElementById('ctd-result-amount');
+  var resultList = document.getElementById('ctd-result-breakdown');
+  var resultCallouts = document.getElementById('ctd-result-callouts');
+
+  function getType() {
+    return form.querySelector('input[name="type"]:checked').value;
+  }
+
+  function syncUI() {
+    var t = getType();
+    licenseWrap.hidden = !(t === 'resident-jur');
+    peWrap.hidden = !(t === 'nonresident-pe' || t === 'nonresident-nexus');
+    naturalWrap.hidden = t !== 'natural';
+  }
+
+  form.querySelectorAll('input[name="type"]').forEach(function (el) { el.addEventListener('change', syncUI); });
+  syncUI();
+
+  // FTA Decision 3 of 2024 — month-of-license to deadline (year 2024)
+  var EXISTING_DEADLINES_2024 = {
+    1:  '2024-05-31', 2:  '2024-05-31',
+    3:  '2024-06-30', 4:  '2024-06-30',
+    5:  '2024-07-31',
+    6:  '2024-08-31',
+    7:  '2024-09-30',
+    8:  '2024-10-31', 9:  '2024-10-31',
+    10: '2024-11-30', 11: '2024-11-30',
+    12: '2024-12-31'
+  };
+  var CUTOFF = new Date('2024-03-01T00:00:00');
+
+  function fmtDate(d) {
+    return d.toLocaleDateString('en-AE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function daysBetween(a, b) {
+    var ms = 24 * 60 * 60 * 1000;
+    var aDay = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+    var bDay = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+    return Math.round((aDay - bDay) / ms);
+  }
+
+  function addMonths(d, n) {
+    var nd = new Date(d.getFullYear(), d.getMonth() + n, d.getDate());
+    return nd;
+  }
+
+  function row(label, value) {
+    var li = document.createElement('li');
+    var l = document.createElement('span'); l.className = 'label'; l.textContent = label;
+    var v = document.createElement('span'); v.className = 'value'; v.textContent = value;
+    li.appendChild(l); li.appendChild(v);
+    return li;
+  }
+
+  function callout(text, kind) {
+    var div = document.createElement('div');
+    div.className = 'sb-tool-callout' + (kind ? ' sb-tool-callout--' + kind : '');
+    div.textContent = text;
+    return div;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var type = getType();
+    var deadline, basis = '';
+
+    if (type === 'resident-jur') {
+      var lic = form.elements.license.value;
+      if (!lic) return;
+      var licDate = new Date(lic + 'T00:00:00');
+
+      if (licDate < CUTOFF) {
+        var month = licDate.getMonth() + 1;
+        var dlStr = EXISTING_DEADLINES_2024[month];
+        deadline = new Date(dlStr + 'T00:00:00');
+        basis = 'FTA Decision 3 of 2024 — license issued in month ' + month + ' (existing entity at 1 March 2024).';
+      } else {
+        deadline = addMonths(licDate, 3);
+        basis = 'Post-1-March-2024 entity: 3 months from incorporation / license issuance.';
+      }
+    } else if (type === 'nonresident-pe') {
+      var pe = form.elements.peDate.value;
+      if (!pe) return;
+      deadline = addMonths(new Date(pe + 'T00:00:00'), 6);
+      basis = 'Non-resident with PE: 6 months from the date the PE existence is established.';
+    } else if (type === 'nonresident-nexus') {
+      var nx = form.elements.peDate.value;
+      if (!nx) return;
+      deadline = addMonths(new Date(nx + 'T00:00:00'), 3);
+      basis = 'Non-resident with nexus: 3 months from nexus established.';
+    } else if (type === 'natural') {
+      var yr = parseInt(form.elements.turnoverYear.value, 10);
+      if (!yr) return;
+      deadline = new Date(yr + 1, 2, 31);
+      basis = 'Natural person: register by 31 March of the year following the calendar year in which turnover first exceeded AED 1,000,000.';
+    }
+
+    if (!deadline) return;
+
+    var today = new Date();
+    var diff = daysBetween(deadline, today);
+
+    resultAmount.textContent = fmtDate(deadline);
+
+    resultList.innerHTML = '';
+    resultList.appendChild(row('Basis', basis));
+    if (diff >= 0) {
+      resultList.appendChild(row('Days remaining', diff.toString()));
+    } else {
+      resultList.appendChild(row('Days overdue', Math.abs(diff).toString()));
+    }
+
+    resultCallouts.innerHTML = '';
+    if (diff < 0) {
+      resultCallouts.appendChild(callout(
+        'Deadline passed ' + Math.abs(diff) + ' day(s) ago. Late CT registration carries a fixed AED 10,000 penalty (Cabinet Decision 75 of 2023). Register on EmaraTax immediately — every additional day does not increase the penalty, but it shrinks your window to file the first CT return on time (due 9 months after first tax-period end).', 'danger'
+      ));
+    } else if (diff <= 30) {
+      resultCallouts.appendChild(callout(
+        'Only ' + diff + ' day(s) until your registration deadline. Apply on EmaraTax now — TRN issuance can take up to 20 business days during peak periods.', 'danger'
+      ));
+    } else {
+      resultCallouts.appendChild(callout(
+        diff + ' day(s) until deadline. Recommend applying at least 30 days before — TRN issuance is not instant and EmaraTax has had backlogs around quarter-end.', 'success'
+      ));
+    }
+
+    resultBox.hidden = false;
+    if (resultEmpty) resultEmpty.hidden = true;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'tool_calculate', {
+        tool: 'ct_registration_deadline',
+        type: type,
+        status: diff < 0 ? 'overdue' : (diff <= 30 ? 'urgent' : 'on_track')
+      });
+    }
+  });
+})();
+</script>
