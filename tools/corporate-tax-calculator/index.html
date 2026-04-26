@@ -1,0 +1,261 @@
+---
+layout: default
+title: "UAE Corporate Tax Calculator (Free Zone & Mainland) 2026"
+description: "Free UAE corporate tax calculator. Estimate your 9% liability, Small Business Relief eligibility, and Free Zone QFZP scenarios in under a minute."
+permalink: /tools/corporate-tax-calculator/
+---
+
+{% include header.html header_theme='light' %}
+
+<div class="sb-tool" id="ct-calc">
+  <section class="sb-tool-hero">
+    <div class="sb-tool-hero-inner">
+      <span class="sb-tool-eyebrow">UAE Corporate Tax</span>
+      <h1>UAE Corporate Tax Calculator</h1>
+      <p>Estimate your federal corporate tax liability under the UAE CT regime. Covers mainland and free zone entities, Small Business Relief, and the Qualifying Free Zone Person (QFZP) 0% rate on qualifying income.</p>
+    </div>
+  </section>
+
+  <section class="sb-tool-section">
+    <div class="sb-tool-grid">
+      <div class="sb-tool-card">
+        <h2>Your numbers</h2>
+        <p class="sb-tool-card-sub">All figures in AED. The calculator runs locally in your browser — nothing is sent anywhere.</p>
+
+        <form id="ct-form" novalidate>
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Entity type</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Entity type">
+              <label class="sb-tool-radio">
+                <input type="radio" name="entity" value="mainland" checked>
+                <span>Mainland</span>
+              </label>
+              <label class="sb-tool-radio">
+                <input type="radio" name="entity" value="freezone-qfzp">
+                <span>Free Zone (QFZP)</span>
+              </label>
+              <label class="sb-tool-radio">
+                <input type="radio" name="entity" value="freezone-non-qfzp">
+                <span>Free Zone (non-QFZP)</span>
+              </label>
+            </div>
+            <span class="sb-tool-help">QFZP = Qualifying Free Zone Person — entitled to 0% on qualifying income if all FTA conditions are met.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="ct-revenue">Annual revenue</label>
+            <input type="number" inputmode="decimal" min="0" step="1000" id="ct-revenue" name="revenue" placeholder="e.g. 2,500,000" class="sb-tool-input" required>
+            <span class="sb-tool-help">Total revenue for the tax period across all activities.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="ct-expenses">Total deductible expenses</label>
+            <input type="number" inputmode="decimal" min="0" step="1000" id="ct-expenses" name="expenses" placeholder="e.g. 1,800,000" class="sb-tool-input" required>
+            <span class="sb-tool-help">Allowable business expenses under the CT law (excluding non-deductible items like fines, donations to non-approved bodies, 50% of entertainment).</span>
+          </div>
+
+          <div class="sb-tool-field" id="qfzp-split-wrap" hidden>
+            <label for="ct-qualifying-share">% of income that is "qualifying income"</label>
+            <input type="number" inputmode="decimal" min="0" max="100" step="1" id="ct-qualifying-share" name="qualifyingShare" value="100" class="sb-tool-input">
+            <span class="sb-tool-help">Income from qualifying activities or transactions with other free zone persons. Non-qualifying income is taxed at 9% even with QFZP status. Note: if non-qualifying income exceeds the de minimis threshold (AED 5M or 5% of total revenue, whichever is lower), QFZP status is lost for 5 years.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <label class="sb-tool-check">
+              <input type="checkbox" id="ct-sbr-elect" name="sbrElect">
+              <span>Elect Small Business Relief (if eligible)</span>
+            </label>
+            <span class="sb-tool-help">Available where revenue ≤ AED 3M for current and all prior tax periods. Available only for tax periods ending on or before 31 December 2026.</span>
+          </div>
+
+          <button type="submit" class="sb-tool-button">Calculate my tax</button>
+        </form>
+      </div>
+
+      <div class="sb-tool-card">
+        <h2>Your estimate</h2>
+        <p class="sb-tool-card-sub">Results appear here once you click <em>Calculate</em>.</p>
+
+        <div id="ct-result" class="sb-tool-result" hidden aria-live="polite">
+          <h3>Estimated corporate tax</h3>
+          <p class="sb-tool-result-amount" id="ct-result-amount">AED 0</p>
+          <ul class="sb-tool-result-list" id="ct-result-breakdown"></ul>
+          <div id="ct-result-callouts"></div>
+        </div>
+
+        <div id="ct-result-empty" class="sb-tool-callout">
+          Fill in your numbers on the left. We'll estimate your CT liability, flag Small Business Relief eligibility, and split qualifying vs non-qualifying income for QFZPs.
+        </div>
+      </div>
+    </div>
+
+    <p class="sb-tool-disclaimer">
+      This calculator is provided for general informational purposes only and does not constitute tax, legal, or professional advice. UAE Corporate Tax rules — including Small Business Relief, QFZP qualifying activities, transfer pricing, and group relief — depend on facts and circumstances specific to your business. The 15% Domestic Minimum Top-up Tax (DMTT) for in-scope multinational groups is not modelled here. Always obtain advice from a qualified tax professional before filing.
+    </p>
+  </section>
+
+  <section class="sb-tool-cta">
+    <div class="sb-tool-cta-inner">
+      <h2>Want a real CT plan, not an estimate?</h2>
+      <p>We handle UAE corporate tax registration, return preparation, transfer pricing, and Free Zone QFZP positioning for SMEs and groups across the Emirates. Book a free 30-minute call.</p>
+      <a href="/contact-us/" class="sb-tool-button">Talk to a CT advisor</a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('ct-form');
+  if (!form) return;
+
+  var qfzpWrap = document.getElementById('qfzp-split-wrap');
+  var resultBox = document.getElementById('ct-result');
+  var resultEmpty = document.getElementById('ct-result-empty');
+  var resultAmount = document.getElementById('ct-result-amount');
+  var resultList = document.getElementById('ct-result-breakdown');
+  var resultCallouts = document.getElementById('ct-result-callouts');
+
+  var SMALL_BIZ_REVENUE_CAP = 3000000;
+  var ZERO_BAND = 375000;
+  var CT_RATE = 0.09;
+
+  function fmt(n) {
+    if (!isFinite(n)) n = 0;
+    return 'AED ' + Math.round(n).toLocaleString('en-AE');
+  }
+
+  function getEntity() {
+    var el = form.querySelector('input[name="entity"]:checked');
+    return el ? el.value : 'mainland';
+  }
+
+  function syncEntityUI() {
+    qfzpWrap.hidden = getEntity() !== 'freezone-qfzp';
+  }
+
+  form.querySelectorAll('input[name="entity"]').forEach(function (el) {
+    el.addEventListener('change', syncEntityUI);
+  });
+  syncEntityUI();
+
+  function row(label, value) {
+    var li = document.createElement('li');
+    var l = document.createElement('span'); l.className = 'label'; l.textContent = label;
+    var v = document.createElement('span'); v.className = 'value'; v.textContent = value;
+    li.appendChild(l); li.appendChild(v);
+    return li;
+  }
+
+  function callout(text, kind) {
+    var div = document.createElement('div');
+    div.className = 'sb-tool-callout' + (kind ? ' sb-tool-callout--' + kind : '');
+    div.textContent = text;
+    return div;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var entity = getEntity();
+    var revenue = parseFloat(form.elements.revenue.value) || 0;
+    var expenses = parseFloat(form.elements.expenses.value) || 0;
+    var sbrElect = form.elements.sbrElect.checked;
+    var qualifyingShare = entity === 'freezone-qfzp'
+      ? Math.max(0, Math.min(100, parseFloat(form.elements.qualifyingShare.value) || 0)) / 100
+      : 0;
+
+    var taxableIncome = Math.max(0, revenue - expenses);
+    var tax = 0;
+    var explainer = [];
+    var callouts = [];
+
+    var sbrEligible = revenue <= SMALL_BIZ_REVENUE_CAP;
+
+    if (sbrElect && sbrEligible) {
+      tax = 0;
+      explainer.push(['Tax under Small Business Relief', fmt(0)]);
+      callouts.push({
+        kind: 'success',
+        text: 'You are eligible for Small Business Relief: revenue is below AED 3,000,000 and you have elected to apply it. Effective tax is 0% for this period (available for tax periods ending on or before 31 December 2026).'
+      });
+    } else if (entity === 'freezone-qfzp') {
+      var qualifyingIncome = taxableIncome * qualifyingShare;
+      var nonQualifyingIncome = taxableIncome - qualifyingIncome;
+      var nqTaxable = Math.max(0, nonQualifyingIncome - ZERO_BAND);
+      var nqTax = nqTaxable * CT_RATE;
+      tax = nqTax;
+
+      explainer.push(['Taxable income', fmt(taxableIncome)]);
+      explainer.push(['Qualifying income (0%)', fmt(qualifyingIncome)]);
+      explainer.push(['Non-qualifying income', fmt(nonQualifyingIncome)]);
+      explainer.push(['0% band applied to non-qualifying', fmt(Math.min(nonQualifyingIncome, ZERO_BAND))]);
+      explainer.push(['Non-qualifying income taxed at 9%', fmt(nqTaxable)]);
+      explainer.push(['Estimated tax', fmt(tax)]);
+
+      var deMinimisCap = Math.min(5000000, revenue * 0.05);
+      if (nonQualifyingIncome > deMinimisCap && nonQualifyingIncome > 0) {
+        callouts.push({
+          kind: 'danger',
+          text: 'Non-qualifying revenue may exceed the de minimis threshold (lower of AED 5M or 5% of total revenue). If so, QFZP status is lost and the entire taxable income is taxed at 9% for this period and the next four. Review your activity mix urgently.'
+        });
+      }
+    } else {
+      var nineRate = Math.max(0, taxableIncome - ZERO_BAND);
+      tax = nineRate * CT_RATE;
+
+      explainer.push(['Revenue', fmt(revenue)]);
+      explainer.push(['Deductible expenses', fmt(expenses)]);
+      explainer.push(['Taxable income', fmt(taxableIncome)]);
+      explainer.push(['Income at 0% (first AED 375,000)', fmt(Math.min(taxableIncome, ZERO_BAND))]);
+      explainer.push(['Income at 9%', fmt(nineRate)]);
+      explainer.push(['Estimated tax', fmt(tax)]);
+    }
+
+    if (sbrEligible && !sbrElect) {
+      callouts.push({
+        kind: '',
+        text: 'You appear to be eligible for Small Business Relief (revenue ≤ AED 3,000,000). Tick the box on the left to model the 0% election. The relief is only available for tax periods ending on or before 31 December 2026 — verify prior-period revenue and group rules before electing.'
+      });
+    }
+    if (!sbrEligible && sbrElect) {
+      callouts.push({
+        kind: 'danger',
+        text: 'Revenue exceeds AED 3,000,000, so Small Business Relief does not apply. Estimate has been computed using standard CT rules.'
+      });
+    }
+    if (entity === 'mainland' && taxableIncome > 0 && !sbrElect) {
+      callouts.push({
+        kind: '',
+        text: 'Mainland entities pay 9% on taxable income above AED 375,000. Make sure your expense figure reflects only items deductible under the CT law (e.g. 50% of entertainment, no fines, no non-approved donations).'
+      });
+    }
+    if (entity === 'freezone-non-qfzp' && taxableIncome > 0) {
+      callouts.push({
+        kind: '',
+        text: 'A free zone entity that does not meet QFZP conditions is taxed like a mainland entity (0% / 9%). It does not get the 0% rate on qualifying income. Review whether you can structure activities to qualify.'
+      });
+    }
+
+    var effectiveRate = taxableIncome > 0 ? (tax / taxableIncome) * 100 : 0;
+    explainer.push(['Effective tax rate', effectiveRate.toFixed(2) + '%']);
+
+    resultAmount.textContent = fmt(tax);
+    resultList.innerHTML = '';
+    explainer.forEach(function (r) { resultList.appendChild(row(r[0], r[1])); });
+    resultCallouts.innerHTML = '';
+    callouts.forEach(function (c) { resultCallouts.appendChild(callout(c.text, c.kind)); });
+
+    resultBox.hidden = false;
+    if (resultEmpty) resultEmpty.hidden = true;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'tool_calculate', {
+        tool: 'corporate_tax_calculator',
+        entity_type: entity,
+        sbr_elected: sbrElect,
+        revenue_band: revenue < 1e6 ? '<1M' : revenue < 3e6 ? '1-3M' : revenue < 1e7 ? '3-10M' : '10M+'
+      });
+    }
+  });
+})();
+</script>
