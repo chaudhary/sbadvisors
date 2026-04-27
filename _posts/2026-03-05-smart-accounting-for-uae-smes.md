@@ -86,7 +86,7 @@ For many SMEs, a full-time finance team is not yet affordable—or necessary. Ou
 - You want clear, timely reports for banks, investors, or partners
 - You need integrated support across **bookkeeping, VAT, corporate tax, and compliance**
 
-The right partner acts as your virtual finance department, helping you stay compliant while giving you better decision-making insights. For most growing SMEs, this is the moment to consider [outsourced accounting and tax support](/blogs/uae-outsourced-accounting-tax-support/), and to weigh whether [outsourced finance or a full-time CFO](/blogs/full-time-cfo-vs-outsourced-finance-uae/) makes more sense at your stage of growth.
+The right partner acts as your virtual finance department, helping you stay compliant while giving you better decision-making insights. For most growing SMEs, this is the moment to consider [outsourced accounting and tax support](/blogs/uae-outsourced-accounting-tax-support/), and to weigh whether [outsourced finance or a full-time CFO](/blogs/uae-full-time-cfo-vs-outsourced-finance/) makes more sense at your stage of growth.
 
 ## Frequently Asked Questions
 

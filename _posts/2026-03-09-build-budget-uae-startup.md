@@ -153,7 +153,7 @@ Yes. Even if Small Business Relief applies through 2026, you should model the 9%
 Yes. The P&L tells you whether you are profitable on paper; the cash flow tells you whether you can pay salaries next month. They are different and you need both.
 
 **When should I bring in outside finance support?**
-If you cannot maintain the model yourself or you are raising capital, [outsourced finance support](/blogs/full-time-cfo-vs-outsourced-finance-uae/) is usually cheaper than the cost of getting it wrong.
+If you cannot maintain the model yourself or you are raising capital, [outsourced finance support](/blogs/uae-full-time-cfo-vs-outsourced-finance/) is usually cheaper than the cost of getting it wrong.
 
 **How accurate do my revenue projections need to be?**
 They need to be defensible, not perfect. Bottom-up assumptions (clients × value × ramp curve) beat top-down market-share guesses every time.
