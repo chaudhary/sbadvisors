@@ -1,0 +1,253 @@
+---
+layout: default
+title: "UAE VAT Return Estimator & FTA Filing Deadline"
+description: "Free UAE VAT return estimator. Calculate net VAT payable, model reverse-charge imports, and see your FTA filing deadline with days remaining."
+permalink: /tools/vat-return-estimator/
+---
+
+{% include header.html header_theme='light' %}
+
+<div class="sb-tool" id="vat-calc">
+  <section class="sb-tool-hero">
+    <div class="sb-tool-hero-inner">
+      <span class="sb-tool-eyebrow">UAE VAT</span>
+      <h1>VAT Return Estimator &amp; Deadline Tracker</h1>
+      <p>Estimate your net VAT payable to (or refundable from) the FTA, model the reverse-charge mechanism on imports, and see exactly how many days remain before your VAT201 return is due.</p>
+    </div>
+  </section>
+
+  <section class="sb-tool-section">
+    <div class="sb-tool-grid">
+      <div class="sb-tool-card">
+        <h2>Period values</h2>
+        <p class="sb-tool-card-sub">Enter net (VAT-exclusive) values in AED for the tax period.</p>
+
+        <form id="vat-form" novalidate>
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Tax period</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Tax period frequency">
+              <label class="sb-tool-radio">
+                <input type="radio" name="freq" value="quarterly" checked>
+                <span>Quarterly</span>
+              </label>
+              <label class="sb-tool-radio">
+                <input type="radio" name="freq" value="monthly">
+                <span>Monthly</span>
+              </label>
+            </div>
+            <span class="sb-tool-help">Monthly returns are required where annual turnover exceeds AED 150 million; otherwise the FTA assigns a quarterly period.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="vat-period-end">Period end date</label>
+            <input type="date" id="vat-period-end" name="periodEnd" class="sb-tool-input" required>
+            <span class="sb-tool-help">Filing &amp; payment are due by the 28th day of the month following period end.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="vat-std-out">Standard-rated sales (5%)</label>
+            <input type="number" inputmode="decimal" min="0" step="100" id="vat-std-out" name="stdOut" placeholder="e.g. 800,000" class="sb-tool-input">
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="vat-zero-out">Zero-rated sales (0%)</label>
+            <input type="number" inputmode="decimal" min="0" step="100" id="vat-zero-out" name="zeroOut" placeholder="e.g. 100,000" class="sb-tool-input">
+            <span class="sb-tool-help">Exports outside GCC, qualifying healthcare/education, first sale of new residential within 3 years, etc.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="vat-exempt-out">Exempt sales</label>
+            <input type="number" inputmode="decimal" min="0" step="100" id="vat-exempt-out" name="exemptOut" placeholder="e.g. 50,000" class="sb-tool-input">
+            <span class="sb-tool-help">Residential rentals, certain financial services, bare land, local passenger transport. Exempt sales restrict input VAT recovery.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="vat-std-in">Standard-rated purchases (5%)</label>
+            <input type="number" inputmode="decimal" min="0" step="100" id="vat-std-in" name="stdIn" placeholder="e.g. 400,000" class="sb-tool-input">
+            <span class="sb-tool-help">Net of VAT. Only purchases used to make taxable supplies are recoverable.</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="vat-rcm">Reverse-charge imports (goods or services)</label>
+            <input type="number" inputmode="decimal" min="0" step="100" id="vat-rcm" name="rcm" placeholder="e.g. 50,000" class="sb-tool-input">
+            <span class="sb-tool-help">Imports from outside UAE — you self-account for VAT as both output and input. If fully recoverable, the entries net to zero.</span>
+          </div>
+
+          <button type="submit" class="sb-tool-button">Calculate VAT</button>
+        </form>
+      </div>
+
+      <div class="sb-tool-card">
+        <h2>Your VAT position</h2>
+        <p class="sb-tool-card-sub">Estimate appears below once you click <em>Calculate</em>.</p>
+
+        <div id="vat-result" class="sb-tool-result" hidden aria-live="polite">
+          <h3 id="vat-result-label">Net VAT payable to FTA</h3>
+          <p class="sb-tool-result-amount" id="vat-result-amount">AED 0</p>
+          <ul class="sb-tool-result-list" id="vat-result-breakdown"></ul>
+          <div id="vat-result-callouts"></div>
+        </div>
+
+        <div id="vat-result-empty" class="sb-tool-callout">
+          Fill in the form and we'll compute output VAT, recoverable input VAT (apportioned for exempt sales), reverse-charge entries, your net position, and the FTA filing deadline.
+        </div>
+      </div>
+    </div>
+
+    <p class="sb-tool-disclaimer">
+      For general guidance only. Real VAT returns require correct supply classification, partial exemption methods, capital asset scheme adjustments, bad debt relief, and verification of input VAT recoverability per Article 54-55 of the UAE VAT Law. Always reconcile to your accounting records before filing on EmaraTax.
+    </p>
+  </section>
+
+  <section class="sb-tool-cta">
+    <div class="sb-tool-cta-inner">
+      <h2>Want us to file it for you?</h2>
+      <p>We handle UAE VAT registration, quarterly returns, voluntary disclosures, and FTA audits for SMEs across all seven Emirates.</p>
+      <a href="/contact-us/" class="sb-tool-button">Talk to a VAT advisor</a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('vat-form');
+  if (!form) return;
+
+  var resultBox = document.getElementById('vat-result');
+  var resultEmpty = document.getElementById('vat-result-empty');
+  var resultAmount = document.getElementById('vat-result-amount');
+  var resultLabel = document.getElementById('vat-result-label');
+  var resultList = document.getElementById('vat-result-breakdown');
+  var resultCallouts = document.getElementById('vat-result-callouts');
+
+  var VAT_RATE = 0.05;
+
+  function fmt(n) {
+    if (!isFinite(n)) n = 0;
+    var sign = n < 0 ? '-' : '';
+    return sign + 'AED ' + Math.round(Math.abs(n)).toLocaleString('en-AE');
+  }
+
+  function num(name) { return parseFloat(form.elements[name].value) || 0; }
+
+  function row(label, value) {
+    var li = document.createElement('li');
+    var l = document.createElement('span'); l.className = 'label'; l.textContent = label;
+    var v = document.createElement('span'); v.className = 'value'; v.textContent = value;
+    li.appendChild(l); li.appendChild(v);
+    return li;
+  }
+
+  function callout(text, kind) {
+    var div = document.createElement('div');
+    div.className = 'sb-tool-callout' + (kind ? ' sb-tool-callout--' + kind : '');
+    div.textContent = text;
+    return div;
+  }
+
+  function deadlineFor(periodEnd) {
+    if (!periodEnd) return null;
+    var d = new Date(periodEnd + 'T00:00:00');
+    if (isNaN(d.getTime())) return null;
+    var deadline = new Date(d.getFullYear(), d.getMonth() + 1, 28);
+    var day = deadline.getDay();
+    if (day === 6) deadline.setDate(deadline.getDate() + 2);
+    else if (day === 0) deadline.setDate(deadline.getDate() + 1);
+    return deadline;
+  }
+
+  function daysBetween(a, b) {
+    var ms = 24 * 60 * 60 * 1000;
+    var aDay = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+    var bDay = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+    return Math.round((aDay - bDay) / ms);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var stdOut = num('stdOut');
+    var zeroOut = num('zeroOut');
+    var exemptOut = num('exemptOut');
+    var stdIn = num('stdIn');
+    var rcm = num('rcm');
+    var periodEnd = form.elements.periodEnd.value;
+
+    var totalSupplies = stdOut + zeroOut + exemptOut;
+    var taxableSupplies = stdOut + zeroOut;
+
+    var outputTaxStd = stdOut * VAT_RATE;
+    var outputTaxRcm = rcm * VAT_RATE;
+
+    var recoveryRatio = totalSupplies > 0 ? taxableSupplies / totalSupplies : 1;
+    var rawInputVat = stdIn * VAT_RATE;
+    var recoverableInputVat = rawInputVat * recoveryRatio;
+    var recoverableRcmInput = outputTaxRcm * recoveryRatio;
+
+    var totalOutputVat = outputTaxStd + outputTaxRcm;
+    var totalInputVat = recoverableInputVat + recoverableRcmInput;
+    var netVat = totalOutputVat - totalInputVat;
+
+    resultLabel.textContent = netVat >= 0 ? 'Net VAT payable to FTA' : 'Net VAT refundable from FTA';
+    resultAmount.textContent = fmt(Math.abs(netVat));
+
+    resultList.innerHTML = '';
+    resultList.appendChild(row('Output VAT — standard sales', fmt(outputTaxStd)));
+    if (rcm > 0) resultList.appendChild(row('Output VAT — reverse charge', fmt(outputTaxRcm)));
+    resultList.appendChild(row('Input VAT on purchases (gross)', fmt(rawInputVat)));
+    if (exemptOut > 0) resultList.appendChild(row('Recovery ratio (taxable / total supplies)', (recoveryRatio * 100).toFixed(1) + '%'));
+    resultList.appendChild(row('Recoverable input VAT', fmt(recoverableInputVat)));
+    if (rcm > 0) resultList.appendChild(row('Recoverable reverse-charge input VAT', fmt(recoverableRcmInput)));
+    resultList.appendChild(row('Total output VAT', fmt(totalOutputVat)));
+    resultList.appendChild(row('Total recoverable input VAT', fmt(totalInputVat)));
+
+    resultCallouts.innerHTML = '';
+
+    if (exemptOut > 0) {
+      resultCallouts.appendChild(callout(
+        'You have exempt supplies, so input VAT has been apportioned at ' + (recoveryRatio * 100).toFixed(1) + '%. The simple turnover-based method is shown here; the FTA may require a different special method if it does not give a fair recovery, or where annual recovery exceeds AED 250k of input tax.'
+      ));
+    }
+
+    if (rcm > 0) {
+      resultCallouts.appendChild(callout(
+        'Reverse charge: AED ' + Math.round(outputTaxRcm).toLocaleString('en-AE') + ' has been added to output VAT and the same amount (× recovery ratio) added to input VAT. Net cash impact is zero only when fully recoverable.', 'success'
+      ));
+    }
+
+    var deadline = deadlineFor(periodEnd);
+    if (deadline) {
+      var today = new Date();
+      var days = daysBetween(deadline, today);
+      var dlStr = deadline.toLocaleDateString('en-AE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      resultList.appendChild(row('Filing & payment deadline', dlStr));
+
+      if (days < 0) {
+        resultCallouts.appendChild(callout(
+          'Deadline passed ' + Math.abs(days) + ' day(s) ago. Late filing carries an AED 1,000 penalty (first offence) and AED 2,000 (within 24 months). Late payment penalties accrue from day 1 (2%) and day 7+ (4% monthly, capped at 300%). File and pay immediately.', 'danger'
+        ));
+      } else if (days <= 7) {
+        resultCallouts.appendChild(callout(
+          'Only ' + days + ' day(s) until your VAT201 is due. File on EmaraTax and ensure cleared funds reach the FTA before close of business on the deadline.', 'danger'
+        ));
+      } else {
+        resultCallouts.appendChild(callout(
+          days + ' day(s) until filing & payment are due.', 'success'
+        ));
+      }
+    }
+
+    resultBox.hidden = false;
+    if (resultEmpty) resultEmpty.hidden = true;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'tool_calculate', {
+        tool: 'vat_return_estimator',
+        position: netVat >= 0 ? 'payable' : 'refund',
+        has_exempt: exemptOut > 0,
+        has_rcm: rcm > 0
+      });
+    }
+  });
+})();
+</script>
