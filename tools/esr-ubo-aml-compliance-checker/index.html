@@ -1,0 +1,260 @@
+---
+layout: default
+title: "UAE ESR, UBO & AML Compliance Checker"
+description: "Free UAE compliance checker. Tells you which filings apply to your entity: Economic Substance Regulations (ESR), Ultimate Beneficial Owner (UBO), and goAML / DNFBP registration."
+permalink: /tools/esr-ubo-aml-compliance-checker/
+---
+
+{% include header.html header_theme='light' %}
+
+<div class="sb-tool" id="comp-check">
+  <section class="sb-tool-hero">
+    <div class="sb-tool-hero-inner">
+      <span class="sb-tool-eyebrow">Compliance</span>
+      <h1>ESR, UBO &amp; AML Compliance Checker</h1>
+      <p>Five questions to flag which UAE compliance filings apply to your business: legacy Economic Substance Regulations (ESR), the Ultimate Beneficial Owner (UBO) register, and goAML / DNFBP registration for Anti-Money-Laundering.</p>
+    </div>
+  </section>
+
+  <section class="sb-tool-section">
+    <div class="sb-tool-grid">
+      <div class="sb-tool-card">
+        <h2>Tell us about your entity</h2>
+        <p class="sb-tool-card-sub">No personal data leaves your browser.</p>
+
+        <form id="comp-form" novalidate>
+          <div class="sb-tool-field">
+            <label for="cc-entity">Entity type</label>
+            <select id="cc-entity" name="entity" class="sb-tool-select">
+              <option value="mainland-llc" selected>Mainland LLC</option>
+              <option value="mainland-sole">Mainland Sole Establishment</option>
+              <option value="freezone">Free Zone (RAKEZ, IFZA, DMCC, JAFZA, etc.)</option>
+              <option value="rak-icc">RAK ICC (offshore)</option>
+              <option value="difc">DIFC entity</option>
+              <option value="adgm">ADGM entity</option>
+              <option value="branch">Branch of foreign company</option>
+            </select>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="cc-activity">Primary activity</label>
+            <select id="cc-activity" name="activity" class="sb-tool-select">
+              <optgroup label="ESR Relevant Activities (legacy)">
+                <option value="banking">Banking</option>
+                <option value="insurance">Insurance</option>
+                <option value="fund-mgmt">Investment fund management</option>
+                <option value="lease-finance">Lease-finance</option>
+                <option value="headquarters">Headquarters</option>
+                <option value="shipping">Shipping</option>
+                <option value="holding">Holding company</option>
+                <option value="ip">Intellectual Property</option>
+                <option value="dist-service">Distribution &amp; service centre</option>
+              </optgroup>
+              <optgroup label="DNFBP (AML-regulated)">
+                <option value="real-estate">Real estate brokerage / agency</option>
+                <option value="precious-metals">Dealer in precious metals / stones</option>
+                <option value="auditor">Auditor / accountant</option>
+                <option value="tcsp">Trust &amp; Company Service Provider</option>
+                <option value="lawyer">Lawyer / notary (qualifying transactions)</option>
+              </optgroup>
+              <optgroup label="Other">
+                <option value="trading" selected>Trading / E-commerce</option>
+                <option value="services">Professional services</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="other">Other</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="sb-tool-field">
+            <label for="cc-period">Most recent financial year-end</label>
+            <input type="date" id="cc-period" name="periodEnd" class="sb-tool-input">
+            <span class="sb-tool-help">Used to determine whether ESR notification &amp; report were due (ESR applies to periods ending on or before 31 December 2022).</span>
+          </div>
+
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Are you owned (≥25%) by a UAE government body or a listed company?</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="Government / listed ownership">
+              <label class="sb-tool-radio"><input type="radio" name="govOwned" value="no" checked><span>No</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="govOwned" value="yes"><span>Yes</span></label>
+            </div>
+          </div>
+
+          <div class="sb-tool-field">
+            <span class="sb-tool-label">Have you registered for UAE Corporate Tax with the FTA?</span>
+            <div class="sb-tool-radio-group" role="radiogroup" aria-label="CT registration">
+              <label class="sb-tool-radio"><input type="radio" name="ctReg" value="yes" checked><span>Yes</span></label>
+              <label class="sb-tool-radio"><input type="radio" name="ctReg" value="no"><span>No / Not sure</span></label>
+            </div>
+          </div>
+
+          <button type="submit" class="sb-tool-button">Check my filings</button>
+        </form>
+      </div>
+
+      <div class="sb-tool-card">
+        <h2>Your compliance map</h2>
+        <p class="sb-tool-card-sub">A traffic-light view of which filings apply.</p>
+
+        <div id="comp-result" hidden aria-live="polite">
+          <ul class="sb-tool-result-list" id="comp-list"></ul>
+          <div id="comp-callouts"></div>
+        </div>
+
+        <div id="comp-result-empty" class="sb-tool-callout">
+          Answer the five questions and we'll tell you which of the four major UAE filings (Corporate Tax, ESR, UBO, AML/goAML) apply to your entity.
+        </div>
+      </div>
+    </div>
+
+    <p class="sb-tool-disclaimer">
+      Indicative guidance only. ESR was effectively suspended for tax periods starting on or after 1 January 2023, but legacy filings, penalties, and audit risk remain. UBO rules differ for DIFC and ADGM (own regimes) and exempt government / listed-company-owned entities. AML/goAML obligations on DNFBPs include suspicious transaction reporting (STR), sanction screening, and full client due diligence — not just registration. Always confirm with a qualified compliance advisor.
+    </p>
+  </section>
+
+  <section class="sb-tool-cta">
+    <div class="sb-tool-cta-inner">
+      <h2>Need help with the filings?</h2>
+      <p>We handle UAE corporate tax registration &amp; returns, UBO declarations, ESR notifications &amp; reports, and goAML registration plus ongoing AML compliance for DNFBPs.</p>
+      <a href="/contact-us/" class="sb-tool-button">Talk to a compliance advisor</a>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('comp-form');
+  if (!form) return;
+
+  var resultBox = document.getElementById('comp-result');
+  var resultEmpty = document.getElementById('comp-result-empty');
+  var resultList = document.getElementById('comp-list');
+  var resultCallouts = document.getElementById('comp-callouts');
+
+  var ESR_ACTIVITIES = ['banking','insurance','fund-mgmt','lease-finance','headquarters','shipping','holding','ip','dist-service'];
+  var DNFBP_ACTIVITIES = ['real-estate','precious-metals','auditor','tcsp','lawyer'];
+
+  function statusRow(name, status, detail) {
+    var li = document.createElement('li');
+    var l = document.createElement('span'); l.className = 'label';
+    var v = document.createElement('span'); v.className = 'value';
+
+    var icon = status === 'required' ? '🔴' : status === 'maybe' ? '🟡' : status === 'na' ? '⚪' : '🟢';
+    var word = status === 'required' ? 'Required' : status === 'maybe' ? 'Likely' : status === 'na' ? 'N/A' : 'Not required';
+    l.textContent = icon + '  ' + name;
+    v.textContent = word;
+    v.style.color = status === 'required' ? '#b3261e' : status === 'maybe' ? '#a36400' : '#1CA5AA';
+    li.appendChild(l); li.appendChild(v);
+
+    if (detail) {
+      var sub = document.createElement('li');
+      sub.style.borderTop = 'none';
+      sub.style.paddingTop = '2px';
+      sub.style.fontSize = '13px';
+      var s = document.createElement('span'); s.className = 'label'; s.style.fontStyle = 'italic'; s.textContent = detail;
+      sub.appendChild(s);
+      return [li, sub];
+    }
+    return [li];
+  }
+
+  function callout(text, kind) {
+    var div = document.createElement('div');
+    div.className = 'sb-tool-callout' + (kind ? ' sb-tool-callout--' + kind : '');
+    div.textContent = text;
+    return div;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var entity = form.elements.entity.value;
+    var activity = form.elements.activity.value;
+    var periodEnd = form.elements.periodEnd.value;
+    var govOwned = form.querySelector('input[name="govOwned"]:checked').value === 'yes';
+    var ctReg = form.querySelector('input[name="ctReg"]:checked').value === 'yes';
+
+    // Corporate Tax
+    var ctStatus = ctReg ? 'ok' : 'required';
+    var ctDetail = ctReg
+      ? 'Already registered. Make sure to file your CT return within 9 months of period end.'
+      : 'All UAE entities (including most free zones) must register for CT with the FTA. Penalties of AED 10,000 apply for late registration.';
+
+    // ESR
+    var esrStatus, esrDetail;
+    var periodEndDate = periodEnd ? new Date(periodEnd + 'T00:00:00') : null;
+    var esrCutoff = new Date('2023-01-01T00:00:00');
+    var inEsrWindow = periodEndDate && periodEndDate < esrCutoff;
+    if (entity === 'difc' || entity === 'adgm') {
+      esrStatus = 'na'; esrDetail = entity.toUpperCase() + ' entities are within UAE ESR scope on the same activity test, but ' + entity.toUpperCase() + ' has its own substance regime layered on top. Check both.';
+    } else if (ESR_ACTIVITIES.indexOf(activity) !== -1 && inEsrWindow) {
+      esrStatus = 'required';
+      esrDetail = 'You carried on a Relevant Activity (' + activity + ') for a period ending before 1 Jan 2023. Notification (within 6 months of period end) and full ESR report (within 12 months) were due. Late filing penalty AED 20,000; non-filing of report AED 50,000+.';
+    } else if (ESR_ACTIVITIES.indexOf(activity) !== -1 && !inEsrWindow) {
+      esrStatus = 'ok';
+      esrDetail = 'ESR is effectively suspended for periods starting on or after 1 Jan 2023, replaced by the CT regime. No new ESR filings are required, but check legacy periods.';
+    } else {
+      esrStatus = 'ok';
+      esrDetail = 'Your activity is not on the ESR Relevant Activities list — no ESR filings required.';
+    }
+
+    // UBO
+    var uboStatus, uboDetail;
+    if (entity === 'difc' || entity === 'adgm') {
+      uboStatus = 'na';
+      uboDetail = entity.toUpperCase() + ' has its own beneficial-ownership regime — federal Cabinet Resolution 58/2020 does not apply. File the equivalent disclosure with your registrar.';
+    } else if (govOwned) {
+      uboStatus = 'ok';
+      uboDetail = 'Government-owned and listed-company-owned entities (≥25%) are exempt from the federal UBO register requirements.';
+    } else {
+      uboStatus = 'required';
+      uboDetail = 'Maintain a real beneficial owner register, partner / shareholder register, and nominee director register, and submit UBO data to your licensing authority. Penalties for non-compliance start at AED 50,000.';
+    }
+
+    // AML / goAML
+    var amlStatus, amlDetail;
+    if (DNFBP_ACTIVITIES.indexOf(activity) !== -1) {
+      amlStatus = 'required';
+      amlDetail = 'Your activity is a Designated Non-Financial Business or Profession (DNFBP). Register on goAML, complete the annual MoE compliance survey, run sanction screening on every customer, and file Suspicious Transaction Reports (STRs) where applicable. Non-registration penalties up to AED 1,000,000.';
+    } else if (entity === 'difc' || entity === 'adgm') {
+      amlStatus = 'maybe';
+      amlDetail = 'Financial activities in DIFC / ADGM are regulated by DFSA / FSRA respectively, with their own AML rulebooks. Non-financial entities still fall under federal DNFBP rules if applicable.';
+    } else {
+      amlStatus = 'ok';
+      amlDetail = 'Your activity is not on the DNFBP list. AML/goAML registration is not required, but customer due diligence and sanction screening remain best practice.';
+    }
+
+    resultList.innerHTML = '';
+    statusRow('UAE Corporate Tax registration', ctStatus, ctDetail).forEach(function (n) { resultList.appendChild(n); });
+    statusRow('Economic Substance Regulations (ESR)', esrStatus, esrDetail).forEach(function (n) { resultList.appendChild(n); });
+    statusRow('Ultimate Beneficial Owner (UBO) register', uboStatus, uboDetail).forEach(function (n) { resultList.appendChild(n); });
+    statusRow('AML / goAML (DNFBP)', amlStatus, amlDetail).forEach(function (n) { resultList.appendChild(n); });
+
+    resultCallouts.innerHTML = '';
+
+    var openItems = [];
+    if (ctStatus === 'required') openItems.push('CT registration');
+    if (esrStatus === 'required') openItems.push('legacy ESR filings');
+    if (uboStatus === 'required') openItems.push('UBO register');
+    if (amlStatus === 'required') openItems.push('goAML registration');
+
+    if (openItems.length === 0) {
+      resultCallouts.appendChild(callout('No major federal filings appear outstanding based on your answers. Keep your CT return cycle, UBO updates on changes, and (if DIFC/ADGM) the local regulator-specific filings in good standing.', 'success'));
+    } else {
+      resultCallouts.appendChild(callout('Outstanding action items: ' + openItems.join(', ') + '. Combined late-filing exposure can exceed AED 100,000. Treat this as urgent.', 'danger'));
+    }
+
+    resultBox.hidden = false;
+    if (resultEmpty) resultEmpty.hidden = true;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'tool_calculate', {
+        tool: 'compliance_checker',
+        entity: entity,
+        activity: activity,
+        ct: ctStatus, esr: esrStatus, ubo: uboStatus, aml: amlStatus
+      });
+    }
+  });
+})();
+</script>
