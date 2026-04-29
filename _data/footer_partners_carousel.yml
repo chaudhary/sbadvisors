@@ -1,9 +1,9 @@
 # Footer "Who we work with" logo carousel – single source of truth; rendered twice for seamless loop
 - src: /assets/img/raklogo.jpg
-  alt: ""
+  alt: "RAKEZ — Ras Al Khaimah Economic Zone"
 - src: /assets/img/l2_150x150.png
-  alt: ""
+  alt: "UAE Federal Tax Authority"
 - src: /assets/img/l3_150x150.png
-  alt: ""
+  alt: "RAK Business Group"
 - src: /assets/img/l4_150x150.png
-  alt: ""
+  alt: "RAK Free Trade Zone"

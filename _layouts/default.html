@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="max-image-preview:large" />
+    {%- comment -%} Strip " - {site.title}" / " | {site.title}" suffix so brand isn't duplicated {%- endcomment -%}
+    {%- assign clean_title = page.title | default: site.title -%}
+    {%- assign suffix_dash = ' - ' | append: site.title -%}
+    {%- assign suffix_pipe = ' | ' | append: site.title -%}
+    {%- assign clean_title = clean_title | replace: suffix_dash, '' | replace: suffix_pipe, '' -%}
     <title>
-      {% if page.url == '/' or page.url == '' %}{{ site.title }}{% elsif page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}
+      {% if page.url == '/' or page.url == '' %}{{ site.title }}{% elsif page.title %}{{ clean_title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}
     </title>
     {%- if page.description or site.description -%}
     <meta
@@ -96,11 +101,6 @@
     }
     </script>
     {%- endif %}
-    {%- comment -%} Strip " - {site.title}" / " | {site.title}" suffix for clean breadcrumb + Service name {%- endcomment -%}
-    {%- assign clean_title = page.title | default: site.title -%}
-    {%- assign suffix_dash = ' - ' | append: site.title -%}
-    {%- assign suffix_pipe = ' | ' | append: site.title -%}
-    {%- assign clean_title = clean_title | replace: suffix_dash, '' | replace: suffix_pipe, '' -%}
     {%- unless page.url == '/' or page.url == '' %}
     {%- assign crumb_title = clean_title -%}
     <script type="application/ld+json">
