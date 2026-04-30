@@ -15,7 +15,17 @@ layout: default
             </p>
             <h1 class="post-title">{{ page.title }}</h1>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-              <p class="post-meta" style="margin: 0;">{{ page.date | date: "%-d %B %Y" }}</p>
+              <p class="post-meta" style="margin: 0;">
+                <time datetime="{{ page.date | date_to_xmlschema }}">Published {{ page.date | date: "%-d %B %Y" }}</time>
+                {% if page.last_modified_at %}
+                  {% assign published_ymd = page.date | date: "%Y-%m-%d" %}
+                  {% assign modified_ymd = page.last_modified_at | date: "%Y-%m-%d" %}
+                  {% if modified_ymd != published_ymd %}
+                  <span class="post-meta-sep" aria-hidden="true">·</span>
+                  <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">Updated {{ page.last_modified_at | date: "%-d %B %Y" }}</time>
+                  {% endif %}
+                {% endif %}
+              </p>
               <a href="https://booknow.sbadvisors.ae/" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #1CA5AA; color: #fff; padding: 8px 16px; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 0.95rem; transition: background-color 0.3s ease;">Schedule an Appointment</a>
             </div>
           </header>
