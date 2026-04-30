@@ -44,6 +44,10 @@ sass:
 plugins:
   - jekyll-assets
   - jekyll-sitemap
+  - jekyll-paginate
+
+paginate: 10
+paginate_path: "/blogs/page:num/"
 
 assets:
   sources:
