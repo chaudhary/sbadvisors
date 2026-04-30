@@ -7,7 +7,9 @@ baseurl: ""
 
 # SEO
 locale: "en_AE"
-og_image: "/assets/img/sbawhite.svg"
+og_image: "/assets/img/og-image.jpg"
+og_image_width: 1200
+og_image_height: 630
 
 theme: minima
 

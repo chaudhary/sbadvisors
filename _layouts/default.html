@@ -29,11 +29,28 @@
     <meta property="og:site_name" content="{{ site.title }}" />
     <meta property="og:locale" content="{{ site.locale | default: 'en_AE' }}" />
     {%- assign og_img = page.image | default: site.og_image -%}
-    {%- if og_img -%}<meta property="og:image" content="{{ site.url }}{{ site.baseurl }}{{ og_img }}" />{% endif %}
-    <meta name="twitter:card" content="{% if site.og_image %}summary_large_image{% else %}summary{% endif %}" />
+    {%- if og_img -%}
+    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}{{ og_img }}" />
+    {%- unless page.image -%}
+    {%- if site.og_image_width %}<meta property="og:image:width" content="{{ site.og_image_width }}" />{% endif %}
+    {%- if site.og_image_height %}<meta property="og:image:height" content="{{ site.og_image_height }}" />{% endif %}
+    {%- endunless -%}
+    {%- endif %}
+    <meta name="twitter:card" content="{% if og_img %}summary_large_image{% else %}summary{% endif %}" />
     <meta name="twitter:title" content="{{ og_title | escape }}" />
     <meta name="twitter:description" content="{{ page.description | default: site.description | escape }}" />
     {%- if og_img -%}<meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}{{ og_img }}" />{% endif %}
+    {%- if page.layout == 'post' %}
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
+    <meta property="article:modified_time" content="{{ page.last_modified_at | default: page.date | date_to_xmlschema }}" />
+    <meta property="article:author" content="{{ site.title }}" />
+    {%- if page.categories %}{% for cat in page.categories %}<meta property="article:section" content="{{ cat }}" />{% endfor %}{% endif %}
+    {%- if page.tags %}{% for tag in page.tags %}<meta property="article:tag" content="{{ tag }}" />{% endfor %}{% endif %}
+    <meta name="author" content="{{ site.title }}" />
+    {%- endif %}
+    <meta name="theme-color" content="#4e4e4e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" href="/assets/img/cropped_favicon_32x32.png" sizes="32x32" />
     <link rel="icon" href="/assets/img/cropped_favicon_192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/assets/img/cropped_favicon_180x180.png" />
@@ -65,6 +82,7 @@
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "207A, Business Center 4, Island St, Al Nakheel",
         "addressLocality": "Ras Al Khaimah",
         "addressRegion": "Ras Al Khaimah",
         "addressCountry": "AE"
@@ -143,7 +161,7 @@
         }
       }
       {%- if page.image %}, "image": "{{ site.url }}{{ site.baseurl }}{{ page.image }}"{% endif %}
-      {%- if page.tags %}, "keywords": {{ page.tags | join: ', ' | jsonify }}{% endif %}
+      {%- if page.tags %}, "keywords": {{ page.tags | jsonify }}{% endif %}
     }
     </script>
     {%- endif %}
