@@ -31,6 +31,7 @@
     {%- assign og_img = page.image | default: site.og_image -%}
     {%- if og_img -%}
     <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}{{ og_img }}" />
+    <meta property="og:image:alt" content="{{ page.image_alt | default: page.title | default: site.title | escape }}" />
     {%- unless page.image -%}
     {%- if site.og_image_width %}<meta property="og:image:width" content="{{ site.og_image_width }}" />{% endif %}
     {%- if site.og_image_height %}<meta property="og:image:height" content="{{ site.og_image_height }}" />{% endif %}
@@ -199,7 +200,10 @@
   </head>
 
   <body>
-    {{ content }}
+    <a class="skip-to-main" href="#content">Skip to main content</a>
+    <div id="content">
+      {{ content }}
+    </div>
     {% include footer.html %}
   </body>
 </html>

@@ -32,7 +32,7 @@ layout: default
 
           {% if page.image %}
           <div class="post-image" style="margin: 1.5rem 0; border-radius: 8px; overflow: hidden;">
-            <img src="{{ page.image | replace: '.jpg', '-960w.jpg' | replace: '.png', '-960w.png' | relative_url }}" alt="{{ page.title | escape }}" loading="lazy" style="width: 100%; height: auto; display: block;" />
+            <img src="{{ page.image | replace: '.jpg', '-960w.jpg' | replace: '.png', '-960w.png' | relative_url }}" alt="{{ page.title | escape }}" width="960" height="640" fetchpriority="high" decoding="async" style="width: 100%; height: auto; display: block;" />
           </div>
           {% endif %}
 
@@ -93,7 +93,7 @@ layout: default
                   <a href="{{ p.url | relative_url }}" class="post-related-link">
                     {% if p.image %}
                     <span class="post-related-thumb">
-                      <img src="{{ p.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ p.title | escape }}" />
+                      <img src="{{ p.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ p.title | escape }}" width="320" height="180" loading="lazy" decoding="async" />
                     </span>
                     {% endif %}
                     <span class="post-related-text">{{ p.title }}</span>
