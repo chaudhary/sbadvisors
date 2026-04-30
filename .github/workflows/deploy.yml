@@ -56,7 +56,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     env:
       INDEXNOW_HOST: www.sbadvisors.ae
-      INDEXNOW_KEY: 327be0f14629ef982e0b68bd86322c25
+      INDEXNOW_KEY: 25885c33c89143dea41341ca7a09f0c2
     steps:
       - name: Fetch sitemap and submit URLs
         run: |
