@@ -8,12 +8,12 @@ description: "Insights on accounting, tax, financial planning, and business comp
 	{% include header.html %}
 
   <div class="wrapper" style="max-width: 1200px; margin: 0 auto;">
-    <h1>All Articles</h1>
+    <h1>All Articles{% if paginator.page > 1 %} <span class="post-list-page-tag">— Page {{ paginator.page }} of {{ paginator.total_pages }}</span>{% endif %}</h1>
 
     <p>Insights on accounting, tax support, financial planning, and business compliance in the UAE.</p>
 
     <ul class="post-list" style="list-style: none; padding: 0;">
-      {% for post in site.posts %}
+      {% for post in paginator.posts %}
         <li style="display: flex; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #eee; align-items: flex-start;">
           {% if post.image %}
           <a href="{{ post.url | relative_url }}" style="flex-shrink: 0; width: 200px;">
@@ -36,6 +36,34 @@ description: "Insights on accounting, tax, financial planning, and business comp
         </li>
       {% endfor %}
     </ul>
+
+    {% if paginator.total_pages > 1 %}
+    <nav class="post-pagination" aria-label="Blog pagination">
+      <ul class="post-pagination-list">
+        {% if paginator.previous_page %}
+        <li><a class="post-pagination-link post-pagination-prev" href="{{ paginator.previous_page_path | relative_url }}" rel="prev">← Previous</a></li>
+        {% else %}
+        <li><span class="post-pagination-link post-pagination-disabled" aria-disabled="true">← Previous</span></li>
+        {% endif %}
+
+        {% for p in (1..paginator.total_pages) %}
+          {% if p == paginator.page %}
+          <li><span class="post-pagination-link post-pagination-current" aria-current="page">{{ p }}</span></li>
+          {% elsif p == 1 %}
+          <li><a class="post-pagination-link" href="{{ '/blogs/' | relative_url }}">{{ p }}</a></li>
+          {% else %}
+          <li><a class="post-pagination-link" href="{{ site.paginate_path | replace: ':num', p | relative_url }}">{{ p }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if paginator.next_page %}
+        <li><a class="post-pagination-link post-pagination-next" href="{{ paginator.next_page_path | relative_url }}" rel="next">Next →</a></li>
+        {% else %}
+        <li><span class="post-pagination-link post-pagination-disabled" aria-disabled="true">Next →</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
   </div>
 </main>
 
