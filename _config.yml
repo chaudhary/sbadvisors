@@ -45,6 +45,7 @@ plugins:
   - jekyll-assets
   - jekyll-sitemap
   - jekyll-paginate
+  - jekyll-redirect-from
 
 paginate: 10
 paginate_path: "/blogs/page:num/"

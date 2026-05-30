@@ -9,8 +9,10 @@
     {%- assign suffix_dash = ' - ' | append: site.title -%}
     {%- assign suffix_pipe = ' | ' | append: site.title -%}
     {%- assign clean_title = clean_title | replace: suffix_dash, '' | replace: suffix_pipe, '' -%}
+    {%- assign paginator_suffix = '' -%}
+    {%- if paginator and paginator.page > 1 -%}{%- assign paginator_suffix = paginator.page | prepend: ' – Page ' | append: ' of ' | append: paginator.total_pages -%}{%- endif -%}
     <title>
-      {% if page.url == '/' or page.url == '' %}{{ site.title }}{% elsif page.title %}{{ clean_title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}
+      {% if page.url == '/' or page.url == '' %}{{ page.title | default: site.title }}{% elsif page.title %}{{ clean_title }}{{ paginator_suffix }} | {{ site.title }}{% else %}{{ site.title }}{{ paginator_suffix }}{% endif %}
     </title>
     {%- if page.description or site.description -%}
     <meta
@@ -25,7 +27,6 @@
     {%- if paginator.next_page %}<link rel="next" href="{{ paginator.next_page_path | absolute_url }}" />{% endif %}
     {%- endif %}
     {%- assign og_title = page.title | default: site.title -%}
-    {%- if page.url == '/' or page.url == '' -%}{% assign og_title = site.title %}{% endif -%}
     <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
     <meta property="og:title" content="{{ og_title | escape }}" />
     <meta property="og:description" content="{{ page.description | default: site.description | escape }}" />

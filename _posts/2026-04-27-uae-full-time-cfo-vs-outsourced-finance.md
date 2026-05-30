@@ -8,6 +8,8 @@ categories: blogs
 author: Success Business Advisors
 tags: ["CFO Services", "Outsourced Accounting", "UAE Business", "Financial Planning", "SME"]
 image: "/assets/img/blog/blog-full-time-cfo-vs-outsourced-finance-uae.png"
+redirect_from:
+  - /blogs/full-time-cfo-vs-outsourced-finance-uae/
 ---
 
 A full-time CFO in the UAE costs AED 600,000 to 1.4 million a year in fully loaded employment cost, and that is before the accountants, payroll administrators, and controller they will ask you to hire underneath them. That math works above a certain scale. Below it, the seat drains more value than it creates, and the business ends up paying senior CFO salary for work a senior accountant could have done on a fraction of the cost.
