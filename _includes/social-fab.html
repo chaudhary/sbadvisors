@@ -1,6 +1,15 @@
 {%- comment -%} Floating contact button — channels defined in _data/social_fab.yml {%- endcomment -%}
 <div class="sb-fab" id="sb-fab" data-open="false">
   <ul class="sb-fab-channels" id="sb-fab-channels" role="list">
+    <li class="sb-fab-channel-item">
+      <button type="button" class="sb-fab-channel sb-fab-channel--chat" id="sb-fab-chat"
+        style="--sb-fab-channel-color: #1CA5AA;"
+        aria-label="Chat with our assistant" data-tooltip="Chat with us" tabindex="-1">
+        <svg class="sb-fab-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+          <path d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z"/>
+        </svg>
+      </button>
+    </li>
     {%- for channel in site.data.social_fab -%}
     <li class="sb-fab-channel-item">
       <a class="sb-fab-channel" href="{{ channel.url }}"

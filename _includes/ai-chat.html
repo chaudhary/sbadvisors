@@ -37,11 +37,6 @@
       Chat with us on WhatsApp
     </a>
   </div>
-
-  <button type="button" class="sb-chat-launcher" id="sb-chat-launcher" aria-expanded="false" aria-controls="sb-chat-panel" aria-label="Open chat with SBA">
-    <svg class="sb-chat-launcher-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z"/></svg>
-    <span class="sb-chat-launcher-label">Need help?</span>
-  </button>
 </div>
 
 {% raw %}
@@ -56,7 +51,8 @@
   };
 
   var root = document.getElementById('sb-chat');
-  var launcher = document.getElementById('sb-chat-launcher');
+  var fab = document.getElementById('sb-fab');                 // right-side tray
+  var fabChat = document.getElementById('sb-fab-chat');        // "Chat with us" item
   var closeBtn = document.getElementById('sb-chat-close');
   var panel = document.getElementById('sb-chat-panel');
   var log = document.getElementById('sb-chat-log');
@@ -64,7 +60,7 @@
   var form = document.getElementById('sb-chat-form');
   var input = document.getElementById('sb-chat-text');
   var waLink = document.getElementById('sb-chat-wa');
-  if (!root || !launcher) return;
+  if (!root || !fabChat) return;
 
   var history = [];   // [{role:'user'|'model', text}]
   var started = false;
@@ -116,8 +112,18 @@
 
   function setOpen(open) {
     root.setAttribute('data-open', open ? 'true' : 'false');
-    launcher.setAttribute('aria-expanded', open ? 'true' : 'false');
     panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    fabChat.setAttribute('aria-expanded', open ? 'true' : 'false');
+    // Hide the contact tray while the chat panel occupies the bottom-right;
+    // collapse the tray too so it isn't left open behind the panel.
+    if (fab) {
+      fab.classList.toggle('sb-fab--hidden', open);
+      if (open) {
+        fab.setAttribute('data-open', 'false');
+        var ft = document.getElementById('sb-fab-toggle');
+        if (ft) ft.setAttribute('aria-expanded', 'false');
+      }
+    }
     if (open) { start(); setTimeout(function () { input.focus(); }, 120); }
   }
 
@@ -158,11 +164,11 @@
       .catch(function () { typing.remove(); busy = false; fallback(); });
   }
 
-  launcher.addEventListener('click', function () { setOpen(root.getAttribute('data-open') !== 'true'); });
-  closeBtn.addEventListener('click', function () { setOpen(false); launcher.focus(); });
+  fabChat.addEventListener('click', function (e) { e.stopPropagation(); setOpen(true); });
+  closeBtn.addEventListener('click', function () { setOpen(false); fabChat.focus(); });
   form.addEventListener('submit', function (e) { e.preventDefault(); send(input.value); });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && root.getAttribute('data-open') === 'true') { setOpen(false); launcher.focus(); }
+    if (e.key === 'Escape' && root.getAttribute('data-open') === 'true') { setOpen(false); fabChat.focus(); }
   });
 })();
 </script>

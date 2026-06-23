@@ -1,5 +1,6 @@
-// AI chat widget (frontend-only). Bottom-left so it never collides with the
-// social FAB on the right. Hardened against host theme button/input styles.
+// AI chat widget. The panel is opened from the "Chat with us" item in the
+// right-side social FAB tray, so it anchors bottom-right (no own launcher).
+// Hardened against host theme button/input styles.
 
 :root {
   --sb-chat-accent: #1CA5AA;
@@ -12,47 +13,14 @@
 
 .sb-chat {
   position: fixed;
-  left: 24px;
+  right: 24px;
   bottom: 24px;
-  z-index: 1000;
+  z-index: 1001; // above the FAB
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   font-family: "DM Sans", sans-serif;
-}
-
-/* ── Launcher ── */
-.sb-chat-launcher {
-  -webkit-appearance: none;
-  appearance: none;
-  display: inline-flex !important;
-  align-items: center;
-  gap: 8px;
-  height: 56px !important;
-  padding: 0 22px 0 18px !important;
-  border: 0 !important;
-  border-radius: 999px !important;
-  background: var(--sb-chat-accent) !important;
-  color: #fff !important;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(28, 165, 170, 0.45);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-
-  &:hover { background: var(--sb-chat-accent-dark) !important; transform: translateY(-1px); }
-  &:focus-visible { outline: 3px solid rgba(28, 165, 170, 0.5); outline-offset: 3px; }
-}
-
-.sb-chat-launcher-icon { width: 24px; height: 24px; fill: #fff; flex: 0 0 auto; }
-
-.sb-chat[data-open="true"] .sb-chat-launcher {
-  // collapse to a small dot when the panel is open (panel has its own close)
-  width: 0 !important;
-  padding: 0 !important;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.6);
+  pointer-events: none; // only the open panel is interactive
 }
 
 /* ── Panel ── */
@@ -61,7 +29,6 @@
   max-width: calc(100vw - 48px);
   height: 520px;
   max-height: calc(100vh - 120px);
-  margin-bottom: 14px;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -69,12 +36,14 @@
   border-radius: 16px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
   overflow: hidden;
-  transform-origin: bottom left;
+  transform-origin: bottom right;
   opacity: 0;
   transform: translateY(16px) scale(0.96);
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
+
+.sb-chat[data-open="true"] .sb-chat-panel { pointer-events: auto; }
 
 .sb-chat[data-open="true"] .sb-chat-panel {
   opacity: 1;
@@ -236,13 +205,11 @@
 }
 
 @media (max-width: 600px) {
-  .sb-chat { left: 16px; bottom: 16px; right: 16px; }
+  .sb-chat { left: 16px; right: 16px; bottom: 16px; align-items: stretch; }
   .sb-chat-panel { width: 100%; height: 70vh; }
-  .sb-chat-launcher-label { display: none; }
-  .sb-chat-launcher { padding: 0 !important; width: 56px !important; justify-content: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sb-chat-panel, .sb-chat-launcher { transition: opacity 0.12s ease; transform: none; }
+  .sb-chat-panel { transition: opacity 0.12s ease; transform: none; }
   .sb-chat-typing span { animation: none; }
 }
