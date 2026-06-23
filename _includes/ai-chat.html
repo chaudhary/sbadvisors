@@ -1,19 +1,13 @@
 {%- comment -%}
-  AI chat widget (frontend-only). Lead-gen assistant for SBA.
+  AI chat widget. Lead-gen assistant for SBA.
 
-  SETUP (required):
-  1. Create a Gemini API key: https://aistudio.google.com/apikey
-  2. RESTRICT the key in Google Cloud Console → Credentials → your key →
-     "Application restrictions" → HTTP referrers → add:
-        https://www.sbadvisors.ae/*   and   https://sbadvisors.ae/*
-     This makes the key useless if scraped from the page (it only works on
-     your domain). Do this BEFORE going live.
-  3. Paste the key into SBA_CHAT.apiKey below.
+  The Gemini key is NOT in this file. The widget calls a Supabase Edge
+  Function (algo-trading-backend → supabase/functions/sba-chat) which holds
+  the key server-side, applies the system prompt, and proxies Gemini. The
+  page only ever sends/receives chat messages.
 
-  Provider is swappable: today it calls Gemini direct from the browser
-  (the one major API that allows CORS + referrer-locked keys). To move to a
-  hidden backend (Cloudflare Worker proxying Grok/Claude) later, point
-  SBA_CHAT.endpoint at the worker and drop the key.
+  Endpoint is SBA_CHAT.endpoint below. With no key configured server-side or
+  any error, the widget degrades gracefully to a WhatsApp / phone handoff.
 {%- endcomment -%}
 <div class="sb-chat" id="sb-chat" data-open="false">
   <div class="sb-chat-panel" id="sb-chat-panel" role="dialog" aria-modal="false" aria-label="Chat with SBA" aria-hidden="true">
@@ -54,23 +48,11 @@
 <script>
 (function () {
   var SBA_CHAT = {
-    // ── PASTE YOUR REFERRER-RESTRICTED GEMINI KEY HERE ──
-    apiKey: '',
-    model: 'gemini-3.5-flash',
-    endpoint: function (m, k) {
-      return 'https://generativelanguage.googleapis.com/v1beta/models/' + m + ':generateContent?key=' + k;
-    },
+    // Supabase Edge Function that proxies Gemini (holds the key server-side).
+    endpoint: 'https://qchininhgkqpnmhmpwtu.supabase.co/functions/v1/sba-chat',
     whatsapp: '971509869216',
     greeting: "Hi! 👋 I'm SBA's assistant. I can help with corporate tax, VAT, business setup, accounting and compliance in the UAE. What can I help you with?",
-    chips: ['Corporate tax (9%)', 'VAT registration', 'Business setup', 'Book a free consultation'],
-    system: [
-      "You are SBA Assistant, the website assistant for Success Business Advisors (SBA), a chartered accounting and business advisory firm in Ras Al Khaimah, UAE.",
-      "Help visitors with GENERAL information about SBA services: accounting & CFO, corporate tax (9%), VAT, business setup (free zone vs mainland), and AML/ESR/UBO compliance.",
-      "Style: warm, professional, concise (2-4 short sentences). UAE English. Never use em dashes.",
-      "GUARDRAILS: Do not give specific legal, tax or financial advice, exact figures, prices, deadlines or guarantees for an individual's situation. For anything specific, say it depends on their case and recommend a free consultation. Never invent facts.",
-      "GOAL: be helpful AND capture leads. When a visitor shows interest, invite them to share their name and what they need, and offer to continue on WhatsApp or book a free consultation.",
-      "Contact: phone +971 7 207 7417, email info@sbadvisors.ae, or the WhatsApp button in this chat."
-    ].join(' ')
+    chips: ['Corporate tax (9%)', 'VAT registration', 'Business setup', 'Book a free consultation']
   };
 
   var root = document.getElementById('sb-chat');
@@ -151,35 +133,22 @@
     history.push({ role: 'user', text: text });
     input.value = '';
 
-    if (!SBA_CHAT.apiKey) {
-      fallback("Thanks! Our live assistant isn't switched on yet, but we don't want to keep you waiting. Tap the WhatsApp button below or call +971 7 207 7417 and the team will reply right away.");
-      return;
-    }
-
     busy = true;
     var typing = showTyping();
 
-    var body = {
-      system_instruction: { parts: [{ text: SBA_CHAT.system }] },
-      contents: history.map(function (m) { return { role: m.role, parts: [{ text: m.text }] }; }),
-      generationConfig: { temperature: 0.5, maxOutputTokens: 500 }
-    };
-
-    fetch(SBA_CHAT.endpoint(SBA_CHAT.model, SBA_CHAT.apiKey), {
+    fetch(SBA_CHAT.endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify({ messages: history })
     })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
         typing.remove();
         busy = false;
-        var reply = res.d && res.d.candidates && res.d.candidates[0] &&
-          res.d.candidates[0].content && res.d.candidates[0].content.parts &&
-          res.d.candidates[0].content.parts[0] && res.d.candidates[0].content.parts[0].text;
+        var reply = res.d && res.d.reply;
         if (res.ok && reply) {
-          addMsg('bot', reply.trim());
-          history.push({ role: 'model', text: reply.trim() });
+          addMsg('bot', String(reply).trim());
+          history.push({ role: 'model', text: String(reply).trim() });
           // keep the WhatsApp handoff contextual to the conversation
           waLink.href = waHref("Hi SBA, I was chatting on your website about: " + text);
         } else {
