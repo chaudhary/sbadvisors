@@ -1,0 +1,218 @@
+// Floating contact button (bottom-right), expands to social/contact channels.
+
+:root {
+  --sb-fab-accent: #1CA5AA;
+  --sb-fab-size: 56px;
+  --sb-fab-channel-size: 50px;
+  --sb-fab-gap: 14px;
+}
+
+.sb-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sb-fab-gap);
+}
+
+.sb-fab-channels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sb-fab-gap);
+  // The collapsed (invisible) channel column must not block clicks on the
+  // page behind it; individual items re-enable pointer events when open.
+  pointer-events: none;
+}
+
+.sb-fab-channel-item {
+  // Hidden state: collapsed, non-interactive, slightly offset for the rise-in.
+  opacity: 0;
+  transform: translateY(12px) scale(0.6);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.sb-fab[data-open="true"] .sb-fab-channel-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+// Stagger the rise so channels cascade out (nearest the toggle first).
+.sb-fab[data-open="true"] .sb-fab-channel-item:nth-last-child(1) { transition-delay: 0.02s; }
+.sb-fab[data-open="true"] .sb-fab-channel-item:nth-last-child(2) { transition-delay: 0.05s; }
+.sb-fab[data-open="true"] .sb-fab-channel-item:nth-last-child(3) { transition-delay: 0.08s; }
+.sb-fab[data-open="true"] .sb-fab-channel-item:nth-last-child(4) { transition-delay: 0.11s; }
+.sb-fab[data-open="true"] .sb-fab-channel-item:nth-last-child(5) { transition-delay: 0.14s; }
+.sb-fab[data-open="true"] .sb-fab-channel-item:nth-last-child(6) { transition-delay: 0.17s; }
+
+.sb-fab-channel {
+  position: relative;
+  // Force-reset against host theme button/anchor styles (elementor, reset.css,
+  // bootstrap) which load after application.css and would otherwise win.
+  -webkit-appearance: none;
+  appearance: none;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: var(--sb-fab-channel-size) !important;
+  height: var(--sb-fab-channel-size) !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: var(--sb-fab-channel-color, var(--sb-fab-accent)) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(28, 165, 170, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+.sb-fab-icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+// Tooltip label on hover/focus (desktop).
+.sb-fab-channel::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  background: #292929;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.sb-fab-channel:hover::after,
+.sb-fab-channel:focus-visible::after {
+  opacity: 1;
+}
+
+.sb-fab-toggle {
+  position: relative;
+  // Force-reset against host theme button styles (UA button appearance,
+  // elementor/bootstrap resets) that load after application.css.
+  -webkit-appearance: none;
+  appearance: none;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: var(--sb-fab-size) !important;
+  height: var(--sb-fab-size) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: var(--sb-fab-accent) !important;
+  color: #fff !important;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(28, 165, 170, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    background: #178b8f !important;
+    box-shadow: 0 8px 22px rgba(28, 165, 170, 0.55);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(28, 165, 170, 0.5);
+    outline-offset: 3px;
+  }
+}
+
+.sb-fab-toggle-icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sb-fab-toggle-icon--close {
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+
+.sb-fab[data-open="true"] .sb-fab-toggle {
+  background: #178b8f;
+}
+
+.sb-fab[data-open="true"] .sb-fab-toggle-icon--chat {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+
+.sb-fab[data-open="true"] .sb-fab-toggle-icon--close {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+// Gentle attention pulse on the closed toggle.
+.sb-fab[data-open="false"] .sb-fab-toggle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--sb-fab-accent);
+  animation: sb-fab-pulse 2.4s ease-out infinite;
+}
+
+@keyframes sb-fab-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .sb-fab {
+    right: 16px;
+    bottom: 16px;
+  }
+  // Tooltips can overflow tiny screens; rely on aria-label instead.
+  .sb-fab-channel::after { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-fab-channel-item,
+  .sb-fab-toggle-icon,
+  .sb-fab-channel,
+  .sb-fab-toggle {
+    transition: opacity 0.12s ease;
+    transform: none;
+  }
+  .sb-fab[data-open="true"] .sb-fab-channel-item {
+    transform: none;
+    transition-delay: 0s;
+  }
+  .sb-fab[data-open="false"] .sb-fab-toggle::before {
+    animation: none;
+  }
+}
