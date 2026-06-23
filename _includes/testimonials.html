@@ -1,0 +1,40 @@
+{%- assign t = site.data.testimonials -%}
+<section class="sb-testimonials" aria-labelledby="sb-testimonials-title">
+  <div class="sb-testimonials-inner">
+    <div class="sb-testimonials-head">
+      <h2 class="sb-testimonials-title" id="sb-testimonials-title">Trusted By Businesses Across The UAE</h2>
+      {%- if t.aggregate -%}
+      <a class="sb-testimonials-badge" href="{{ t.aggregate.google_reviews_url }}" target="_blank" rel="noopener noreferrer" aria-label="Rated {{ t.aggregate.rating }} out of 5 from {{ t.aggregate.count }} Google reviews. Read them on Google.">
+        <span class="sb-testimonials-badge-rating">{{ t.aggregate.rating }}</span>
+        <span class="sb-testimonials-stars" aria-hidden="true">
+          {%- for s in (1..5) -%}<svg viewBox="0 0 24 24" class="sb-testimonials-star"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>{%- endfor -%}
+        </span>
+        <span class="sb-testimonials-badge-meta">from <strong>{{ t.aggregate.count }}</strong> Google reviews</span>
+      </a>
+      {%- endif -%}
+    </div>
+
+    {%- if t.items and t.items.size > 0 -%}
+    <ul class="sb-testimonials-grid" role="list">
+      {%- for item in t.items -%}
+      <li class="sb-testimonials-card">
+        {%- if item.rating -%}
+        <span class="sb-testimonials-stars sb-testimonials-stars--card" aria-label="{{ item.rating }} out of 5 stars">
+          {%- for s in (1..item.rating) -%}<svg viewBox="0 0 24 24" class="sb-testimonials-star" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>{%- endfor -%}
+        </span>
+        {%- endif -%}
+        <blockquote class="sb-testimonials-quote">{{ item.quote }}</blockquote>
+        <div class="sb-testimonials-author">
+          <span class="sb-testimonials-author-name">{{ item.name }}</span>
+          {%- if item.role %}<span class="sb-testimonials-author-role">{{ item.role }}</span>{%- endif -%}
+        </div>
+      </li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+
+    <div class="sb-testimonials-cta">
+      <a class="sb-testimonials-cta-link" href="{{ t.aggregate.google_reviews_url }}" target="_blank" rel="noopener noreferrer">Read all reviews on Google</a>
+    </div>
+  </div>
+</section>

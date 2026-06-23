@@ -1,0 +1,29 @@
+# Canonical list of SBA service lines — used by the /services/ hub page.
+- title: "Accounting & CFO Services"
+  url: /accounting-finance-consulting-cfo-services-ras-al-khaimah-uae/
+  summary: "Bookkeeping, IFRS financial reporting, management accounts and outsourced fractional CFO support for UAE SMEs."
+  points:
+    - "Bookkeeping & financial statements"
+    - "Outsourced & fractional CFO"
+    - "Management accounting & MIS"
+- title: "Corporate Tax & VAT"
+  url: /tax-support-corporate-tax-vat-consultancy-ras-al-khaimah-uae/
+  summary: "Corporate tax registration and filing, VAT returns, TRC, free zone QFZP assessment and transfer pricing."
+  points:
+    - "9% corporate tax registration & filing"
+    - "VAT registration & returns"
+    - "Free zone QFZP & transfer pricing"
+- title: "Financial Planning & Business Setup"
+  url: /financial-planning-cost-control-business-setup-ras-al-khaimah-uae/
+  summary: "Company formation, free zone vs mainland advisory, budgeting, cost control and bank account support."
+  points:
+    - "Free zone vs mainland setup"
+    - "Budgeting & cost control"
+    - "Bank account opening support"
+- title: "Compliance, AML & Risk"
+  url: /compliance-aml-due-diligence-esr-risk-management-ras-al-khaimah-uae/
+  summary: "AML/KYC frameworks, goAML registration, ESR assessments, UBO filings and ongoing risk management."
+  points:
+    - "AML/KYC & goAML registration"
+    - "ESR & UBO filings"
+    - "Risk assessments"
