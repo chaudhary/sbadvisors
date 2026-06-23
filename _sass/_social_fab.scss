@@ -16,6 +16,14 @@
   flex-direction: column;
   align-items: center;
   gap: var(--sb-fab-gap);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+// Hidden while the AI chat panel occupies the bottom-right corner.
+.sb-fab.sb-fab--hidden {
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  pointer-events: none;
 }
 
 .sb-fab-channels {

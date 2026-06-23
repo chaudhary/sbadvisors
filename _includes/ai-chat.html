@@ -1,0 +1,175 @@
+{%- comment -%}
+  AI chat widget. Lead-gen assistant for SBA.
+
+  The Gemini key is NOT in this file. The widget calls a Supabase Edge
+  Function (algo-trading-backend → supabase/functions/sba-chat) which holds
+  the key server-side, applies the system prompt, and proxies Gemini. The
+  page only ever sends/receives chat messages.
+
+  Endpoint is SBA_CHAT.endpoint below. With no key configured server-side or
+  any error, the widget degrades gracefully to a WhatsApp / phone handoff.
+{%- endcomment -%}
+<div class="sb-chat" id="sb-chat" data-open="false">
+  <div class="sb-chat-panel" id="sb-chat-panel" role="dialog" aria-modal="false" aria-label="Chat with SBA" aria-hidden="true">
+    <div class="sb-chat-header">
+      <div class="sb-chat-header-id">
+        <span class="sb-chat-avatar" aria-hidden="true">SBA</span>
+        <span class="sb-chat-header-text">
+          <span class="sb-chat-header-title">SBA Assistant</span>
+          <span class="sb-chat-header-sub">Typically replies in seconds</span>
+        </span>
+      </div>
+      <button type="button" class="sb-chat-close" id="sb-chat-close" aria-label="Close chat">
+        <svg viewBox="0 0 352 512" aria-hidden="true"><path d="M242.7 256l100.1-100.1c12.3-12.3 12.3-32.2 0-44.5l-22.2-22.2c-12.3-12.3-32.2-12.3-44.5 0L176 189.3 75.9 89.2c-12.3-12.3-32.2-12.3-44.5 0L9.2 111.5c-12.3 12.3-12.3 32.2 0 44.5L109.3 256 9.2 356.1c-12.3 12.3-12.3 32.2 0 44.5l22.2 22.2c12.3 12.3 32.2 12.3 44.5 0L176 322.7l100.1 100.1c12.3 12.3 32.2 12.3 44.5 0l22.2-22.2c12.3-12.3 12.3-32.2 0-44.5L242.7 256z"/></svg>
+      </button>
+    </div>
+    <div class="sb-chat-log" id="sb-chat-log" role="log" aria-live="polite"></div>
+    <div class="sb-chat-quick" id="sb-chat-quick"></div>
+    <form class="sb-chat-input" id="sb-chat-form">
+      <input type="text" id="sb-chat-text" class="sb-chat-text" autocomplete="off"
+        placeholder="Ask about tax, VAT, setup..." aria-label="Type your message" />
+      <button type="submit" class="sb-chat-send" aria-label="Send message">
+        <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M16 464l480-208L16 48v160l320 48-320 48z"/></svg>
+      </button>
+    </form>
+    <a class="sb-chat-wa" id="sb-chat-wa" href="#" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.2-157zM223.9 442.3c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 361.7l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.7-186.6 184.7zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+      Chat with us on WhatsApp
+    </a>
+  </div>
+</div>
+
+{% raw %}
+<script>
+(function () {
+  var SBA_CHAT = {
+    // Supabase Edge Function that proxies Gemini (holds the key server-side).
+    endpoint: 'https://qchininhgkqpnmhmpwtu.supabase.co/functions/v1/sba-chat',
+    whatsapp: '971509869216',
+    greeting: "Hi! 👋 I'm SBA's assistant. I can help with corporate tax, VAT, business setup, accounting and compliance in the UAE. What can I help you with?",
+    chips: ['Corporate tax (9%)', 'VAT registration', 'Business setup', 'Book a free consultation']
+  };
+
+  var root = document.getElementById('sb-chat');
+  var fab = document.getElementById('sb-fab');                 // right-side tray
+  var fabChat = document.getElementById('sb-fab-chat');        // "Chat with us" item
+  var closeBtn = document.getElementById('sb-chat-close');
+  var panel = document.getElementById('sb-chat-panel');
+  var log = document.getElementById('sb-chat-log');
+  var quick = document.getElementById('sb-chat-quick');
+  var form = document.getElementById('sb-chat-form');
+  var input = document.getElementById('sb-chat-text');
+  var waLink = document.getElementById('sb-chat-wa');
+  if (!root || !fabChat) return;
+
+  var history = [];   // [{role:'user'|'model', text}]
+  var started = false;
+  var busy = false;
+
+  function waHref(text) {
+    return 'https://wa.me/' + SBA_CHAT.whatsapp + '?text=' + encodeURIComponent(text);
+  }
+  waLink.href = waHref("Hi SBA, I have an enquiry from your website.");
+
+  function scrollDown() { log.scrollTop = log.scrollHeight; }
+
+  function addMsg(role, text) {
+    var row = document.createElement('div');
+    row.className = 'sb-chat-msg sb-chat-msg--' + (role === 'user' ? 'user' : 'bot');
+    row.textContent = text;
+    log.appendChild(row);
+    scrollDown();
+    return row;
+  }
+
+  function showTyping() {
+    var t = document.createElement('div');
+    t.className = 'sb-chat-msg sb-chat-msg--bot sb-chat-typing';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    log.appendChild(t);
+    scrollDown();
+    return t;
+  }
+
+  function renderChips() {
+    quick.innerHTML = '';
+    SBA_CHAT.chips.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sb-chat-chip';
+      b.textContent = c;
+      b.addEventListener('click', function () { send(c); });
+      quick.appendChild(b);
+    });
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    addMsg('bot', SBA_CHAT.greeting);
+    renderChips();
+  }
+
+  function setOpen(open) {
+    root.setAttribute('data-open', open ? 'true' : 'false');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    fabChat.setAttribute('aria-expanded', open ? 'true' : 'false');
+    // Hide the contact tray while the chat panel occupies the bottom-right;
+    // collapse the tray too so it isn't left open behind the panel.
+    if (fab) {
+      fab.classList.toggle('sb-fab--hidden', open);
+      if (open) {
+        fab.setAttribute('data-open', 'false');
+        var ft = document.getElementById('sb-fab-toggle');
+        if (ft) ft.setAttribute('aria-expanded', 'false');
+      }
+    }
+    if (open) { start(); setTimeout(function () { input.focus(); }, 120); }
+  }
+
+  function fallback(msg) {
+    addMsg('bot', msg || "Sorry, I could not reach the assistant right now. You can WhatsApp us using the button below or call +971 7 207 7417 and we'll help straight away.");
+  }
+
+  function send(text) {
+    text = (text || '').trim();
+    if (!text || busy) return;
+    quick.innerHTML = '';            // hide starter chips after first turn
+    addMsg('user', text);
+    history.push({ role: 'user', text: text });
+    input.value = '';
+
+    busy = true;
+    var typing = showTyping();
+
+    fetch(SBA_CHAT.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        typing.remove();
+        busy = false;
+        var reply = res.d && res.d.reply;
+        if (res.ok && reply) {
+          addMsg('bot', String(reply).trim());
+          history.push({ role: 'model', text: String(reply).trim() });
+          // keep the WhatsApp handoff contextual to the conversation
+          waLink.href = waHref("Hi SBA, I was chatting on your website about: " + text);
+        } else {
+          fallback();
+        }
+      })
+      .catch(function () { typing.remove(); busy = false; fallback(); });
+  }
+
+  fabChat.addEventListener('click', function (e) { e.stopPropagation(); setOpen(true); });
+  closeBtn.addEventListener('click', function () { setOpen(false); fabChat.focus(); });
+  form.addEventListener('submit', function (e) { e.preventDefault(); send(input.value); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && root.getAttribute('data-open') === 'true') { setOpen(false); fabChat.focus(); }
+  });
+})();
+</script>
+{% endraw %}
