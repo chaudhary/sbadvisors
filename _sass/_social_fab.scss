@@ -26,6 +26,9 @@
   flex-direction: column;
   align-items: center;
   gap: var(--sb-fab-gap);
+  // The collapsed (invisible) channel column must not block clicks on the
+  // page behind it; individual items re-enable pointer events when open.
+  pointer-events: none;
 }
 
 .sb-fab-channel-item {
@@ -52,14 +55,19 @@
 
 .sb-fab-channel {
   position: relative;
-  display: flex;
+  // Force-reset against host theme button/anchor styles (elementor, reset.css,
+  // bootstrap) which load after application.css and would otherwise win.
+  -webkit-appearance: none;
+  appearance: none;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  width: var(--sb-fab-channel-size);
-  height: var(--sb-fab-channel-size);
-  border-radius: 50%;
-  background: var(--sb-fab-channel-color, var(--sb-fab-accent));
-  color: #fff;
+  width: var(--sb-fab-channel-size) !important;
+  height: var(--sb-fab-channel-size) !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: var(--sb-fab-channel-color, var(--sb-fab-accent)) !important;
+  color: #fff !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
   text-decoration: none;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
@@ -109,21 +117,27 @@
 }
 
 .sb-fab-toggle {
-  display: flex;
+  position: relative;
+  // Force-reset against host theme button styles (UA button appearance,
+  // elementor/bootstrap resets) that load after application.css.
+  -webkit-appearance: none;
+  appearance: none;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  width: var(--sb-fab-size);
-  height: var(--sb-fab-size);
-  border: none;
-  border-radius: 50%;
-  background: var(--sb-fab-accent);
-  color: #fff;
+  width: var(--sb-fab-size) !important;
+  height: var(--sb-fab-size) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: var(--sb-fab-accent) !important;
+  color: #fff !important;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(28, 165, 170, 0.45);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 
   &:hover {
-    background: #178b8f;
+    background: #178b8f !important;
     box-shadow: 0 8px 22px rgba(28, 165, 170, 0.55);
   }
 
