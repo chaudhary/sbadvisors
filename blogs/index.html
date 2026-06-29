@@ -7,29 +7,29 @@ description: "Articles on UAE corporate tax, VAT, ESR compliance and free zone s
 <main class="page-content" aria-label="Content">
 	{% include header.html %}
 
-  <div class="wrapper" style="max-width: 1200px; margin: 0 auto;">
+  <div class="wrapper post-list-wrapper">
     <h1>All Articles{% if paginator.page > 1 %} <span class="post-list-page-tag">— Page {{ paginator.page }} of {{ paginator.total_pages }}</span>{% endif %}</h1>
 
     <p>Insights on accounting, tax support, financial planning, and business compliance in the UAE.</p>
 
-    <ul class="post-list" style="list-style: none; padding: 0;">
+    <ul class="post-list">
       {% for post in paginator.posts %}
-        <li style="display: flex; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #eee; align-items: flex-start;">
+        <li class="post-list-item">
           {% if post.image %}
-          <a href="{{ post.url | relative_url }}" style="flex-shrink: 0; width: 200px;">
-            <img src="{{ post.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ post.title | escape }}" width="200" height="120" {% if forloop.index > 2 %}loading="lazy"{% else %}fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}"{% endif %} decoding="async" style="width: 200px; height: 120px; object-fit: cover; border-radius: 6px; display: block;" />
+          <a href="{{ post.url | relative_url }}" class="post-list-thumb">
+            <img src="{{ post.image | replace: '.jpg', '-320w.jpg' | replace: '.png', '-320w.png' | relative_url }}" alt="{{ post.title | escape }}" width="200" height="120" {% if forloop.index > 2 %}loading="lazy"{% else %}fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}"{% endif %} decoding="async" />
           </a>
           {% endif %}
-          <div style="flex: 1; min-width: 0;">
-            <h2 style="margin-top: 0;">
+          <div class="post-list-body">
+            <h2>
               <a href="{{ post.url | relative_url }}">
                 {{ post.title }}
               </a>
             </h2>
-            <span class="post-meta" style="display: block; margin-bottom: 0.5rem; color: #666; font-size: 0.9em;">
+            <span class="post-meta">
               {{ post.date | date: "%-d %B %Y" }}
             </span>
-            <p style="margin-bottom: 0;">
+            <p>
               {{ post.description | default: post.excerpt | strip_html | truncate: 180 }}
             </p>
           </div>

@@ -17,15 +17,15 @@
 .sb-home-services-heading {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 80px 0px;
+  padding: 80px 24px;
 }
 
 .sb-home-services-heading-title {
   max-width: 50%;
   font-family: "DM Sans", sans-serif;
-  font-size: 3.1vw;
+  font-size: clamp(28px, 5.5vw, 44px);
   font-weight: 600;
-  letter-spacing: -2.5px;
+  letter-spacing: -0.025em;
   color: var(--sb-home-services-text);
   margin: 0;
 }
@@ -84,7 +84,7 @@
 .sb-home-services-slide-title {
   position: relative;
   z-index: 1;
-  font-size: 36px;
+  font-size: clamp(24px, 4vw, 36px);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #fff;
@@ -113,12 +113,13 @@
 @media (max-width: 900px) {
   .sb-home-services-heading {
     max-width: 100%;
+    padding: 48px 20px;
   }
 
   .sb-home-services-heading-title {
-    font-size: 10.5vw;
-    line-height: 0.95em;
-    letter-spacing: -1.5px;
+    // size comes from the fluid clamp on the base rule; just widen + relax wrap
+    max-width: 100%;
+    line-height: 1em;
   }
 
   .sb-home-services-carousel-track {
@@ -127,17 +128,33 @@
     justify-content: center;
     gap: var(--sb-home-services-carousel-gap);
     width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
   }
 
   .sb-home-services-slide {
     width: calc(50% - (var(--sb-home-services-carousel-gap) / 2));
     margin-right: 0;
     min-width: 0;
+    min-height: 320px;
+    padding: 28px;
+  }
+
+  // Slides are rendered twice for the desktop marquee loop; the second set
+  // is redundant once the track stops animating and wraps into a grid.
+  .sb-home-services-slide:nth-child(n+5) {
+    display: none;
   }
 }
 
 @media (max-width: 560px) {
   .sb-home-services-slide {
     width: 100%;
+    min-height: 240px;
+    padding: 24px;
+  }
+
+  .sb-home-services-slide-title {
+    padding-bottom: 10px;
   }
 }
