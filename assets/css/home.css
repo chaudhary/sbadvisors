@@ -143,7 +143,7 @@
 .welcome-text-home .col-sm img{
     width: 100% !important;
     height: 180px;
-    object-fit: fill;
+    object-fit: cover;
     background-color: white;
     padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
@@ -215,6 +215,7 @@ background: linear-gradient(
     left: -100px;
     top: 35px;
     height: 80% !important;
+    object-fit: cover; /* crop, never distort, if the box ratio is constrained */
 }
 .about-old-card{
     background: #F1F3F4;
@@ -406,7 +407,7 @@ background: teal;
     background-color: white;
 }
 .meet-team{
-    padding-bottom: 120px;
+    padding-bottom: 80px;
 }
 .meet-team img{
     height:285px !important;
@@ -636,6 +637,39 @@ min-height: 600px;
     line-height: 1.02 !important;
 }
 
+/* About-us hero heading: same 4vw/-1.5px issue. Match the home hero scale. */
+#about-page .elementor-element-f022a45 .elementor-heading-title {
+    font-size: clamp(30px, 7vw, 52px) !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.04 !important;
+}
+
+/* "How We Turn Your Financial Chaos..." heading is 12vw on mobile, which
+   balloons to ~72px on larger phones and overlaps the paragraph below it.
+   Cap it (matches the ~52px desktop size) so it stays contained. */
+#about-page .elementor-element-19bd0d4 .elementor-heading-title {
+    font-size: clamp(30px, 7vw, 52px) !important;
+    line-height: 1.05 !important;
+}
+
+/* Its body copy is a tiny vw size (~10px on tablets). Make it readable. */
+#about-page .elementor-element-51cfe82 p {
+    font-size: clamp(15px, 1.5vw, 17px) !important;
+    line-height: 1.6 !important;
+}
+
+/* "Get Expert Help Today!" CTA: Elementor sizes it with vw rules that make it
+   ~31px at 767px but collapse to ~8px from 768px up (including desktop). Pin it
+   to a steady clamp at ALL widths so it reads as a real CTA with no jump across
+   the 767/768 or 991/992 breakpoints. */
+#about-page .elementor-element-c47ffd4 .elementor-button,
+#about-page .elementor-element-c47ffd4 .elementor-button-text {
+    font-size: clamp(16px, 2vw, 18px) !important;
+}
+#about-page .elementor-element-c47ffd4 .elementor-button {
+    padding: 14px 50px !important;
+}
+
 /* Welcome + section headings scale with the viewport too */
 .welcome-text-home h4 { font-size: clamp(22px, 5vw, 28px); }
 .welcome-text-home h6 { font-size: clamp(15px, 3.4vw, 18px); }
@@ -706,4 +740,119 @@ h3.teal-color { font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; }
         min-height: auto;
         padding-bottom: 56px;
     }
+}
+
+/* about-us "trusted consultancy firm" block: the desktop layout absolutely
+   positions the photo at height:80%, which forces it tall while max-width
+   caps it narrow -> distortion on smaller screens. Below desktop, drop the
+   overlap and stack the photo under the text at its natural aspect ratio. */
+@media (max-width: 991px) {
+    /* The "How We Turn..." heading + text sit in a flex ROW with the text
+       pulled up by margin-top:-72px (a desktop overlap effect). On mobile that
+       makes the paragraph collide with the heading. Stack them and drop the
+       negative offset. */
+    #about-page .elementor-element-b823247 {
+        flex-direction: column !important;
+        min-height: 0 !important;
+        justify-content: flex-start !important;
+        padding-top: 48px !important;
+        padding-bottom: 48px !important;
+        gap: 8px;
+    }
+    /* The heading block reserves ~100vh of height on desktop; let it shrink to
+       its content on mobile so it doesn't leave a big gap before the text. */
+    #about-page .elementor-element-127bb39 {
+        min-height: 0 !important;
+        height: auto !important;
+    }
+    #about-page .elementor-element-51cfe82 {
+        margin-top: 0 !important;
+        justify-content: flex-start !important;
+    }
+    /* The heading and text widgets carry large vh top-paddings + a left indent
+       (desktop spacing) that create a gap and misalignment on mobile. */
+    #about-page .elementor-element-19bd0d4,
+    #about-page .elementor-element-4131d7f {
+        padding-top: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    /* Widgets are align-self:center (narrower than container), so they sit
+       indented. Left-align them with the heading. */
+    #about-page .elementor-element-4131d7f,
+    #about-page .elementor-element-c47ffd4 {
+        align-self: flex-start !important;
+    }
+
+    .about-new {
+        position: static;
+        left: auto;
+    }
+    .about-new .row > .col-sm-9,
+    .about-new .row > .col-sm-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    #about-page .about-us {
+        padding-right: 1.5rem !important;
+    }
+    .about-new img {
+        position: static;
+        left: auto;
+        top: auto;
+        height: auto !important;
+        width: 100%;
+        max-width: 460px;
+        display: block;
+        margin: 1.5rem auto 0;
+        border-radius: 8px;
+    }
+}
+
+/* about-us flip cards: same 4-across cramping on tablets. 4 -> 2x2 -> 1. */
+@media (min-width: 576px) and (max-width: 991px) {
+    .about-old-card .col-sm-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .about-old-card .flip-card {
+        margin: 14px 0;
+    }
+}
+
+/* Leadership cards: the team is split into hardcoded rows-of-4, so it could
+   only ever be 4-across or 1-up. Flatten the card rows into one responsive
+   grid (display:contents lets each .col-sm become a grid cell) so the cards
+   reflow 4 -> 3 -> 2 -> 1 as the viewport narrows. */
+.meet-team > .container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: start;
+    row-gap: 80px;
+}
+.meet-team > .container > .row.mt-4 {
+    grid-column: 1 / -1;
+}
+.meet-team > .container > .row:not(.mt-4) {
+    display: contents;
+}
+/* The first 4 cards use Bootstrap mt-0 while the rest use margin-top:120px
+   (spacing for the old fixed rows). When the cards reflow through the grid
+   that lands them at different heights and the name plates — which hang ~55px
+   below each card — collide with the row below. Zero those per-card margins
+   and let the grid row-gap give every row the same clearance for the plates. */
+.meet-team .col-sm img {
+    margin-top: 0 !important;
+}
+.meet-team > .container > .row > .col-sm {
+    margin: 0 !important;
+}
+@media (max-width: 1199px) {
+    .meet-team > .container { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 991px) {
+    .meet-team > .container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 575px) {
+    .meet-team > .container { grid-template-columns: 1fr; }
 }
