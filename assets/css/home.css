@@ -1191,3 +1191,60 @@ h3.teal-color { font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; }
         text-align: center;
     }
 }
+
+/* Contact-us page (#contact-us-page): the "Say Hello" image+text row, same
+   treatment as the service pages. */
+#contact-us-page .elementor-element-1ad96a54,
+#contact-us-page .elementor-element-3eb9b6a7,
+#contact-us-page .elementor-element-182ad3ca {
+    justify-content: center !important;
+}
+#contact-us-page .elementor-element-3eb9b6a7 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+#contact-us-page .elementor-element-537e85a5 {
+    padding-top: 0 !important;
+}
+#contact-us-page .elementor-element-537e85a5 p {
+    font-size: clamp(18px, 2.3vw, 30px) !important;
+    line-height: 1.45 !important;
+}
+
+@media (max-width: 767px) {
+    #contact-us-page .elementor-element-18a323c7 {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        gap: 28px;
+    }
+    #contact-us-page .elementor-element-1ad96a54,
+    #contact-us-page .elementor-element-3eb9b6a7,
+    #contact-us-page .elementor-element-182ad3ca,
+    #contact-us-page .elementor-element-6da55789 {
+        width: 100% !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        height: auto !important;
+        flex: 0 0 auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    #contact-us-page .elementor-element-2cd867ee {
+        align-self: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    #contact-us-page .elementor-element-3eb9b6a7 img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    #contact-us-page .elementor-element-537e85a5 {
+        text-align: center;
+    }
+}
