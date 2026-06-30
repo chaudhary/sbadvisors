@@ -965,3 +965,75 @@ h3.teal-color { font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; }
         text-align: center;
     }
 }
+
+/* Accounting/CFO page (.elementor-1176): same image+text row treatment as the
+   tax-support page. Side by side the image and text are vertically centered;
+   on phones they stack (image on top, text below). */
+.elementor-1176 .elementor-element-7c096e9e,
+.elementor-1176 .elementor-element-1cd520c,
+.elementor-1176 .elementor-element-34d7d71a,
+.elementor-1176 .elementor-element-2347eec,
+.elementor-1176 .elementor-element-439fe24c,
+.elementor-1176 .elementor-element-bc11366 {
+    justify-content: center !important;
+}
+.elementor-1176 .elementor-element-34d7d71a,
+.elementor-1176 .elementor-element-2347eec {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.elementor-1176 .elementor-element-4e06ca39,
+.elementor-1176 .elementor-element-3abf7d7 {
+    padding-top: 0 !important;
+}
+.elementor-1176 .elementor-element-4e06ca39 p,
+.elementor-1176 .elementor-element-3abf7d7 p {
+    font-size: clamp(18px, 2.3vw, 30px) !important;
+    line-height: 1.45 !important;
+}
+
+@media (max-width: 767px) {
+    .elementor-1176 .elementor-element-61c20460,
+    .elementor-1176 .elementor-element-5a17df1 {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        gap: 28px;
+    }
+    .elementor-1176 .elementor-element-7c096e9e,
+    .elementor-1176 .elementor-element-1cd520c,
+    .elementor-1176 .elementor-element-34d7d71a,
+    .elementor-1176 .elementor-element-2347eec,
+    .elementor-1176 .elementor-element-439fe24c,
+    .elementor-1176 .elementor-element-2eecfeb6,
+    .elementor-1176 .elementor-element-bc11366,
+    .elementor-1176 .elementor-element-3c83a25 {
+        width: 100% !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        height: auto !important;
+        flex: 0 0 auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .elementor-1176 .elementor-element-c27137d,
+    .elementor-1176 .elementor-element-a9b49b2 {
+        align-self: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .elementor-1176 .elementor-element-34d7d71a img,
+    .elementor-1176 .elementor-element-2347eec img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    .elementor-1176 .elementor-element-4e06ca39,
+    .elementor-1176 .elementor-element-3abf7d7 {
+        text-align: center;
+    }
+}
