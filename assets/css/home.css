@@ -1107,3 +1107,87 @@ h3.teal-color { font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; }
         text-align: center;
     }
 }
+
+/* Compliance page (#compliance-page): three image+text rows, same treatment. */
+#compliance-page .elementor-element-5cd9bc3b,
+#compliance-page .elementor-element-1638faa2,
+#compliance-page .elementor-element-f17887c,
+#compliance-page .elementor-element-1b85fc11,
+#compliance-page .elementor-element-461dd1fd,
+#compliance-page .elementor-element-9305ff5,
+#compliance-page .elementor-element-27c07571,
+#compliance-page .elementor-element-5ed3287a,
+#compliance-page .elementor-element-f89577a {
+    justify-content: center !important;
+}
+#compliance-page .elementor-element-1b85fc11,
+#compliance-page .elementor-element-461dd1fd,
+#compliance-page .elementor-element-9305ff5 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+#compliance-page .elementor-element-492e327f,
+#compliance-page .elementor-element-221867a9,
+#compliance-page .elementor-element-0b15b0a {
+    padding-top: 0 !important;
+}
+#compliance-page .elementor-element-492e327f p,
+#compliance-page .elementor-element-221867a9 p,
+#compliance-page .elementor-element-0b15b0a p {
+    font-size: clamp(18px, 2.3vw, 30px) !important;
+    line-height: 1.45 !important;
+}
+
+@media (max-width: 767px) {
+    #compliance-page .elementor-element-833fce0,
+    #compliance-page .elementor-element-7e3bc68b,
+    #compliance-page .elementor-element-c9ba920 {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        gap: 28px;
+    }
+    #compliance-page .elementor-element-5cd9bc3b,
+    #compliance-page .elementor-element-1638faa2,
+    #compliance-page .elementor-element-f17887c,
+    #compliance-page .elementor-element-1b85fc11,
+    #compliance-page .elementor-element-461dd1fd,
+    #compliance-page .elementor-element-9305ff5,
+    #compliance-page .elementor-element-27c07571,
+    #compliance-page .elementor-element-2c09299b,
+    #compliance-page .elementor-element-5ed3287a,
+    #compliance-page .elementor-element-78a377eb,
+    #compliance-page .elementor-element-f89577a,
+    #compliance-page .elementor-element-a70603c {
+        width: 100% !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        height: auto !important;
+        flex: 0 0 auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    #compliance-page .elementor-element-1f381ac1,
+    #compliance-page .elementor-element-1070da0d,
+    #compliance-page .elementor-element-b952ddb {
+        align-self: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    #compliance-page .elementor-element-1b85fc11 img,
+    #compliance-page .elementor-element-461dd1fd img,
+    #compliance-page .elementor-element-9305ff5 img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    #compliance-page .elementor-element-492e327f,
+    #compliance-page .elementor-element-221867a9,
+    #compliance-page .elementor-element-0b15b0a {
+        text-align: center;
+    }
+}
