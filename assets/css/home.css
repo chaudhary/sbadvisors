@@ -288,21 +288,50 @@ box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0p
 .four-pattern{
     margin-top: 40px;
 }
-.tax-support .four-pattern .card{
-min-height: 465px;
+/* Make all cards in a row equal height at ANY width: the Bootstrap row already
+   stretches its columns to the tallest, so make each column a flex column and
+   let the card grow to fill it. This beats a fixed min-height, which only sets
+   a floor and lets taller-wrapping cards (5 items) overflow past it. */
+.four-pattern .row > [class*="col-"] {
+    display: flex;
+    flex-direction: column;
+}
+.four-pattern .card {
+    flex: 1 1 auto;
 }
 
+/* min-height keeps the stacked 1-up cards uniform too (one per row, so flex
+   stretch can't equalise them) and acts as a sensible floor. */
+.four-pattern .card{
+    min-height: 441px;
+}
+.tax-support .four-pattern .card{
+    min-height: 465px;
+}
 .financial .four-pattern .card {
     min-height: 382px;
 }
-
 .compliance .four-pattern .card {
     min-height: 360px;
+}
+/* Fluid container so the 4-up cards scale smoothly instead of snapping at
+   Bootstrap's stepped .container widths (e.g. the 960->1140 jump at 1200px).
+   The extra horizontal padding gives the card box a left/right margin (the
+   row's -15px and col's +15px cancel, so container padding = outer gutter). */
+.four-pattern.container {
+    max-width: 1200px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+@media (min-width: 768px) {
+    .four-pattern.container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 }
 
 .four-pattern .card{
     padding: 5px 15px;
-    min-height: 441px;
     background-color: #f6faff;
      border-radius: 30px;
      position: relative;
@@ -617,9 +646,6 @@ min-height: 600px;
     .meet-team h4{
         padding-left: 15px;
     }
-    .four-pattern .card{
-        min-height:auto;
-    }
     .faq-section .accordion-item button{
         text-wrap: wrap;
         text-align: left;
@@ -855,4 +881,87 @@ h3.teal-color { font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; }
 }
 @media (max-width: 575px) {
     .meet-team > .container { grid-template-columns: 1fr; }
+}
+
+/* Tax-support: the image+text rows. While they sit side by side, the columns
+   stay full-height (stretch); centering each column's content vertically puts
+   the image and text on the same middle axis so they line up. */
+.tax-support .elementor-element-8093f7,
+.tax-support .elementor-element-3094b8c1,
+.tax-support .elementor-element-5933287c,
+.tax-support .elementor-element-7bb9a53,
+.tax-support .elementor-element-7a562fd9,
+.tax-support .elementor-element-7a1271de {
+    justify-content: center !important;
+}
+/* The image's inner container carries a large asymmetric top padding from
+   Elementor that shoves the image down and breaks the centering. Zero it. */
+.tax-support .elementor-element-5933287c,
+.tax-support .elementor-element-7bb9a53 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+/* The text widget has an 18vh top padding from Elementor that drops the copy
+   well below the image's middle. Remove it so the text centers on the image. */
+.tax-support .elementor-element-596adda4,
+.tax-support .elementor-element-7ca7a1dd {
+    padding-top: 0 !important;
+}
+/* These intro paragraphs used a vw font-size that ballooned on small/mid
+   screens (~39px at 600px) yet shrank on large ones. A clamp scales smoothly
+   and stays readable at every width. */
+.tax-support .elementor-element-596adda4 p,
+.tax-support .elementor-element-7ca7a1dd p {
+    font-size: clamp(18px, 2.3vw, 30px) !important;
+    line-height: 1.45 !important;
+}
+
+/* Low width (phones): no room for two columns, so stack image on top with the
+   text below it as a tidy group. No vertical centering needed when stacked. */
+@media (max-width: 767px) {
+    .tax-support .elementor-element-1f5a41b2,
+    .tax-support .elementor-element-126b0f04 {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        gap: 28px;
+    }
+    .tax-support .elementor-element-8093f7,
+    .tax-support .elementor-element-3094b8c1,
+    .tax-support .elementor-element-5933287c,
+    .tax-support .elementor-element-7bb9a53,
+    .tax-support .elementor-element-7a562fd9,
+    .tax-support .elementor-element-2c143e09,
+    .tax-support .elementor-element-7a1271de,
+    .tax-support .elementor-element-402c6fb4 {
+        width: 100% !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        height: auto !important;
+        flex: 0 0 auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    /* The image widget is width-initial (shrinks to the image), so it sits
+       left in the stacked column. Center the widget itself. */
+    .tax-support .elementor-element-230f2f4c,
+    .tax-support .elementor-element-5d97b3fe {
+        align-self: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .tax-support .elementor-element-5933287c img,
+    .tax-support .elementor-element-7bb9a53 img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    .tax-support .elementor-element-596adda4,
+    .tax-support .elementor-element-7ca7a1dd {
+        text-align: center;
+    }
 }
