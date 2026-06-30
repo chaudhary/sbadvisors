@@ -1037,3 +1037,73 @@ h3.teal-color { font-size: clamp(22px, 3.5vw, 32px); line-height: 1.15; }
         text-align: center;
     }
 }
+
+/* Financial-planning page (.financial): same image+text row treatment. */
+.financial .elementor-element-294bcc3c,
+.financial .elementor-element-7791122f,
+.financial .elementor-element-76bbe341,
+.financial .elementor-element-7299f580,
+.financial .elementor-element-16681385,
+.financial .elementor-element-15cd8b43 {
+    justify-content: center !important;
+}
+.financial .elementor-element-76bbe341,
+.financial .elementor-element-7299f580 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.financial .elementor-element-16b85977,
+.financial .elementor-element-79c109d4 {
+    padding-top: 0 !important;
+}
+.financial .elementor-element-16b85977 p,
+.financial .elementor-element-79c109d4 p {
+    font-size: clamp(18px, 2.3vw, 30px) !important;
+    line-height: 1.45 !important;
+}
+
+@media (max-width: 767px) {
+    .financial .elementor-element-8504eee,
+    .financial .elementor-element-633a4383 {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        gap: 28px;
+    }
+    .financial .elementor-element-294bcc3c,
+    .financial .elementor-element-7791122f,
+    .financial .elementor-element-76bbe341,
+    .financial .elementor-element-7299f580,
+    .financial .elementor-element-16681385,
+    .financial .elementor-element-4277e4f3,
+    .financial .elementor-element-15cd8b43,
+    .financial .elementor-element-280b8874 {
+        width: 100% !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: auto !important;
+        height: auto !important;
+        flex: 0 0 auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .financial .elementor-element-769b3e1d,
+    .financial .elementor-element-135b8b25 {
+        align-self: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .financial .elementor-element-76bbe341 img,
+    .financial .elementor-element-7299f580 img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    .financial .elementor-element-16b85977,
+    .financial .elementor-element-79c109d4 {
+        text-align: center;
+    }
+}
