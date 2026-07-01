@@ -336,7 +336,9 @@
 }
 
 // —— Responsive ——————————————————————————————————————————————
-@media (max-width: 768px) {
+// 900px (not 768) so the 3-column grid drops to 2 columns before the
+// 769–818px band where contact heading + two 220px side columns overflow.
+@media (max-width: 900px) {
   .sb-footer-partners-track {
     gap: 1.5rem;
   }
