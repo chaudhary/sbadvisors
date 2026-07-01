@@ -142,16 +142,18 @@
     align-items: flex-start;
   }
 
-  .sb-footer-partners-track {
-    animation: none;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 1rem;
+  // Stacked full-width: the left divider is now an orphaned vertical line.
+  .sb-footer-partners-carousel {
+    border-left: none;
+    padding: 24px 0;
+    max-width: 100%;
   }
 
+  // Keep the marquee scrolling on mobile (was disabled). Symmetric margins
+  // keep the two duplicated logo sets equal width so the loop stays seamless.
   .sb-footer-partners-track img {
     width: 120px;
-    margin-right: 0;
+    margin: 0 25px;
   }
 }
 
@@ -170,7 +172,7 @@
 }
 
 .sb-footer-contact-title {
-  font-size: 60px;
+  font-size: clamp(34px, 9vw, 60px);
   font-weight: 600;
   color: var(--sb-footer-heading);
   margin: 0 0 24px;
@@ -334,7 +336,9 @@
 }
 
 // —— Responsive ——————————————————————————————————————————————
-@media (max-width: 768px) {
+// 900px (not 768) so the 3-column grid drops to 2 columns before the
+// 769–818px band where contact heading + two 220px side columns overflow.
+@media (max-width: 900px) {
   .sb-footer-partners-track {
     gap: 1.5rem;
   }
@@ -345,9 +349,22 @@
   }
 
   .sb-footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem 1.5rem;
     margin-bottom: 1.5rem;
+  }
+
+  // Contact spans the full width; Menu and Services sit side by side below it.
+  .sb-footer-contact {
+    grid-column: 1 / -1;
+  }
+
+  // The columns carry a desktop min-width: 220px; two of those can't fit side
+  // by side on a phone, so let them shrink to their grid cell and wrap.
+  .sb-footer .sb-footer-contact,
+  .sb-footer .sb-footer-nav,
+  .sb-footer .sb-footer-services {
+    min-width: 0;
   }
 
   .sb-footer-bottom {
