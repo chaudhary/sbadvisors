@@ -1,0 +1,29 @@
+# Client testimonials — single source of truth for the testimonials section.
+#
+# The aggregate band (rating + review count + Google link) below is shown on
+# every page that includes testimonials.html and reflects the live Google
+# Business Profile figures. Update these two numbers when they change.
+aggregate:
+  rating: "5.0"
+  count: 86
+  # Google Business Profile (CID-based) — opens the profile with reviews.
+  # Same verified CID used in the LocalBusiness schema (hasMap / sameAs).
+  google_reviews_url: "https://www.google.com/maps?cid=9384713851850451506"
+
+# Individual review cards. ONLY add real, verbatim Google reviews here — never
+# invent names or quotes. Each item:
+#   quote:  the review text, copied exactly from Google
+#   name:   reviewer's name as shown on Google
+#   role:   (optional) their company / title, if they mention it
+#   rating: star rating they left (1–5)
+#   date:   (optional) YYYY-MM, for ordering / freshness
+#
+# The grid stays hidden until at least one item exists, so the section never
+# ships with placeholder content. Paste your strongest 4–6 reviews below.
+items: []
+# Example shape (delete this comment block once you add real ones):
+#   - quote: "SBA handled our corporate tax registration end to end..."
+#     name: "Reviewer Name"
+#     role: "Managing Director, Company LLC"
+#     rating: 5
+#     date: "2026-05"

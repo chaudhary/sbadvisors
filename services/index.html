@@ -1,0 +1,62 @@
+---
+layout: default
+title: "Accounting, Tax & Business Services in Ras Al Khaimah"
+description: "Full range of SBA services for UAE businesses: accounting and CFO support, corporate tax and VAT, business setup, financial planning, and AML/ESR compliance in Ras Al Khaimah."
+image: /assets/img/og-image.jpg
+---
+
+{% include header.html %}
+
+<main class="sb-services-hub">
+  <header class="sb-services-hub-hero">
+    <div class="sb-services-hub-inner">
+      <p class="sb-services-hub-eyebrow">Our Services</p>
+      <h1 class="sb-services-hub-title">Accounting, Tax &amp; Business Services in Ras Al Khaimah</h1>
+      <p class="sb-services-hub-lead">SBA is a CA-led advisory firm helping UAE SMEs stay compliant and in control of their finances. From day-to-day bookkeeping to corporate tax, company setup and AML compliance, every service line below is delivered by certified professionals based in Ras Al Khaimah and serving businesses across the UAE.</p>
+      <div class="sb-services-hub-actions">
+        <a class="sb-services-hub-cta" href="/contact-us/">Book a Free Consultation</a>
+        <a class="sb-services-hub-cta sb-services-hub-cta--ghost" href="tel:+97172077417">Call +971 7 207 7417</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="sb-services-hub-inner" aria-label="Service lines">
+    <ul class="sb-services-hub-grid" role="list">
+      {%- for service in site.data.services -%}
+      <li class="sb-services-hub-card">
+        <h2 class="sb-services-hub-card-title">{{ service.title }}</h2>
+        <p class="sb-services-hub-card-summary">{{ service.summary }}</p>
+        {%- if service.points -%}
+        <ul class="sb-services-hub-card-points">
+          {%- for point in service.points -%}
+          <li>{{ point }}</li>
+          {%- endfor -%}
+        </ul>
+        {%- endif -%}
+        <a class="sb-services-hub-card-link" href="{{ service.url }}">Explore {{ service.title }}<span aria-hidden="true"> &rarr;</span></a>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </section>
+</main>
+
+{% include testimonials.html %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "SBA Services",
+  "itemListElement": [
+    {%- for service in site.data.services -%}
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index }},
+      "name": {{ service.title | jsonify }},
+      "url": "{{ site.url }}{{ site.baseurl }}{{ service.url }}"
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+
