@@ -48,6 +48,8 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          timeout: 1200000
 
   notify-indexnow:
     name: Notify IndexNow (Bing, Yandex, etc.)
